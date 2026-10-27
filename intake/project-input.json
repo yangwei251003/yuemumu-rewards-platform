@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "2.0",
+  "project": {
+    "slug": "yuemumu-rewards",
+    "displayName": "粤木木木能量成长系统",
+    "school": "广州科技职业技术大学",
+    "college": "人工智能与大数据学院",
+    "association": "竞野穿越机俱乐部",
+    "companyDisplayName": "粤木木",
+    "companyLegalName": null,
+    "companyLegalNameStatus": "待主体负责人确认，不以宣传简称代替签约主体"
+  },
+  "stage": {
+    "target": "local_teacher_demo",
+    "teacherApproval": "NOT_APPROVED",
+    "cloudSpendAllowed": false,
+    "cloudBudgetCny": 0,
+    "purchaseRewardsNow": false,
+    "publicShareAllowed": true,
+    "realPersonalDataAllowed": false
+  },
+  "machine": {
+    "os": null,
+    "ramGb": null,
+    "freeDiskGb": null,
+    "dockerAvailable": null,
+    "nativeMysqlAvailable": null,
+    "codexClient": null,
+    "codexModel": null,
+    "networkNotes": null
+  },
+  "demo": {
+    "preferredMode": "remote_candidate",
+    "gatewayPort": 8080,
+    "businessTimezone": "Asia/Shanghai",
+    "studentCount": 15,
+    "staffCount": 7,
+    "seedName": "teacher-review-v1",
+    "resetAllowedForDemoOnly": true,
+    "teacherDevice": "both",
+    "teacherNeedsRemoteLink": true
+  },
+  "operations": {
+    "pickupLocationLabel": "示例领取点（非真实地址）",
+    "pickupAddress": null,
+    "pickupSlots": [],
+    "actualMemberCount": null,
+    "trialMemberCountProposal": null,
+    "rewardMonthlyBudgetProposalCny": null,
+    "budgetApproved": false,
+    "actualRewardStockConfirmed": false
+  },
+  "assets": {
+    "brandFolder": "assets/brand",
+    "logoProvided": true,
+    "logoUsageAuthorized": true,
+    "realPhotosProvided": false,
+    "realPhotosUsageAuthorized": false,
+    "allowOriginalDemoIllustrations": true,
+    "imageApiBudgetCny": 0
+  },
+  "accounts": {
+    "githubRepoUrl": null,
+    "wechatAppId": null,
+    "tencentEnvId": null,
+    "domain": null,
+    "secretsPrepared": false
+  },
+  "notes": "公开源码示例配置；仅包含虚构身份与模拟库存，不代表真实成员、学校批准、采购或运营数据。"
+}

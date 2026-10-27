@@ -1,0 +1,83 @@
+{
+  "name": "yuemumu-rewards",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "db:start": "node scripts/mysql.mjs",
+    "db:migrate": "tsx scripts/migrate.ts && node scripts/harden-db.mjs",
+    "db:seed": "tsx scripts/seed.ts",
+    "contract:generate": "tsx scripts/contracts.ts",
+    "contract:check": "tsx scripts/contracts.ts --check",
+    "build": "pnpm contract:check && tsc -p apps/api/tsconfig.json && pnpm --filter @ymm/student build:h5 && pnpm --filter @ymm/ops build",
+    "build:weapp": "pnpm --filter @ymm/student build:weapp",
+    "typecheck": "tsc --noEmit && pnpm --filter @ymm/ops typecheck && pnpm --filter @ymm/student typecheck",
+    "lint": "eslint apps/api packages/db packages/domain packages/sdk scripts tests/api tests/integration",
+    "test": "tsx --test --test-concurrency=4 tests/api/*.test.ts tests/integration/*.test.ts",
+    "test:browser": "node tests/e2e/student.mjs && node tests/e2e/ops.mjs && node tests/e2e/navigation.mjs",
+    "demo": "node scripts/demo.mjs",
+    "demo:open": "node scripts/open-demo.mjs",
+    "demo:stop": "node scripts/stop.mjs",
+    "health": "node scripts/health.mjs",
+    "verify:g0": "node scripts/verify-g0.mjs"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.2.3",
+    "@nestjs/core": "11.2.3",
+    "@nestjs/platform-express": "11.2.3",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "drizzle-orm": "0.45.2",
+    "express": "5.2.1",
+    "mysql2": "3.24.3",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "12.1.0",
+    "@eslint/js": "9.35.0",
+    "@types/express": "5.0.3",
+    "@types/node": "24.3.0",
+    "eslint": "9.35.0",
+    "openapi-typescript": "7.9.1",
+    "playwright": "1.58.2",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2",
+    "typescript-eslint": "8.42.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "swiper": "12.1.2",
+      "path-to-regexp": "8.4.0",
+      "multer": "2.5.0",
+      "file-type": "21.3.2",
+      "esbuild": "0.25.12",
+      "@babel/core": "7.29.7",
+      "proxy-addr": "2.0.8",
+      "seroval": "1.6.3",
+      "body-parser@^2": "2.4.0",
+      "fast-uri": "3.1.9",
+      "brace-expansion@^1": "1.1.21",
+      "brace-expansion@^2": "2.1.7",
+      "brace-expansion@^5": "5.0.12",
+      "glob@^10": "10.5.0",
+      "source-map-js": "1.2.2",
+      "follow-redirects": "1.16.1",
+      "lodash-es": "4.18.0",
+      "js-yaml@^4": "4.3.2",
+      "joi@^17": "17.13.8",
+      "got@^11": "11.8.6",
+      "adm-zip": "0.6.1",
+      "serialize-javascript": "7.1.3",
+      "decode-uri-component": "0.5.0",
+      "vite-plugin-static-copy": "2.3.2",
+      "@tarojs/vite-runner@4.2.1>vite": "6.4.5",
+      "@tarojs/vite-runner@4.2.1>@vitejs/plugin-legacy": "6.1.1"
+    }
+  },
+  "license": "MIT"
+}

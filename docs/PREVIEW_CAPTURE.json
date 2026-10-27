@@ -1,0 +1,17 @@
+{
+  "scope": "Actual local Taro H5 and operations app backed by a new MySQL demo database. Every identity, point record, inventory item and action is synthetic. Only login/read actions captured; secrets/private panels masked.",
+  "pageErrors": [],
+  "httpFailures": [],
+  "externalRequests": [],
+  "expectedAnonymous401": [
+    {
+      "path": "/api/v1/auth/session",
+      "status": 401
+    },
+    {
+      "path": "/api/v1/auth/session",
+      "status": 401
+    }
+  ],
+  "mobileStaffNoOverflow": true
+}

@@ -1,0 +1,43 @@
+# Secrets and real/private data
+.env
+.env.*
+!.env.example
+!*.example.env
+private/**
+!private/README.md
+*.pem
+*.key
+*.p12
+*.pfx
+# Runtime and local-machine reports
+.local/
+.runtime/
+uploads/
+backups/
+node_modules/
+.swc/
+.taro/
+dist/
+build/
+coverage/
+dist-weapp/
+.playwright-cli/
+playwright-report/
+test-results/
+*.log
+.DS_Store
+Thumbs.db
+# Keep fictional catalogs and document templates versioned.
+
+# Public archive excludes all private runtime/acceptance output
+.runtime/
+.local/
+private/
+output/
+evidence/
+tests/visual/**/*.png
+tests/visual/**/*.json
+**/dist/
+**/dist-weapp/
+.env*
+!.env.example

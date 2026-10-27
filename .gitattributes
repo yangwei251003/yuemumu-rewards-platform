@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.docx binary
+*.pdf binary
+# Preserve archive source bytes for verification.
+* -text

@@ -1,0 +1,13 @@
+{
+  "status": "NOT_APPROVED",
+  "purpose": "模板，不是批准证明",
+  "policyVersion": "v1-demo-20260905",
+  "requestedScope": "demo_only",
+  "approvedByRole": null,
+  "approvedAt": null,
+  "approvalEvidenceRef": null,
+  "approvedCloudBudgetCny": 0,
+  "approvedRewardBudgetCny": 0,
+  "approvedProductionIdentityProvider": null,
+  "approvedChanges": []
+}

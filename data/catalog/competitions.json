@@ -1,0 +1,50 @@
+{
+  "status": "CANDIDATE_WATCHLIST",
+  "notice": "名称用于规划，未核验具体届次/赛项/报名时间；不自动生成为正式白名单。A/B不得编造当年赛事正在报名。",
+  "items": [
+    {
+      "id": "C001",
+      "seriesName": "中国国际大学生创新大赛",
+      "edition": null,
+      "track": null,
+      "proposedLevel": "NATIONAL",
+      "verificationStatus": "PENDING_INSTITUTION_REVIEW",
+      "officialNoticeUrl": null,
+      "registrationDeadline": null,
+      "pointsEnabled": false
+    },
+    {
+      "id": "C002",
+      "seriesName": "挑战杯中国大学生创业计划竞赛",
+      "edition": null,
+      "track": null,
+      "proposedLevel": "NATIONAL",
+      "verificationStatus": "PENDING_INSTITUTION_REVIEW",
+      "officialNoticeUrl": null,
+      "registrationDeadline": null,
+      "pointsEnabled": false
+    },
+    {
+      "id": "C003",
+      "seriesName": "中国高校智能机器人创意大赛",
+      "edition": null,
+      "track": null,
+      "proposedLevel": "NATIONAL",
+      "verificationStatus": "PENDING_INSTITUTION_REVIEW",
+      "officialNoticeUrl": null,
+      "registrationDeadline": null,
+      "pointsEnabled": false
+    },
+    {
+      "id": "C_DEMO",
+      "seriesName": "木能量模拟创新竞赛（非真实赛事）",
+      "edition": "DEMO",
+      "track": "DEMO",
+      "proposedLevel": "SCHOOL_TO_PROVINCE_DEMO",
+      "verificationStatus": "DEMO_ONLY",
+      "officialNoticeUrl": null,
+      "registrationDeadline": null,
+      "pointsEnabled": true
+    }
+  ]
+}

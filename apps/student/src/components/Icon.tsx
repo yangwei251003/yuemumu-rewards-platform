@@ -1,0 +1,26 @@
+import {Image} from '@tarojs/components';
+import growth_base from '../assets/visual-v2/icon-growth-base.png';
+import growth_active from '../assets/visual-v2/icon-growth-active.png';
+import activity_base from '../assets/visual-v2/icon-activity-base.png';
+import activity_active from '../assets/visual-v2/icon-activity-active.png';
+import project_base from '../assets/visual-v2/icon-project-base.png';
+import project_active from '../assets/visual-v2/icon-project-active.png';
+import reward_base from '../assets/visual-v2/icon-reward-base.png';
+import reward_active from '../assets/visual-v2/icon-reward-active.png';
+import profile_base from '../assets/visual-v2/icon-profile-base.png';
+import profile_active from '../assets/visual-v2/icon-profile-active.png';
+import book_base from '../assets/visual-v2/icon-book-base.png';
+import book_active from '../assets/visual-v2/icon-book-active.png';
+import orders_base from '../assets/visual-v2/icon-orders-base.png';
+import orders_active from '../assets/visual-v2/icon-orders-active.png';
+import wallet_base from '../assets/visual-v2/icon-wallet-base.png';
+import wallet_active from '../assets/visual-v2/icon-wallet-active.png';
+import clock_base from '../assets/visual-v2/icon-clock-base.png';
+import clock_active from '../assets/visual-v2/icon-clock-active.png';
+import bell_base from '../assets/visual-v2/icon-bell-base.png';
+import bell_active from '../assets/visual-v2/icon-bell-active.png';
+import arrow_base from '../assets/visual-v2/icon-arrow-base.png';
+import arrow_active from '../assets/visual-v2/icon-arrow-active.png';
+const icons={growth_base,growth_active,activity_base,activity_active,project_base,project_active,reward_base,reward_active,profile_base,profile_active,book_base,book_active,orders_base,orders_active,wallet_base,wallet_active,clock_base,clock_active,bell_base,bell_active,arrow_base,arrow_active};
+export type IconName='growth'|'activity'|'project'|'reward'|'profile'|'book'|'orders'|'wallet'|'clock'|'bell'|'arrow';
+export default function Icon({name,active=false}:{name:IconName;active?:boolean}){return <Image className='ui-icon' src={icons[`${name}_${active?'active':'base'}`]} mode='aspectFit' aria-hidden/>;}

@@ -1,0 +1,7 @@
+import fs from 'node:fs';import path from 'node:path';import {hash,filesUnder} from './core.mjs';
+const root=path.resolve(process.env.YUEMUMU_PROJECT_ROOT||process.cwd());fs.mkdirSync(root+'/scripts/reliable-demo',{recursive:true});
+for(const file of ['core.mjs','control.mjs','ipc.mjs'])fs.copyFileSync('scripts/reliable-demo/'+file,root+'/scripts/reliable-demo/'+file);
+const c=JSON.parse(fs.readFileSync(root+'/.runtime/config.json'));const names=['dist','apps/student/dist','apps/ops/dist'].flatMap(dir=>filesUnder(root,dir));names.push('scripts/gateway.mjs','scripts/reliable-demo/core.mjs','scripts/reliable-demo/control.mjs','scripts/reliable-demo/ipc.mjs','packages/contracts/openapi.json','packages/contracts/sha256.txt');
+const migrations=Object.fromEntries(fs.readdirSync(root+'/packages/db/migrations').filter(n=>n.endsWith('.sql')).map(n=>[n,hash(root+'/packages/db/migrations/'+n)]));
+const manifest={version:'V4-stable-startup-20260909',applicationSha:'7eb322d16efc3ee4615c866928c3b4ad58b75dcd',contract:fs.readFileSync(root+'/packages/contracts/sha256.txt','utf8').trim(),mysqlBinarySha256:hash(c.mysqlBinary),configSha256:hash(root+'/.runtime/config.json'),identitySha256:hash(root+'/.runtime/install-identity.json'),migrations,files:Object.fromEntries(names.map(n=>[n,hash(path.join(root,n))]))};
+fs.writeFileSync(root+'/scripts/reliable-demo/release.json',JSON.stringify(manifest,null,2));console.log('PASS frozen runtime release: '+names.length+' files and '+Object.keys(migrations).length+' migrations.');

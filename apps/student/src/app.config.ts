@@ -1,0 +1,1 @@
+export default defineAppConfig({pages:['pages/index/index','pages/practice/index','pages/rewards/index','pages/profile/index','pages/service/index'],window:{navigationBarTitleText:'粤木木 · 飞行实践',navigationBarBackgroundColor:'#F5F2EA',navigationBarTextStyle:'black'}});

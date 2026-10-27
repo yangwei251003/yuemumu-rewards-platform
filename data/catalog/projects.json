@@ -1,0 +1,121 @@
+{
+  "status": "PROPOSED_NOT_APPROVED",
+  "items": [
+    {
+      "id": "P001",
+      "name": "校园无人机航拍宣传素材库",
+      "tier": "P1",
+      "teamPool": 500,
+      "milestoneBasisPoints": [
+        1000,
+        2500,
+        2500,
+        4000
+      ],
+      "milestoneTitles": [
+        "授权与需求",
+        "素材/成片初稿",
+        "分类索引与校验",
+        "正式交付与复盘"
+      ],
+      "demoContributionBasisPoints": [
+        2500,
+        2500,
+        2500,
+        2500
+      ],
+      "realStart": null,
+      "realEnd": null,
+      "actualMembers": [],
+      "approvalState": "NOT_APPROVED",
+      "backgroundNote": "候选项目，尚非已开展事实"
+    },
+    {
+      "id": "P002",
+      "name": "无人机故障与维修知识库",
+      "tier": "P2",
+      "teamPool": 1200,
+      "milestoneBasisPoints": [
+        1000,
+        2500,
+        2500,
+        4000
+      ],
+      "milestoneTitles": [
+        "故障分类与计划",
+        "知识库原型",
+        "案例测试与安全评审",
+        "上线可搜索交付"
+      ],
+      "demoContributionBasisPoints": [
+        2500,
+        2500,
+        2500,
+        2500
+      ],
+      "realStart": null,
+      "realEnd": null,
+      "actualMembers": [],
+      "approvalState": "NOT_APPROVED",
+      "backgroundNote": "候选项目，尚非已开展事实"
+    },
+    {
+      "id": "P003",
+      "name": "AI视觉与无人机智慧农业演示系统",
+      "tier": "P2",
+      "teamPool": 1600,
+      "milestoneBasisPoints": [
+        1000,
+        2500,
+        2500,
+        4000
+      ],
+      "milestoneTitles": [
+        "需求/成员/任务",
+        "原型与数据样例",
+        "测试与模型限制说明",
+        "演示交付与复盘"
+      ],
+      "demoContributionBasisPoints": [
+        2500,
+        2500,
+        2500,
+        2500
+      ],
+      "realStart": null,
+      "realEnd": null,
+      "actualMembers": [],
+      "approvalState": "NOT_APPROVED",
+      "backgroundNote": "候选项目，尚非已开展事实"
+    },
+    {
+      "id": "P004",
+      "name": "塔脚村数字宣传与电商助农",
+      "tier": "P3",
+      "teamPool": 3000,
+      "milestoneBasisPoints": [
+        1000,
+        2500,
+        2500,
+        4000
+      ],
+      "milestoneTitles": [
+        "合作范围与授权确认",
+        "内容与店铺阶段成果",
+        "运营证据与实施记录",
+        "验收与复盘"
+      ],
+      "demoContributionBasisPoints": [
+        2500,
+        2500,
+        2500,
+        2500
+      ],
+      "realStart": null,
+      "realEnd": null,
+      "actualMembers": [],
+      "approvalState": "NOT_APPROVED",
+      "backgroundNote": "用户提及已有村企合作背景；本项目额度与实施计划仍待确认"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "status": "PROPOSED_RBAC",
+  "rules": [
+    "Different roles held by one natural person do not satisfy two-person approval.",
+    "Organization and resource scope checked server-side.",
+    "No role has balance.direct_edit.",
+    "Role assignment requires independent authorization and an audit record."
+  ],
+  "roles": [
+    {
+      "code": "STUDENT",
+      "name": "学生",
+      "permissions": [
+        "profile.read.self",
+        "activity.register",
+        "submission.create.self",
+        "redemption.create.self",
+        "appeal.create.self",
+        "ledger.read.self"
+      ],
+      "scope": "self"
+    },
+    {
+      "code": "STUDENT_ORGANIZER",
+      "name": "学生负责人",
+      "permissions": [
+        "activity.propose",
+        "attendance.confirm.assigned",
+        "project.submit.assigned"
+      ],
+      "scope": "assigned"
+    },
+    {
+      "code": "MENTOR",
+      "name": "技术/项目导师",
+      "permissions": [
+        "project.review.assigned",
+        "assessment.review.assigned",
+        "approval.decide.assigned"
+      ],
+      "scope": "assigned"
+    },
+    {
+      "code": "REVIEWER",
+      "name": "教员审核员",
+      "permissions": [
+        "identity.review",
+        "approval.decide",
+        "competition.review",
+        "appeal.review.independent",
+        "sanction.review"
+      ],
+      "scope": "organization_assigned"
+    },
+    {
+      "code": "OPS_MANAGER",
+      "name": "运营管理员",
+      "permissions": [
+        "activity.manage",
+        "reward.manage",
+        "inventory.adjust.request",
+        "budget.propose",
+        "approval.decide.scoped"
+      ],
+      "scope": "organization"
+    },
+    {
+      "code": "REWARD_OPERATOR",
+      "name": "奖品核销员",
+      "permissions": [
+        "order.prepare.site",
+        "pickup.fulfill.site",
+        "inventory.count.request.site"
+      ],
+      "scope": "pickup_site"
+    },
+    {
+      "code": "AUDITOR",
+      "name": "监察员",
+      "permissions": [
+        "audit.read.scoped",
+        "audit.sample",
+        "risk.flag",
+        "audit.report"
+      ],
+      "scope": "assigned_audit_scope"
+    },
+    {
+      "code": "SYSTEM_ADMIN",
+      "name": "技术管理员",
+      "permissions": [
+        "system.configure",
+        "system.backup",
+        "system.health",
+        "access.recovery.request"
+      ],
+      "scope": "technical"
+    }
+  ]
+}

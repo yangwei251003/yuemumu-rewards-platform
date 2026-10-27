@@ -1,0 +1,298 @@
+{
+  "demoOnly": true,
+  "seedName": "teacher-review-v1",
+  "randomSeed": 20260905,
+  "users": [
+    {
+      "id": "DEMO_S001",
+      "displayName": "模拟学生01",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S002",
+      "displayName": "模拟学生02",
+      "roles": [
+        "STUDENT",
+        "STUDENT_ORGANIZER"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S003",
+      "displayName": "模拟学生03",
+      "roles": [
+        "STUDENT",
+        "STUDENT_ORGANIZER"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S004",
+      "displayName": "模拟学生04",
+      "roles": [
+        "STUDENT",
+        "STUDENT_ORGANIZER"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S005",
+      "displayName": "模拟学生05",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S006",
+      "displayName": "模拟学生06",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S007",
+      "displayName": "模拟学生07",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S008",
+      "displayName": "模拟学生08",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S009",
+      "displayName": "模拟学生09",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S010",
+      "displayName": "模拟学生10",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S011",
+      "displayName": "模拟学生11",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S012",
+      "displayName": "模拟学生12",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S013",
+      "displayName": "模拟学生13",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S014",
+      "displayName": "模拟学生14",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S015",
+      "displayName": "模拟学生15",
+      "roles": [
+        "STUDENT"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T001",
+      "displayName": "模拟学生负责人",
+      "roles": [
+        "STUDENT_ORGANIZER"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T002",
+      "displayName": "模拟技术/项目导师",
+      "roles": [
+        "MENTOR"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T003",
+      "displayName": "模拟教员审核员",
+      "roles": [
+        "REVIEWER"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T004",
+      "displayName": "模拟运营管理员",
+      "roles": [
+        "OPS_MANAGER"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T005",
+      "displayName": "模拟奖品核销员",
+      "roles": [
+        "REWARD_OPERATOR"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T006",
+      "displayName": "模拟监察员",
+      "roles": [
+        "AUDITOR"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_T007",
+      "displayName": "模拟技术管理员",
+      "roles": [
+        "SYSTEM_ADMIN"
+      ],
+      "demoOnly": true,
+      "realStudentNo": null
+    },
+    {
+      "id": "DEMO_S016",
+      "demoOnly": true,
+      "displayName": "模拟访客 · 木小新",
+      "roles": [
+        "STUDENT"
+      ],
+      "membershipStatus": "VISITOR"
+    },
+    {
+      "id": "DEMO_T008",
+      "demoOnly": true,
+      "displayName": "模拟独立审核员 · 商务复核",
+      "roles": [
+        "REVIEWER"
+      ]
+    },
+    {
+      "id": "DEMO_T009",
+      "demoOnly": true,
+      "displayName": "模拟独立教员 · 续办复核",
+      "roles": [
+        "MENTOR"
+      ]
+    }
+  ],
+  "rules": {
+    "noPlaintextPasswords": true,
+    "createBalancesViaDomainEvents": true,
+    "doNotImportIntoProduction": true,
+    "repeatStartupDoesNotReset": true
+  },
+  "scenarios": [
+    {
+      "id": "FLOW_MAIN",
+      "student": "DEMO_S001",
+      "startingAvailablePoints": 860,
+      "startingGrowthMileage": 1240,
+      "note": "通过历史模拟领域事件构建这两个目标余额；不可直接改余额。无待审状态应满足规则版本。",
+      "activityId": "A005",
+      "earnedPoints": 50,
+      "rewardId": "R019",
+      "price": 900,
+      "expectedAvailableAfterReserve": 10,
+      "expectedFrozenAfterReserve": 900,
+      "expectedFrozenAfterFulfill": 0
+    },
+    {
+      "id": "LOW_STOCK",
+      "rewardId": "R016",
+      "stock": 1,
+      "concurrentRedeemers": 50,
+      "expectedSuccess": 1
+    },
+    {
+      "id": "OUT_OF_STOCK",
+      "rewardId": "R017",
+      "stock": 0
+    },
+    {
+      "id": "COMPETITION_UPGRADE",
+      "competitionId": "C_DEMO",
+      "member": "DEMO_S005",
+      "oldTarget": 250,
+      "newTarget": 1000,
+      "expectedDifference": 750
+    },
+    {
+      "id": "PROJECT_POOL",
+      "projectId": "P003",
+      "pool": 1600,
+      "memberBasisPoints": [
+        2500,
+        2500,
+        2500,
+        2500
+      ]
+    },
+    {
+      "id": "APPEAL",
+      "student": "DEMO_S006",
+      "reason": "模拟课程冲突导致缺席，补交证明后独立复核",
+      "expected": "撤销不当限制，不新增无依据积分"
+    },
+    {
+      "id": "RISK",
+      "student": "DEMO_S007",
+      "reason": "同一源文件重复提交两个类别",
+      "expected": "风险标记与独立审核，不自动定罪"
+    }
+  ]
+}

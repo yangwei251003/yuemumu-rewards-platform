@@ -1,0 +1,4 @@
+# Documentation of local A/B ownership; no paid GitHub enforcement assumed.
+# A: apps/api packages/contracts packages/sdk packages/db packages/domain infra scripts root configs
+# B: apps/student apps/ops packages/design-tokens assets tests/e2e tests/visual docs/design
+# Enforce locally with node scripts/check-owned-paths.mjs A|B <integration-tag>.

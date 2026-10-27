@@ -1,0 +1,19 @@
+{
+  "notice": "仅结构示例。填写真实人员后保存到private/staff-assignments.json；不得提交Git或作为自动授权来源。",
+  "assignments": [
+    {
+      "personInternalRef": "待填写内部人员编号",
+      "proposedRoles": [
+        "REVIEWER"
+      ],
+      "scope": {
+        "organization": "yuemumu",
+        "projectIds": [],
+        "pickupSiteIds": []
+      },
+      "approvedBy": null,
+      "approvedAt": null,
+      "expiresAt": null
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "CommonJS", "moduleResolution": "Node",
+    "strict": true, "esModuleInterop": true, "skipLibCheck": true,
+    "experimentalDecorators": true, "emitDecoratorMetadata": true,
+    "resolveJsonModule": true, "outDir": "dist", "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": ["apps/api/**/*.ts", "packages/db/**/*.ts", "packages/domain/**/*.ts", "packages/sdk/**/*.ts", "scripts/**/*.ts", "tests/api/**/*.ts", "tests/integration/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

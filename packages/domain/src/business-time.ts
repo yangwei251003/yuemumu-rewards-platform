@@ -1,0 +1,3 @@
+export function businessDate(now:Date){return new Date(now.getTime()+8*3600000).toISOString().slice(0,10);}
+export function addWorkdays(now:Date,days:number){const result=new Date(now);let remaining=days;while(remaining){result.setUTCDate(result.getUTCDate()+1);const weekday=new Date(result.getTime()+8*3600000).getUTCDay();if(weekday!==0&&weekday!==6)remaining--;}return result;}
+export function calendarMonths(now:Date,months:number){const shifted=new Date(now.getTime()+8*3600000);const day=shifted.getUTCDate();shifted.setUTCDate(1);shifted.setUTCMonth(shifted.getUTCMonth()+months);const last=new Date(Date.UTC(shifted.getUTCFullYear(),shifted.getUTCMonth()+1,0)).getUTCDate();shifted.setUTCDate(Math.min(day,last));return new Date(shifted.getTime()-8*3600000);}

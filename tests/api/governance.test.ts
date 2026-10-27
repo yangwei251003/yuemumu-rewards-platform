@@ -1,0 +1,42 @@
+import test,{after} from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';
+import {fixture,migration,key,prefix} from '../integration/fixtures';
+import {pool,rows,transaction} from '../../packages/db/src/client';
+import {workerTick,deliverOutbox,selectSample} from '../../packages/domain/src/operations';
+import {businessDate,addWorkdays,calendarMonths} from '../../packages/domain/src/business-time';
+import {ApiError,type Schemas} from '../../packages/sdk/src';
+after(async()=>{await migration.end();await pool.end();});
+const rejects=(code:string)=>(e:unknown)=>e instanceof ApiError&&e.problem.code===code;
+test('GOV/OPS real API MySQL decisions, appeals, outbox and audit',async t=>{
+ const reporter=await fixture('reporter',['AUDITOR']),reviewer=await fixture('reviewer',['REVIEWER']),independent=await fixture('independent',['MENTOR']),ops=await fixture('ops',['OPS_MANAGER']),student=await fixture('student',['STUDENT'],'student'),other=await fixture('other',['STUDENT'],'student');
+ const registrations: string[]=[];
+ for(let i=0;i<4;i++){let a=await ops.client.call('createActivity',{title:'失约边界活动'+i,startsAt:new Date(Date.now()-5*3600000).toISOString(),endsAt:new Date(Date.now()-1000).toISOString(),capacity:10,ruleCode:'TRAINING_4H',completionRequirements:'起止签到及独立成果'},{},key());a=await ops.client.call('publishActivity',{expectedVersion:a.version},{activityId:a.id},key());const r=await student.client.call('registerActivity',{activityVersion:a.version,acceptedRuleVersion:'DRAFT_FOR_DEMO:v1'},{activityId:a.id},key());if(i===3)await student.client.call('cancelRegistration',{expectedVersion:r.version,reason:'合理提前取消'},{registrationId:r.id},key());await ops.client.call('completeActivity',{expectedVersion:a.version},{activityId:a.id},key());registrations.push(r.id);}
+ const b=(index:number)=>({subjectId:student.id,caseType:'REGISTRATION_NO_SHOW' as const,resourceId:registrations[index],severity:1,description:'未完成活动；仅立案不自动处罚，允许陈述',evidenceFileIds:[],occurredAt:new Date(Date.now()-1000).toISOString()});
+ const cases:Schemas['GovernanceCase'][]=[];
+ await t.test('T27 cancelled activity not a no-show, independent confirmation yields 0/7/30 days only for real unique events',async()=>{
+  await assert.rejects(reporter.client.call('createCase',b(3),{},key()),rejects('NOT_A_NO_SHOW'));
+  for(let i=0;i<3;i++){let c=await reporter.client.call('createCase',b(i),{},key());assert.equal(c.status,'OPEN');if(i===0)await student.client.call('addCaseStatement',{statement:'本次课程冲突，申请核实，不影响其他合法成果',evidenceFileIds:[]},{caseId:c.id},key());c=await reviewer.client.call('decideCase',{expectedVersion:c.version,decision:'CONFIRM',reason:'已核对活动事实，本轮先记录待申诉决定'},{caseId:c.id},key());assert.equal(c.proposedDays,[0,7,30][i]);cases.push(c);}
+  await assert.rejects(reporter.client.call('createCase',b(0),{},key()),rejects('DUPLICATE_CASE'));const w=await student.client.call('getMyWallet');assert.equal(w.availablePoints,0);assert.equal(w.growthMileage,0);
+ });
+ let appeal:Schemas['Appeal'];
+ await t.test('T28 owner-only appeal, original decider recused, independent revocation leaves legal points unchanged',async()=>{
+  const decision=cases[2];await assert.rejects(other.client.call('createAppeal',{decisionId:decision.decisionId!,reason:'不能申诉他人的决定内容',evidenceFileIds:[]},{},key()),rejects('NOT_FOUND'));
+  appeal=await student.client.call('createAppeal',{decisionId:decision.decisionId!,reason:'提交新的课程冲突说明，请独立复核本次决定。',evidenceFileIds:[]},{},key());await assert.rejects(reviewer.client.call('decideAppeal',{expectedVersion:appeal.version,decision:'REVOKE',reason:'原审者不得自审'},{appealId:appeal.id},key()),rejects('RECUSAL_REQUIRED'));
+  const before=await student.client.call('getMyWallet');appeal=await independent.client.call('decideAppeal',{expectedVersion:appeal.version,decision:'REVOKE',reason:'独立核验课程冲突属实，撤销对应限制'},{appealId:appeal.id},key());assert.equal(appeal.status,'REVOKED');assert.deepEqual(await student.client.call('getMyWallet'),before);assert.equal((await rows<{status:string}>(pool,'SELECT status FROM sanctions WHERE case_id=?',[decision.id]))[0].status,'REVOKED');
+  const pending=await student.client.call('createAppeal',{decisionId:cases[1].decisionId!,reason:'另一事项补交独立证明，请安排复核。',evidenceFileIds:[]},{},key());await migration.execute('UPDATE appeals SET due_at=? WHERE id=?',[new Date(Date.now()-60000),pending.id]);await workerTick();await workerTick();const item=(await student.client.call('listAppeals')).items.find(a=>a.id===pending.id)!;assert.equal(item.status,'SUBMITTED');assert.equal(item.overdue,true);assert.equal((await rows(pool,"SELECT id FROM outbox_events WHERE resource_id=? AND event_type='APPEAL_OVERDUE'",[pending.id])).length,1);
+ });
+ await t.test('active restriction blocks only enrollment, keeps read and appeal available; no private case leakage',async()=>{
+  const a=await ops.client.call('createActivity',{title:'受限报名',startsAt:new Date().toISOString(),endsAt:new Date(Date.now()+4*3600000).toISOString(),capacity:2,ruleCode:'TRAINING_4H',completionRequirements:'成果'},{},key());const published=await ops.client.call('publishActivity',{expectedVersion:a.version},{activityId:a.id},key());await assert.rejects(student.client.call('registerActivity',{activityVersion:published.version,acceptedRuleVersion:'DRAFT_FOR_DEMO:v1'},{activityId:a.id},key()),rejects('FUNCTION_RESTRICTED'));assert.equal((await student.client.call('listCases')).items.length,3);assert.equal((await other.client.call('listCases')).items.length,0);await assert.rejects(other.client.call('listCaseStatements',undefined,{caseId:cases[0].id}),rejects('NOT_FOUND'));
+ });
+ await t.test('T31 outbox retry creates one notification; repeated read receipt does not repeat business events',async()=>{
+  const id=randomUUID();await pool.execute('INSERT INTO outbox_events(id,user_id,event_type,resource_id,payload) VALUES (?,?,?,?,?)',[id,student.id,'TEST_DELIVERY',prefix,JSON.stringify({message:'模拟站内通知'})]);await transaction(cx=>deliverOutbox(cx,new Date(),10000));await migration.execute('UPDATE outbox_events SET delivered_at=NULL WHERE id=?',[id]);await transaction(cx=>deliverOutbox(cx,new Date(),10000));assert.equal((await rows(pool,'SELECT id FROM notifications WHERE id=?',[id])).length,1);
+  const notification=(await student.client.call('listNotifications',undefined,{limit:100})).items.find(n=>n.id===id)!;assert.ok(notification);const options=key();const a=await student.client.call('readNotification',undefined,{notificationId:id},options),b=await student.client.call('readNotification',undefined,{notificationId:id},options);assert.equal(a.readAt,b.readAt);await assert.rejects(other.client.call('readNotification',undefined,{notificationId:id},key()),rejects('NOT_FOUND'));
+ });
+ await t.test('T29 ceil 10 percent of small population and all high risk, reproducible seed',async()=>{
+  for(let i=0;i<4;i++){const id=randomUUID();await migration.execute('INSERT INTO ledger_entries(id,user_id,business_key,kind,delta_available,delta_growth,source_type,source_id,rule_version,reason,actor_id,request_id) VALUES (?,?,?,\'EARN\',0,0,?,?,\'DRAFT_FOR_DEMO:v1\',\'抽样夹具零值事件\',?,?)',[id,other.id,id,i===3?'COMPETITION':'ACTIVITY',id,reporter.id,id]);}
+  const month=businessDate(new Date()).slice(0,7),body={month,seed:'stable-seed-'+prefix};const first=await reporter.client.call('createAuditSample',body,{},key()),second=await reporter.client.call('createAuditSample',body,{},key());assert.equal(first.population.length,3);assert.equal(first.highRisk.length,1);assert.equal(first.selected.length,2);assert.deepEqual(first.selected,second.selected);assert.deepEqual(selectSample(['a','b','c'],'same'),selectSample(['c','a','b'],'same'));await assert.rejects(reviewer.client.call('createAuditSample',body,{},key()),rejects('FORBIDDEN'));
+ });
+ await t.test('T30 Shanghai date/month-end and workday deadlines do not follow device time zone',async()=>{
+  assert.equal(businessDate(new Date('2026-08-31T16:00:00Z')),'2026-09-01');assert.equal(calendarMonths(new Date('2026-08-31T04:00:00Z'),18).toISOString(),'2028-02-29T04:00:00.000Z');assert.equal(calendarMonths(new Date('2025-08-31T04:00:00Z'),18).toISOString(),'2027-02-28T04:00:00.000Z');assert.equal(addWorkdays(new Date('2026-09-04T04:00:00Z'),5).toISOString(),'2026-09-11T04:00:00.000Z');
+  assert.equal(calendarMonths(new Date('2025-08-30T18:00:00Z'),18).toISOString(),'2027-02-27T18:00:00.000Z');
+ });
+});

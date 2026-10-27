@@ -1,0 +1,124 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>粤木木｜项目资料填写器</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#F3F6FB;color:#17263B;font-family:system-ui,-apple-system,"Microsoft YaHei","Noto Sans CJK SC",sans-serif;line-height:1.7}a{color:#155EEF}header{background:#122940;color:white;padding:42px 24px 36px}header>div,.wrap{max-width:1060px;margin:auto}.eyebrow{letter-spacing:.12em;font-size:12px;color:#BBD3F2;font-weight:700}h1{font-size:32px;line-height:1.3;margin:12px 0}header p{color:#D8E5F4;max-width:750px}.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{padding:5px 12px;background:#25445F;border-radius:20px;font-size:12px}.wrap{padding:25px 22px 130px}.notice{background:#FFF3DD;border-left:4px solid #DE951C;padding:15px 20px;border-radius:6px;margin:0 0 24px}.card{background:white;border:1px solid #DCE4EE;border-radius:14px;padding:26px;margin:20px 0;box-shadow:0 4px 18px #12294005}h2{font-size:20px;margin:0 0 5px}h3{font-size:15px;margin:16px 0 7px}.desc{font-size:14px;color:#5B6A7E;margin:0 0 18px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}label{display:block;font-size:14px;font-weight:600}input,select,textarea{font:inherit;font-size:14px;width:100%;padding:10px 12px;border:1px solid #ACBDCF;border-radius:7px;margin-top:6px;background:#fff;color:#17263B}input:focus,select:focus,textarea:focus{outline:3px solid #D9E6FF;border-color:#155EEF}.hint{display:block;font-size:12px;color:#607289;font-weight:400;margin-top:4px}.full{grid-column:1/-1}textarea{min-height:95px;resize:vertical}.checks{display:grid;grid-template-columns:1fr 1fr;gap:12px}.check{border:1px solid #DFE7F1;border-radius:8px;padding:10px;font-weight:400}.check input{width:auto;vertical-align:middle;margin:0 8px 0 0}.toolbar{position:fixed;bottom:0;left:0;right:0;background:#FFFFFFF5;border-top:1px solid #D7E0EC;box-shadow:0 -8px 24px #1229400A;padding:13px 20px;backdrop-filter:blur(10px);z-index:10}.toolbar>div{max-width:1060px;margin:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}button,.btn{cursor:pointer;border:1px solid #A4B7CC;border-radius:7px;padding:10px 15px;background:white;color:#17314C;font:inherit;font-size:14px;text-decoration:none;display:inline-block}button.primary{background:#155EEF;color:white;border-color:#155EEF;font-weight:700}button:hover,.btn:hover{filter:brightness(.96)}#status{font-size:13px;flex:1;min-width:200px;color:#536A84}.muted{color:#607289;font-size:13px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#F4F7FC;border:1px solid #E1E7F0;border-radius:8px;padding:16px;font:12px/1.6 Consolas,monospace;max-height:360px;overflow:auto}details summary{cursor:pointer;font-weight:600}.step{font-weight:700;color:#155EEF}footer{font-size:12px;color:#6C7D90;text-align:center;margin:28px} @media(max-width:680px){#print{display:none}#status{font-size:12px;line-height:1.5}header{padding:28px 20px}h1{font-size:26px}.wrap{padding:15px 13px 185px}.card{padding:20px 16px}.grid,.checks{grid-template-columns:1fr}.toolbar>div{gap:6px}#status{flex-basis:100%;order:9}button,.btn{padding:9px 10px;font-size:13px}}@media print{header{background:white;color:#17263B;padding:10px}header p,.eyebrow{color:#344D66}.toolbar,.noprint,details{display:none}.wrap{padding:0}.card{box-shadow:none;break-inside:avoid}.notice{background:white}.tags{display:none}input,select,textarea{border:0;padding:2px}body{background:white}h1{font-size:24px}}</style></head><body>
+<header><div><div class="eyebrow">YUEMUMU · TWO-WINDOW DEVELOPMENT KIT · V2.0</div><h1>填好这一份，交给两个窗口</h1><p>只填你知道的内容。未知信息保留空白或“待确认”，由Codex先完成不依赖它的部分。这个页面离线工作，不会上传资料。</p><div class="tags"><span class="tag">当前目标：教员演示</span><span class="tag">腾讯云支出：0元</span><span class="tag">不采集密码与密钥</span><span class="tag">不需要先申请小程序</span></div></div></header>
+<main class="wrap"><div class="notice"><strong>保存方式：</strong>填写后点击底部“导出项目资料”，将下载的 <code>project-input.json</code> 放到项目的 <code>intake/</code> 目录，替换同名文件。浏览器不会直接修改项目文件。关闭页面前请导出保存。</div>
+<form id="form">
+<section class="card"><h2><span class="step">01</span> 名称与主体</h2><p class="desc">宣传名称已预填；法定公司名称不知道就留空。不要把个人身份证、营业执照照片放进本表。</p><div class="grid">
+<label>系统显示名称<input data-path="project.displayName"></label><label>项目目录标识<input data-path="project.slug" pattern="[a-z0-9-]+"><span class="hint">建议保留 yuemumu-rewards。</span></label>
+<label>学校<input data-path="project.school"></label><label>学院<input data-path="project.college"></label>
+<label>协会名称<input data-path="project.association"></label><label>企业宣传简称<input data-path="project.companyDisplayName"></label>
+<label class="full">企业法定主体名称（可空）<input data-path="project.companyLegalName" data-nullable="true" placeholder="未确认则留空，不影响本地演示"></label></div></section>
+<section class="card"><h2><span class="step">02</span> 电脑和演示方式</h2><p class="desc">不懂配置也没关系，窗口一会运行只读诊断。不要为填表临时购买软件。</p><div class="grid">
+<label>电脑系统<select data-path="machine.os"><option value="unknown">不清楚，由Codex检查</option><option value="windows">Windows</option><option value="macos">macOS</option><option value="linux">Linux</option></select></label>
+<label>Codex使用方式<select data-path="machine.codexClient"><option value="unknown">不清楚</option><option value="desktop">桌面应用</option><option value="ide">VS Code / IDE扩展</option><option value="cli">命令行CLI</option><option value="web">网页 / 云端环境</option></select></label>
+<label>内存（GB，可空）<input type="number" min="1" max="4096" step="1" data-path="machine.ramGb" data-type="number" placeholder="例如16"></label><label>可用磁盘（GB，可空）<input type="number" min="0" step="1" data-path="machine.freeDiskGb" data-type="number" placeholder="例如50"></label>
+<label>Docker是否已安装<select data-path="machine.dockerAvailable"><option value="unknown">不清楚</option><option value="yes">已安装</option><option value="no">未安装</option></select></label><label>原生MySQL是否已安装<select data-path="machine.nativeMysqlAvailable"><option value="unknown">不清楚</option><option value="yes">已安装</option><option value="no">未安装</option></select></label>
+<label>准备怎样演示<select data-path="demo.preferredMode"><option value="local_browser">在自己电脑浏览器演示</option><option value="local_network">经允许后在局域网演示</option><option value="remote_candidate">希望远程展示，方案待测试</option></select></label>
+<label>教员使用什么设备<select data-path="demo.teacherDevice"><option value="unknown">还没确定</option><option value="computer">电脑</option><option value="phone">手机</option><option value="both">电脑和手机</option></select></label>
+<label class="full">网络或环境限制<textarea data-path="machine.networkNotes" placeholder="例如校园网下载受限、没有管理员权限。不要粘贴账号密码。"></textarea></label></div>
+<div class="checks" style="margin-top:18px"><label class="check"><input type="checkbox" data-path="demo.teacherNeedsRemoteLink" data-type="bool">教员需要远程链接（只是需求，不授权公开）</label><label class="check"><input type="checkbox" data-path="stage.publicShareAllowed" data-type="bool">我允许仅演示数据受访问保护的临时公网展示</label></div><p class="hint">默认不公开服务；随机网址不是访问密码。没有授权时仍可完成本机演示。</p></section>
+<section class="card"><h2><span class="step">03</span> 运营资料，暂不花钱</h2><p class="desc">这些是后续试点资料。填写预算不等于批准采购；默认仍是“未获预算批准”。</p><div class="grid">
+<label>领取点显示名称<input data-path="operations.pickupLocationLabel"></label><label>真实会员人数（可空）<input type="number" min="0" step="1" data-path="operations.actualMemberCount" data-type="number"></label>
+<label class="full">领取地址（可空）<input data-path="operations.pickupAddress" data-nullable="true" placeholder="不知道就留空；演示使用模拟领取点"></label>
+<label>建议试点人数<input type="number" min="1" max="10000" data-path="operations.trialMemberCountProposal" data-type="number"></label><label>未来奖品月预算提案（元）<input type="number" min="0" step="1" data-path="operations.rewardMonthlyBudgetProposalCny" data-type="number"></label></div>
+<p class="muted">27项奖品、12项活动、4个项目已有候选数据。还没采购、没定型号、没定日期都可以先开发；生产库存不能复制模拟库存。</p></section>
+<section class="card"><h2><span class="step">04</span> 品牌素材</h2><p class="desc">真实文件放进 <code>assets/brand/</code>。没有素材时窗口二先制作明确标注的原创演示插画，不冒充真实奖品。</p><div class="checks">
+<label class="check"><input type="checkbox" data-path="assets.logoProvided" data-type="bool">已经把Logo放进品牌目录</label><label class="check"><input type="checkbox" data-path="assets.logoUsageAuthorized" data-type="bool">已确认Logo可用于本项目</label>
+<label class="check"><input type="checkbox" data-path="assets.realPhotosProvided" data-type="bool">已提供真实照片</label><label class="check"><input type="checkbox" data-path="assets.realPhotosUsageAuthorized" data-type="bool">已确认照片可用于本项目</label>
+<label class="check"><input type="checkbox" data-path="assets.allowOriginalDemoIllustrations" data-type="bool">允许制作原创演示插画</label></div></section>
+<section class="card"><h2><span class="step">05</span> 可选账号与备注</h2><p class="desc">下面全部可以留空，不影响本地开发。只记录公开标识，不填写AppSecret、API Key、密码或学生名单。</p><div class="grid">
+<label class="full">GitHub私有仓库地址（可空）<input data-path="accounts.githubRepoUrl" data-nullable="true" placeholder="已有仓库才填"></label>
+<label>微信小程序AppID（可空）<input data-path="accounts.wechatAppId" data-nullable="true"></label><label>腾讯云环境ID（可空）<input data-path="accounts.tencentEnvId" data-nullable="true"></label>
+<label class="full">已拥有的域名（可空）<input data-path="accounts.domain" data-nullable="true"></label><label class="full">其他非敏感说明<textarea data-path="notes"></textarea></label></div></section>
+</form>
+<section class="card"><h2>导出后放哪里？</h2><p><strong>只需要替换：</strong><code>intake/project-input.json</code>。不要把它粘进API合同，也不要把真实人员名单加入Git。</p><p>然后在项目目录启动窗口一，发送 <code>prompts/A_START.md</code>。窗口一通过G0、给出实际前端工作树路径后，再开启窗口二。</p><details><summary>查看即将导出的JSON</summary><pre id="preview"></pre></details><p class="muted">导入已有资料会保留未展示的安全配置，但当前模式仍强制禁用云付费、真实数据和生产批准标志。正式审批请使用独立审批记录，不在本表偷偷改成已批准。</p></section>
+<footer>资料包 V2.0 · 2026-09-05 · 这是项目资料模板，不是积分系统运行页面。</footer></main>
+<div class="toolbar"><div><button class="primary" id="export">导出项目资料</button><button id="import">导入已有JSON</button><button id="reset">恢复预填内容</button><button id="print">打印</button><span id="status" role="status" aria-live="polite">已加载预填内容，尚未保存。</span></div></div><input type="file" id="file" accept="application/json,.json" hidden>
+<script id="defaults" type="application/json">{
+  "schemaVersion": "2.0",
+  "project": {
+    "slug": "yuemumu-rewards",
+    "displayName": "粤木木木能量成长系统",
+    "school": "广州科技职业技术大学",
+    "college": "人工智能与大数据学院",
+    "association": "GKD世界之翼无人机协会",
+    "companyDisplayName": "粤木木",
+    "companyLegalName": null,
+    "companyLegalNameStatus": "待主体负责人确认，不以宣传简称代替签约主体"
+  },
+  "stage": {
+    "target": "local_teacher_demo",
+    "teacherApproval": "not_confirmed",
+    "cloudSpendAllowed": false,
+    "cloudBudgetCny": 0,
+    "purchaseRewardsNow": false,
+    "publicShareAllowed": false,
+    "realPersonalDataAllowed": false
+  },
+  "machine": {
+    "os": "unknown",
+    "ramGb": null,
+    "freeDiskGb": null,
+    "dockerAvailable": "unknown",
+    "nativeMysqlAvailable": "unknown",
+    "codexClient": "unknown",
+    "codexModel": "use_available_capable_model",
+    "networkNotes": ""
+  },
+  "demo": {
+    "preferredMode": "local_browser",
+    "gatewayPort": 8080,
+    "businessTimezone": "Asia/Shanghai",
+    "studentCount": 15,
+    "staffCount": 7,
+    "seedName": "teacher-review-v1",
+    "resetAllowedForDemoOnly": true,
+    "teacherDevice": "unknown",
+    "teacherNeedsRemoteLink": false
+  },
+  "operations": {
+    "pickupLocationLabel": "粤木木线下领取点（演示）",
+    "pickupAddress": null,
+    "pickupSlots": [],
+    "actualMemberCount": null,
+    "trialMemberCountProposal": 40,
+    "rewardMonthlyBudgetProposalCny": 1200,
+    "budgetApproved": false,
+    "actualRewardStockConfirmed": false
+  },
+  "assets": {
+    "brandFolder": "assets/brand",
+    "logoProvided": false,
+    "logoUsageAuthorized": false,
+    "realPhotosProvided": false,
+    "realPhotosUsageAuthorized": false,
+    "allowOriginalDemoIllustrations": true,
+    "imageApiBudgetCny": 0
+  },
+  "accounts": {
+    "githubRepoUrl": null,
+    "wechatAppId": null,
+    "tencentEnvId": null,
+    "domain": null,
+    "secretsPrepared": false
+  },
+  "notes": "未知信息可留空。所有金额、人数和库存均为开发提案或模拟数据，不构成采购/活动/预算批准。请勿填密钥、密码、学生名单或私人联系方式。"
+}
+</script>
+<script>
+'use strict';
+const initial=JSON.parse(document.getElementById('defaults').textContent);let state=structuredClone(initial);let dirty=false;
+const fields=[...document.querySelectorAll('[data-path]')]; const status=document.getElementById('status');
+function get(obj,p){return p.split('.').reduce((a,k)=>a?.[k],obj)}
+function set(obj,p,val){const keys=p.split('.');let cur=obj;keys.slice(0,-1).forEach(k=>cur=cur[k]??={});cur[keys.at(-1)]=val}
+function fill(){fields.forEach(el=>{const v=get(state,el.dataset.path);if(el.type==='checkbox')el.checked=!!v;else el.value=v??''});preview()}
+function collect(){const o=structuredClone(state);fields.forEach(el=>{let v=el.type==='checkbox'?el.checked:el.value.trim();if(el.dataset.type==='number')v=v===''?null:Number(v);else if(el.dataset.nullable==='true'&&v==='')v=null;set(o,el.dataset.path,v)});
+ o.schemaVersion='2.0';o.stage.target='local_teacher_demo';o.stage.cloudSpendAllowed=false;o.stage.cloudBudgetCny=0;o.stage.purchaseRewardsNow=false;o.stage.realPersonalDataAllowed=false;o.stage.teacherApproval='not_confirmed';o.assets.imageApiBudgetCny=0;o.operations.budgetApproved=false;o.operations.actualRewardStockConfirmed=false;return o}
+function preview(){document.getElementById('preview').textContent=JSON.stringify(collect(),null,2)}
+fields.forEach(el=>el.addEventListener('input',()=>{dirty=true;status.textContent='内容已修改，关闭前请导出保存。';preview()}));
+function validate(o){if(!document.getElementById('form').reportValidity())return false;for(const key of ['slug','displayName','school','association'])if(!o.project[key])throw Error('项目标识、系统名、学校和协会不能为空');if(!/^[a-z0-9-]+$/.test(o.project.slug))throw Error('项目标识只使用小写字母、数字和短横线'); const text=JSON.stringify(o);if(/sk-(?:proj-)?[A-Za-z0-9_-]{20,}|-----BEGIN (?:RSA |EC )?PRIVATE KEY-----/i.test(text))throw Error('检测到疑似密钥，请删除后再导出');return true}
+document.getElementById('export').onclick=()=>{try{const o=collect();if(!validate(o))return;const blob=new Blob([JSON.stringify(o,null,2)+'\n'],{type:'application/json;charset=utf-8'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='project-input.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1500);state=o;dirty=false;status.textContent='已生成下载文件；请放入项目 intake/ 并替换同名JSON。'}catch(e){status.textContent=e.message}};
+document.getElementById('import').onclick=()=>document.getElementById('file').click();
+document.getElementById('file').onchange=async(e)=>{try{const f=e.target.files[0];if(!f)return;if(f.size>100000)throw Error('文件太大，本模板只接受小于100KB的项目资料');const o=JSON.parse(await f.text());if(o.schemaVersion!=='2.0')throw Error('文件不是V2.0项目资料');for(const k of ['project','stage','machine','demo','operations','assets','accounts'])if(!o[k]||Array.isArray(o[k])||typeof o[k]!=='object')throw Error('缺少资料分组：'+k);state=structuredClone(initial);for(const k of Object.keys(initial)){if(o[k]!==undefined)state[k]=(o[k]&&typeof o[k]==='object'&&!Array.isArray(o[k]))?{...initial[k],...o[k]}:o[k]};fill();dirty=true;status.textContent='已导入到页面，修改后请重新导出。'}catch(err){status.textContent='导入失败：'+err.message}finally{e.target.value=''}};
+document.getElementById('reset').onclick=()=>{if(confirm('恢复预填内容？未导出的修改会丢失。')){state=structuredClone(initial);fill();dirty=false;status.textContent='已恢复预填内容。'}};
+document.getElementById('print').onclick=()=>window.print();window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});fill();
+</script></body></html>

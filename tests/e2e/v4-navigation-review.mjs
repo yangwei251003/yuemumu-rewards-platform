@@ -1,0 +1,15 @@
+/* global localStorage */
+import assert from 'node:assert/strict';
+import {harness} from './closure-harness.mjs';
+import {studentNav} from './v4-navigation.mjs';
+const h=await harness('v4-navigation'),s=await h.surface(390),p=s.page;
+try{
+ await h.login(s,8);
+ const awards=(await h.read(s,'award-requests?limit=100')).items.filter(a=>a.kind==='COMPETITION'&&a.applicantId==='DEMO_S008');assert.ok(awards.length,'grow01 must establish real competition history first');const a=awards[0];
+ await studentNav(p,'项目');await p.locator('.filters .chip').getByText('验收记录',{exact:true}).click();const card=p.locator('.award-card').filter({hasText:a.id});await card.locator('..').getByText('填写晋级或更正',{exact:true}).click();await p.locator('.competition-detail').waitFor();
+ assert.equal(await p.getByRole('textbox',{name:'同一赛事作品晋级沿用此标识',exact:true}).inputValue(),a.artifactId);assert.deepEqual(await p.getByRole('textbox',{name:'填写参赛成员编号',exact:true}).evaluateAll(es=>es.map(e=>e.value)),a.details.members.map(m=>m.userId));for(let i=0;i<a.details.members.length;i++)assert.ok((await p.locator('.competition-member .picker').nth(i).innerText()).includes(a.details.members[i].coefficientBasisPoints/100+'%'));assert.ok(p.url().includes(a.id));assert.ok(!decodeURIComponent(p.url()).includes(a.artifactId));await h.shot(p,'competition-prefill');h.pass('验收记录一次跳转保留原作品、全体成员与贡献系数，网址只含对象编号');
+ await studentNav(p,'我的');let calls=0;const abort=async route=>{calls++;await route.abort();};await p.route('**/api/v1/auth/logout',abort);await p.getByText('退出登录',{exact:true}).click();await p.getByRole('alert').filter({hasText:'服务器退出尚未确认'}).waitFor();assert.equal(calls,1);assert.equal(await p.locator('.identity').count(),0);await p.reload();await p.getByText('重试退出服务器会话',{exact:true}).waitFor();assert.equal(await p.locator('.identity').count(),0);assert.equal(await p.locator('.profile-link').count(),0);await h.shot(p,'logout-pending');await p.unroute('**/api/v1/auth/logout',abort);await p.getByText('重试退出服务器会话',{exact:true}).click();await p.getByText('进入我的成长空间',{exact:true}).waitFor();await p.reload();await p.getByText('进入我的成长空间',{exact:true}).waitFor();assert.equal(await p.locator('.identity').count(),0);h.pass('退出请求未发送时明确待确认，刷新不恢复旧身份，重试后服务端会话失效');
+ await h.login(s,8);await studentNav(p,'我的');await p.route('**/api/v1/auth/logout',async route=>{const response=await route.fetch();assert.equal(response.status(),200);await route.abort();});await p.getByText('退出登录',{exact:true}).click();await p.getByRole('alert').filter({hasText:'服务器退出尚未确认'}).waitFor();await p.unroute('**/api/v1/auth/logout');await p.getByText('重试退出服务器会话',{exact:true}).click();await p.getByText('进入我的成长空间',{exact:true}).waitFor();await p.reload();await p.getByText('进入我的成长空间',{exact:true}).waitFor();assert.equal(await p.locator('.identity').count(),0);h.pass('服务端退出已完成但响应丢失时，重新核对401确认退出，不显示旧资料');
+ const storage=await p.evaluate(()=>Object.keys(localStorage));assert.ok(!storage.some(k=>/token|credential|evidence/i.test(k)));assert.deepEqual(h.errors,[]);
+ await h.finish();
+}catch(e){await h.shot(p,'failure');await h.finish(e);}

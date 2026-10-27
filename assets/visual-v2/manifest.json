@@ -1,0 +1,376 @@
+{
+  "version": 2,
+  "createdAt": "2026-09-06",
+  "method": "Built-in image_gen; original PNG preserved; JPEG resizing/compression for delivery; logos resized without crop, redraw or color change.",
+  "assets": [
+    {
+      "source": "assets/visual-v2/originals/flight-hero-v2.png",
+      "file": "flight-hero-v2.jpg",
+      "width": 1200,
+      "aiGenerated": true,
+      "demoOnly": true,
+      "owner": "Project-generated concept",
+      "license": "Generated for this project; no third-party brand imagery",
+      "useScope": "Local demonstration concept illustration",
+      "reviewStatus": "Visually checked: no text; quadcopters have four motors and rotors; not a school photograph or procurement evidence",
+      "prompt": "Use case: stylized-concept. Asset type: final image for a Chinese university student FPV drone learning app, used in a wide homepage welcome panel. Create a premium editorial 3D still life of ONE realistically engineered compact unbranded FPV racing quadcopter, four distinct carbon-fiber arms, exactly four motors and four three-bladed propellers, small front camera, white canopy and blue accents, one small orange detail. A clean pale blue studio background and soft grounded shadow. Drone occupies right 58% of wide 1536x1024 composition, left side is calm pale-blue negative space for separately implemented text. Camera three-quarter above at 40 degrees, entire drone in frame, refined precise material detail, crisp soft daylight, optimistic collegiate technology aesthetic, no neon cyberpunk, no human subjects, no logos, no letters or text, no UI, no watermark. This is an illustrative concept object, not a real product advertisement.",
+      "sourceUrl": null,
+      "retrievedAt": "2026-09-06",
+      "sha256": "b8324fdcb06ad064610b37105943be26ead3c5b950a6985fe6798a8342033db0",
+      "sourceSha256": "dff993dc7e314bb6f57b1f5dd0670c01fc5f305b2eecaaa60a9e8c4c002e0346",
+      "bytes": 52294,
+      "dimensions": {
+        "width": 1200,
+        "height": 800
+      }
+    },
+    {
+      "source": "assets/visual-v2/originals/learning-v2.png",
+      "file": "learning-v2.jpg",
+      "width": 640,
+      "aiGenerated": true,
+      "demoOnly": true,
+      "owner": "Project-generated concept",
+      "license": "Generated for this project; no third-party brand imagery",
+      "useScope": "Local demonstration concept illustration",
+      "reviewStatus": "Visually checked: unbranded controller, goggles and blank notebook; no text or people; concept illustration rather than school equipment evidence",
+      "prompt": "Use case: stylized-concept. Asset type: square editorial illustration for a university FPV drone learning and practice app. Primary request: refined photoreal 3D still-life of an unbranded compact FPV radio controller with two joysticks and two small antennas, white protective FPV goggles with a navy fabric strap, and a small closed blue flight notebook with no lettering. Arrange on a pale sky blue tabletop, clean harmonious product composition, all objects fully visible, soft natural studio daylight, tactile white polymer and navy details with one small orange accent. Premium collegiate technology style, calm uncluttered square 1024x1024 composition. No text, no logos, no watermark, no UI, no people. Educational concept illustration, not evidence of real equipment.",
+      "sourceUrl": null,
+      "retrievedAt": "2026-09-06",
+      "sha256": "366e7aaa1e8092ca8f3743a6625c63b06471b0643efe8f850fb67b74a4ba9834",
+      "sourceSha256": "c9c794136775820d2d64dddcbd1230e5390d8f3031b1afe23060b843c4e7cd30",
+      "bytes": 34413,
+      "dimensions": {
+        "width": 640,
+        "height": 640
+      }
+    },
+    {
+      "source": "assets/visual-v2/originals/practice-v2.png",
+      "file": "practice-v2.jpg",
+      "width": 640,
+      "aiGenerated": true,
+      "demoOnly": true,
+      "owner": "Project-generated concept",
+      "license": "Generated for this project; no third-party brand imagery",
+      "useScope": "Local demonstration concept illustration",
+      "reviewStatus": "Visually checked: no text; quadcopters have four motors and rotors; not a school photograph or procurement evidence",
+      "prompt": "Use case: stylized-concept. Asset type: square cover image for the projects and campus practice section of a Chinese university drone club app. A premium editorial product still-life: one realistic unbranded compact FPV racing quadcopter with exactly four carbon fiber arms, four motors, four blue three-blade propellers, seen three-quarter from above on a clean light-blue workbench, with a precision screwdriver and two neatly arranged loose propellers to the far side. Small orange silicone repair mat under the drone, white canopy and tiny front FPV camera. Tactile carbon fiber and anodized aluminum, soft clear daylight, meticulous engineering proportions, full subject contained in frame, calm background, refined university maker-space concept. 1024x1024 composition. No people, no text, no typography, no logos, no watermark, no UI. Concept illustration, not an authentic school photograph.",
+      "sourceUrl": null,
+      "retrievedAt": "2026-09-06",
+      "sha256": "1dd588f64902f1a9a6373007bb8ac1005be7ce5e4f14b8500f012e364c61cfdb",
+      "sourceSha256": "a13b07fe79fc608e3030b31613d4609e6a524daa544de28651f113262f0b918c",
+      "bytes": 52313,
+      "dimensions": {
+        "width": 640,
+        "height": 640
+      }
+    },
+    {
+      "source": "assets/brand/广州科技职业技术大学logo.png",
+      "file": "school-logo-v2.png",
+      "width": 900,
+      "aiGenerated": false,
+      "demoOnly": true,
+      "owner": "广州科技职业技术大学logo",
+      "license": "User-supplied; user explicitly authorized placement in this project on 2026-09-06",
+      "useScope": "Unmodified logo identity in local student and staff UI",
+      "reviewStatus": "Visual and source hash checked; retained original appearance and wording, no endorsement claim",
+      "sourceUrl": null,
+      "retrievedAt": "2026-09-06",
+      "sha256": "ec8ef4309b480a4bfa37a6c27c1a3e1fcf39d191b580fa9c302e128ff7b78f23",
+      "sourceSha256": "61989598bdac0b68f685d73c713387c4d048070650ae9b2346d6a48022040100",
+      "bytes": 98071,
+      "dimensions": {
+        "width": 900,
+        "height": 300
+      }
+    },
+    {
+      "source": "assets/brand/竞野穿越机俱乐部logo.png",
+      "file": "club-logo-v2.png",
+      "width": 720,
+      "aiGenerated": false,
+      "demoOnly": true,
+      "owner": "竞野穿越机俱乐部logo",
+      "license": "User-supplied; user explicitly authorized placement in this project on 2026-09-06",
+      "useScope": "Unmodified logo identity in local student and staff UI",
+      "reviewStatus": "Visual and source hash checked; retained original appearance and wording, no endorsement claim",
+      "sourceUrl": null,
+      "retrievedAt": "2026-09-06",
+      "sha256": "0957c1216588e84180cc4295d282768cba61155c1a01de65735464c847cccff0",
+      "sourceSha256": "59351dfd53614d031c4bee1a0ec90d280df3d1b6471e88800f961c0d48f6e079",
+      "bytes": 78017,
+      "dimensions": {
+        "width": 720,
+        "height": 240
+      }
+    }
+  ],
+  "icons": [
+    {
+      "source": "assets/visual-v2/icons/icon-activity-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-activity-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "7a0f71790d87118162ea072cf29ac2688c19ccf91cbf999b1b3529d01e86cf5f",
+      "sha256": "2f4952dd47e79dd584eecf4c6e26e79553220f8782e01cbefcab253436d49219",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-activity-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-activity-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "7019d1ed487a5144f031d38b0b81b0ece37c9216a767c35557a4d532ceeb94fb",
+      "sha256": "62e3302741709b469900edc0d606afb83c9e7cb6c5129d39e12a004ad4e804d4",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-arrow-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-arrow-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "a4df9c4243a4e610a3254a3c7d0aebd7c85505d44e017fd2a180ef6259af5255",
+      "sha256": "d2c92a9a263123754d20e88974f745b73d1fbf57cca3712b6e1c77a61757b16c",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-arrow-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-arrow-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "6ff951c1d76ee5cbcf657b745482c2547e6c56e90b7a83c5cc0764c4d8a8d9f8",
+      "sha256": "78cb28babc50c73c3326ee7f5a8574113fe96ab4cc973584496b8bdcb61f37d4",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-bell-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-bell-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "41209489df59ba07c509cf801276643590771ee185e4eb23ef16e7ea5bb41eab",
+      "sha256": "866614e9295693b13f0b62ee2a927c82c76353a708f4e1fb14a219a37348ffa6",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-bell-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-bell-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "f4741422a5c335c85e2d492a1d085cff864827070b8d7f15b49128ff41bb3dd1",
+      "sha256": "923f2ed857071478946dba47bda8d1c68b2ce7566d70bd72e349ec0be5cb743e",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-book-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-book-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "811a59a64c299c1d428fb8b9ddafe87cb4e48417f506d4bd592ae3bccd259f3a",
+      "sha256": "0e562f65a6ef05b7512c2abc32c6ab7173bff09d2e343c588de235a5d0a246f0",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-book-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-book-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "30c3a28746ae84d44f191443a32ee27591ebe38469f96dc6821f91cb9c82ba57",
+      "sha256": "dae7a01a0b3f00f7a6114d2ecb7bee8d8cee57380fa5b3fa5e0fb36717132fe7",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-clock-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-clock-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "4c2e9dac2b76236a41c22820dbae76932cc2cc3be015435d888f98a1419f3d22",
+      "sha256": "a2bb1c653b7de43f2aa73ca0cad5f015ed0123fa71670a77c1c2de179d663b73",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-clock-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-clock-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "52ac697c93638c74666151c026c735a372b31c19b683198b8881305596fbdfe5",
+      "sha256": "ec71cc283a801f14d5d4a5048278d94b6ab1546b92a90c1d91bbd1872decf884",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-growth-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-growth-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "41e98d4dfb57ae3ba480de0ce7609024e0d0d2f24f303c4ed69a25ccf53ff458",
+      "sha256": "d4dce0feab4596455264f70a666bf7d13579e303c570a97b47b95b16057be495",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-growth-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-growth-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "227e7a7876e4e00928907538b86ebb8dd18e8e279312280c7d866c388e95a9b7",
+      "sha256": "a23f896dfe203a134bce8e77416ed068f2b715748b393786a3f151108da3b787",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-orders-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-orders-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "43d66234f9ec8caa878dbdf905ddfca35466ce3e3dee0dd673a65d8f446ea087",
+      "sha256": "67455956a184d9df24b87c76326575c300689ce201e256b8045497403560df1d",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-orders-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-orders-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "e39166c6076a527c200ac1b722ec4509dba5a4ed73e8cddbfd6ce14b5329eb31",
+      "sha256": "d8c241ef4a9bd2b051de15589ce3b8ab0a0ad1276e49c188c0ff4d259f9ecd05",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-profile-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-profile-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "bb84d9f2f84f969f2424088352cf3510c1d0a65377ca6a0a1d7775061dab8a57",
+      "sha256": "f357e95172fc5472060e9365badc50a41b7364a88452e162429c7d6691cfa1b3",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-profile-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-profile-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "df3be5db7533257916aa2f6ce45a4883dcd0314ca30f2ff4d56486d55abf51bf",
+      "sha256": "1758782d8b16f0827092fb6faf71a28c08c6f4d66a0d823c1b386b239d990556",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-project-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-project-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "694b28a6cb5e66c90e5ca85fe22b1316048ee294da4176c0596eac85bf92249a",
+      "sha256": "ca0b07a9dfd3ef70fda641305d90687b3926c38ce92bb81b62f55d8722f2c2f0",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-project-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-project-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "b1ea7d8dec24663b316b5d19e24e0f40a38cbde05c236e02e10bf331b11004c4",
+      "sha256": "a4fdcc4885bd99d2f0825ac144a0c878b8c65ce1b40cec84bab4d88ec3f2eae3",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-reward-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-reward-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "02e2ce6b24cafe23cf51c8e9ff8165a88b736ab5c5a9cd270d7cb44b735fd20e",
+      "sha256": "10ab9c2ad6ce0281eb7c041b01bde0164f72ab142a3510960f641b1cd369098e",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-reward-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-reward-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "1f361f96e340d6cede45a21e7fe3e70835cbd2c471f84f3db157e404285df5e5",
+      "sha256": "d5e941ee883044a8908ae99f28fdd11ef6773a6654863e2b90437d0ac3b511b7",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-wallet-active.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-wallet-active.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "47f80b31066bcb9509fb7f8c4a86ff532d60842502713c2592fb5c0d27665dbe",
+      "sha256": "8724666ec35929e19ab82b5d8e26c65b970c1e3db09760d127075af51ac93f26",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    },
+    {
+      "source": "assets/visual-v2/icons/icon-wallet-base.svg",
+      "file": "apps/student/src/assets/visual-v2/icon-wallet-base.png",
+      "owner": "Original project UI artwork",
+      "license": "Created for this project; no external icon library",
+      "sourceSha256": "04b7cec6955fbfcb11a2f7941e1fa2f896fe2001699bd7b28fe4cb0b1a904feb",
+      "sha256": "abd2fec49694a723282e8af0e2b385e02c3d4294ed100513332c4a90ce9df24b",
+      "dimensions": {
+        "width": 72,
+        "height": 72
+      }
+    }
+  ]
+}

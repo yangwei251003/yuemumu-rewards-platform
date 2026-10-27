@@ -1,0 +1,57 @@
+{
+  "version": 3,
+  "records": [
+    {
+      "category": "hero",
+      "name": "campus-fpv",
+      "source": "exec-446881dd-2433-4d3d-adaf-342d7e9d70d9.png",
+      "sourceSha256": "118936266019b99729fa467b859b1e7847d877b46ce4ff02f39081d2fbbbde4a",
+      "outputSha256": "fabde8e5ec079e44b426cd8504cb2644fbc12d937c51863313824078a0106bfd",
+      "width": 960,
+      "height": 640,
+      "bytes": 93034,
+      "review": "Four arms, four motors, four tri-blade propellers checked; rear-left rotor corrected before acceptance.",
+      "provider": "Official built-in image generation",
+      "disclosure": "AI scene illustration, not a photo of this school or event"
+    },
+    {
+      "category": "engineering",
+      "name": "safe-workbench",
+      "source": "exec-6eedaf98-83eb-4392-b53f-265a8692d7ab.png",
+      "sourceSha256": "7826bd31b1e203013b261ac85fcb0c512d24d8cfb109e9e50a8fc93016236229",
+      "outputSha256": "cee7a8238f459f5b2170e364fb5ba9d014604fd2e4b2919dc1ded9d18f6f9cc0",
+      "width": 960,
+      "height": 640,
+      "bytes": 64857,
+      "review": "Four arms and four motors; all propellers removed; battery disconnected.",
+      "provider": "Official built-in image generation",
+      "disclosure": "AI scene illustration, not a photo of this school or event"
+    },
+    {
+      "category": "project",
+      "name": "campus-team",
+      "source": "exec-770e61b8-fc40-4b5a-9392-de8913ea6270.png",
+      "sourceSha256": "a40fd92a83fab660b0a4a9076f951999f76ee0f86aa6a98774786591fa60d34c",
+      "outputSha256": "e87a07385122e478bc8542f3671f905c82cbed413e5768e63b901b3cbc9a002f",
+      "width": 960,
+      "height": 640,
+      "bytes": 75600,
+      "review": "Fictional adults, natural interaction; no complete aircraft or personal documents.",
+      "provider": "Official built-in image generation",
+      "disclosure": "AI scene illustration, not a photo of this school or event"
+    },
+    {
+      "category": "learning",
+      "name": "theory-desk",
+      "source": "exec-6d1be834-31ed-47fd-a0d5-ceae307a6a46.png",
+      "sourceSha256": "c4060e369c55a51b53d84d3c2be30d70df48c424368f3638bd0332cb89af2fb2",
+      "outputSha256": "13889d1f3e0541511af015ac2648dc80fefbe83770e3c7c2e2d48d28bf1a97cd",
+      "width": 960,
+      "height": 640,
+      "bytes": 58713,
+      "review": "Study still life; no certificate, license or qualification claim.",
+      "provider": "Official built-in image generation",
+      "disclosure": "AI scene illustration, not a photo of this school or event"
+    }
+  ]
+}

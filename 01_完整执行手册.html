@@ -1,0 +1,1706 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>粤木木｜两窗口完整开发手册</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#20344A;background:#F3F6FB;font:15px/1.8 system-ui,-apple-system,"Microsoft YaHei","Noto Sans CJK SC",sans-serif}a{color:#155EEF}header{background:#122940;color:#fff;padding:42px 30px}header>div{max-width:1260px;margin:auto}h1{font-size:34px;line-height:1.35;margin:10px 0}header p{max-width:880px;color:#D5E5F3}.overline{font-size:12px;letter-spacing:.15em;color:#A9C9EA}.layout{max-width:1320px;margin:auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;padding:26px}nav{align-self:start;position:sticky;top:20px;max-height:92vh;overflow:auto;font-size:13px}nav a{display:block;text-decoration:none;padding:7px 12px;border-left:2px solid #D9E3EF}nav a:hover{background:#E8F0FC;border-color:#155EEF}.section{background:white;border:1px solid #DAE4EF;border-radius:13px;padding:27px 32px;margin:0 0 24px;scroll-margin-top:20px}h2{font-size:23px;color:#122940;line-height:1.4;margin:0 0 18px}h3{font-size:17px;color:#155EEF;line-height:1.5;margin:23px 0 10px}p{margin:10px 0 16px}table{border-collapse:collapse;width:100%;font-size:13px;margin:18px 0;table-layout:auto}th{background:#17354E;color:#fff;text-align:left}th,td{padding:11px 12px;border:1px solid #D8E2ED;vertical-align:top}tbody tr:nth-child(odd){background:#F4F7FC}blockquote{margin:20px 0;padding:12px 18px;background:#EAF2FF;border-left:4px solid #155EEF}pre{background:#112A3F;color:#E4EFF9;border-radius:8px;padding:18px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.7 Consolas,monospace;overflow:auto}code{font-size:.9em;overflow-wrap:anywhere}details{border:1px solid #D8E3EE;border-radius:9px;margin:12px 0;background:white}summary{font-weight:700;padding:15px 18px;cursor:pointer}.detail-body{padding:0 22px 20px;overflow-x:auto}.actions{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.btn,button{font:inherit;font-size:13px;border:1px solid #A5B8CC;border-radius:7px;padding:10px 14px;background:white;color:#16344E;text-decoration:none;cursor:pointer}.primary{background:#155EEF;color:white;border-color:#155EEF}.small{font-size:12px;color:#677D93}.status{font-size:13px;color:#60778B}textarea.prompt{width:100%;min-height:320px;font:13px/1.7 Consolas,"Microsoft YaHei",monospace;border:1px solid #BFCDDC;padding:16px;border-radius:8px;resize:vertical}.metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric div{background:#F0F5FC;padding:14px;border-radius:9px;text-align:center}.metric b{font-size:23px;display:block;color:#155EEF}.warn{background:#FFF4DF;border-left:4px solid #D8941B;padding:14px 18px}.label{font-size:12px;color:#667E95;letter-spacing:.1em;margin-bottom:8px}footer{text-align:center;font-size:12px;color:#6A8195;padding:30px}@media(max-width:850px){.layout{grid-template-columns:1fr;padding:15px}nav{position:static;display:flex;flex-wrap:wrap;max-height:160px}nav a{padding:6px 10px}.section{padding:22px 18px}header{padding:28px 20px}h1{font-size:28px}table{font-size:12px}th,td{padding:8px}.metric{grid-template-columns:repeat(2,1fr)}}@media print{nav,.actions,button,.no-print{display:none}.layout{display:block;padding:0}header{background:white;color:#122940;padding:10px}header p{color:#344D66}.section{border:0;break-before:page;padding:0}.section:first-child{break-before:auto}details{break-inside:avoid}pre{color:black;background:#eee}body{background:white;font-size:11pt}textarea.prompt{min-height:0}.metric{display:none}}</style></head><body><header><div><div class="overline">YUEMUMU · ENGINEERING PLAYBOOK · V2.0</div><h1>两个窗口，共建一个真实联通的系统</h1><p>规则先统一，A先搭好可验证底座，B负责全部使用体验；每一轮都真实接通。先本地演示，教员批准后再迁云。</p></div></header><div class="layout"><nav aria-label="手册目录"><a href="#start">开始这里</a><a href="#guide-1">01 方案总览</a><a href="#guide-2">02 启动准备</a><a href="#guide-3">03 阶段与提示词</a><a href="#guide-4">04 统一工程</a><a href="#guide-5">05 业务基线</a><a href="#guide-6">06 效果与验收</a><a href="#guide-7">07 环境与自主执行</a><a href="#guide-8">08 操作索引</a><a href="#prompts">两个窗口提示词</a><a href="#technical">完整开发文档</a><a href="#catalogs">活动与奖品资料</a></nav><main><section class="section" id="start"><div class="label">START HERE</div><h2>先看这一屏，就可以开始</h2><p>完整解压资料包，填写非敏感项目资料，再把两份提示词按顺序交给Codex。所有技术文档已嵌入本页面，离线也能浏览。</p><div class="metric"><div><b>2</b>常驻窗口</div><div><b>27</b>奖励候选</div><div><b>48</b>积分规则</div><div><b>40</b>验收用例</div></div><div class="actions"><a class="btn primary" href="02_填写项目资料.html">填写项目资料</a><a class="btn" href="#prompts">复制两个窗口提示词</a><button onclick="window.print()">打印当前手册</button></div><p class="warn"><strong>这是开发资料包，不是已完成的积分产品。</strong>当前可运行的是资料检查和宿主诊断脚本；产品的启动、接口、UI、图片和部署由两个窗口继续实现并提供实测证据。</p></section><section class="section" id="guide-1"><div class="label">OWNER GUIDE · 01</div><h2>01 两窗口，做成一个系统</h2>
+<p>粤木木木能量成长系统 · 开发执行手册 V2.0
+编制日期：2026年9月5日｜当前目标：本地教员演示</p>
+<blockquote>
+<p>先运行真实业务，再接入正式平台。当前不购买腾讯云、不调用付费API；活动、积分、审核、库存和领取仍采用真实数据库与权限。</p>
+</blockquote>
+<h3>两个窗口的职责</h3>
+<table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>主要责任</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A｜平台与集成</td>
+<td>架构、接口合同、MySQL、后端、积分库存事务、审核权限、运行脚本、最终合并。</td>
+</tr>
+<tr>
+<td>B｜全部客户端</td>
+<td>学生H5与小程序适配、教员/企业管理网页、手机核销、图片视觉、交互和跨端测试。</td>
+</tr>
+</tbody>
+</table>
+<h3>你只需要先做三件事</h3>
+<p>完整解压资料包；打开“02_填写项目资料.html”填已知信息并导出；在项目目录启动窗口A，粘贴 prompts/A_START.md。B只在A通过G0后启动。</p>
+<h3>本次交付和开发边界</h3>
+<p>已写好：规则与需求、8类角色、候选活动/项目/奖品、初始API合同、两窗口提示词、填写模板和资料检查脚本。尚未编写可运行的积分产品；pnpm demo等命令由A后续实现并验收。</p>
+<p>原送审稿未取得新的批准记录。本包制度状态为DRAFT_FOR_DEMO；不把新模板当作已获教员授权，也不把模拟库存当作真实库存。</p>
+</section><section class="section" id="guide-2"><div class="label">OWNER GUIDE · 02</div><h2>02 不知道API，也能先开始</h2>
+<p>当前不必申请微信小程序、不必买云、不必准备OpenAI API Key、短信或地图。已有Codex、可写项目目录和本地开发条件即可开始环境诊断。GitHub远程仓库也不是本地开发的前置条件。</p>
+<table>
+<thead>
+<tr>
+<th>你要补充的内容</th>
+<th>怎么填写 / 放哪里</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名称核对</td>
+<td>学校、学院、协会已预填；法定公司名不知道就留空。</td>
+</tr>
+<tr>
+<td>电脑与演示</td>
+<td>操作系统、内存、Docker状态知道就填；未知交给A诊断。</td>
+</tr>
+<tr>
+<td>领取地点</td>
+<td>没有真实地点就保留模拟领取点，不影响演示。</td>
+</tr>
+<tr>
+<td>Logo和照片</td>
+<td>有则放assets/brand；需确认使用权，不要求立即提供。</td>
+</tr>
+<tr>
+<td>非敏感统一资料</td>
+<td>用离线HTML导出project-input.json，放intake/替换同名文件。</td>
+</tr>
+<tr>
+<td>真实人员与密钥</td>
+<td>真实名单不进Git；私人分配放private/。Secret只放本机忽略的环境文件或云Secret。</td>
+</tr>
+</tbody>
+</table>
+<h3>不会填写技术配置时</h3>
+<p>不需要自己编辑API合同或数据库表。A负责检测工具、初始化项目、生成本地随机密钥、创建迁移并给出可执行命令。安装系统级软件、提权或付款必须单独说明，不会被“自主开发”自动授权。</p>
+<h3>保存填写结果</h3>
+<p>离线页面不会直接改你电脑里的项目文件。点击导出后，请亲自把下载的JSON放回intake/。关闭页面之前先导出；表内不填写密码、AppSecret、API Key或学生学号名单。</p>
+<blockquote>
+<p>未来月预算1200元、试点40人只是预填提案，既不是采购指令，也不是已批准的真实预算。</p>
+</blockquote>
+</section><section class="section" id="guide-3"><div class="label">OWNER GUIDE · 03</div><h2>03 先A到G0，再A/B协作</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>完成条件与使用文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A启动｜G0</td>
+<td>发送A_START.md。真实MySQL、登录/RBAC、本人钱包/账本、奖励查询、两端壳、SDK、网关和基础测试跑通。</td>
+</tr>
+<tr>
+<td>B启动</td>
+<td>A输出前端worktree绝对路径、基线SHA、合同哈希、G0证据。在该路径打开第二窗口，发送B_START.md。</td>
+</tr>
+<tr>
+<td>第一闭环｜G1</td>
+<td>A_CONTINUE.md / B_CONTINUE.md：报名→签到→审核→加分→兑换→核销→对账全部接通。</td>
+</tr>
+<tr>
+<td>完整演示｜G2</td>
+<td>补齐项目、竞赛、违规、申诉、抽查、通知、统计和图片；完整操作脚本、测试及恢复记录。</td>
+</tr>
+<tr>
+<td>集成验收</td>
+<td>发送A_FINAL_INTEGRATION.md；B依据缺陷单修复界面并交付E2E。</td>
+</tr>
+<tr>
+<td>生产与云｜G3/G4</td>
+<td>教员批准后再做真实身份、小程序真机、腾讯兼容性、迁移、备份和生产验收。</td>
+</tr>
+</tbody>
+</table>
+<h3>不要同时让两个窗口重做整个项目</h3>
+<p>A提前交付一小段已测试接口，B基于同一合同实现对应页面。不是A把全部后端写完后B才开始，也不是两端做完最后再对接。</p>
+<h3>模型和子代理怎么用</h3>
+<p>使用当前账号实际可用的高能力模型，不在文件里硬编码过时模型ID。每个主窗口最多2个短任务子代理，优先只读研究、测试规划、代码审查；写入子代理必须再分隔目录。工具或额度不足时顺序做。</p>
+<p>会话太长或中断后，使用RECOVER_SESSION.md，从Git提交、合同、BOARD和交接记录恢复，不要求你重新讲一遍业务。</p>
+</section><section class="section" id="guide-4"><div class="label">OWNER GUIDE · 04</div><h2>04 同一个项目，不等于共写同一个文件夹</h2>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>本版默认方案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生端</td>
+<td>Taro + React + TypeScript；先H5，后微信小程序能力验证。</td>
+</tr>
+<tr>
+<td>教员与企业端</td>
+<td>React + Vite + Ant Design；核销是/admin/pickup/，不新增应用。</td>
+</tr>
+<tr>
+<td>后端与数据</td>
+<td>NestJS + Drizzle + 真实MySQL；本地Docker优先，可用已装原生MySQL。</td>
+</tr>
+<tr>
+<td>文件与通知</td>
+<td>本地受控文件目录、私有附件鉴权、站内通知；后续用Provider接云。</td>
+</tr>
+<tr>
+<td>统一入口</td>
+<td>学生/；后台/admin/；API /api/v1/；公开图片与私有证据分离。</td>
+</tr>
+</tbody>
+</table>
+<p>新项目用Vite后台降低SSR和子路径部署复杂度；已有可运行Next项目则保留，经ADR说明，不为换框架推倒重来。暂不加MinIO、Redis、Kubernetes或微服务。</p>
+<h3>所有权和隔离</h3>
+<p>A单写合同、SDK、数据库、根配置和锁文件。B单写两个客户端、设计令牌、素材和浏览器E2E。A/B使用独立Git worktree、数据库schema、端口、上传路径和Cookie命名空间，不能把隔离只停留在源代码层。</p>
+<h3>跨窗口怎么传修改</h3>
+<p>只通过已提交代码和带SHA的交接文件同步。B提合同变更请求，A发布新合同并重新生成SDK；A逐组合并，B在干净工作树更新已发布集成tag。不共享未提交半成品，不擅自替另一窗口重置分支。</p>
+<blockquote>
+<p>G0模板的ready=false不能改成true冒充验收。只有真实运行记录、提交SHA、合同哈希和可访问入口齐全，A才生成实际G0证据。</p>
+</blockquote>
+</section><section class="section" id="guide-5"><div class="label">OWNER GUIDE · 05</div><h2>05 规则、案例、权限已落成文件</h2>
+<table>
+<thead>
+<tr>
+<th>资料</th>
+<th>已准备的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>积分政策</td>
+<td>48项获得积分规则；会议、训练、宣传、技能、项目、比赛、维护和带教。</td>
+</tr>
+<tr>
+<td>候选业务</td>
+<td>12项活动、4个项目、5项内容任务、3项待核验真实赛事名称及1项明确虚构演示赛。</td>
+</tr>
+<tr>
+<td>奖励目录</td>
+<td>27项实物/体验/申请型候选；含点数、限兑、模拟数量、图像审核状态。</td>
+</tr>
+<tr>
+<td>角色与账号</td>
+<td>8类角色权限；15个模拟学生和7个模拟职员，共22个虚构账号。</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>分级审核、双人审批、利益回避、违规调查、申诉、10%普通抽查与高风险100%复核。</td>
+</tr>
+</tbody>
+</table>
+<h3>纠正旧对话中的几处分歧</h3>
+<p>采用原送审稿基线：竞赛团队上限4倍，不是5倍；普通审核使用50/300门槛，不是100/500；项目、竞赛、人工调整和冲正无论分值均双审。凡需至少一名教员或企业代表，必须核验其身份，不能只看账号角色。</p>
+<h3>不是把所有东西塞进API合同</h3>
+<p>规则在data/policies；活动与奖励在data/catalog；模拟场景在data/demo；API合同只定义请求、响应、状态与错误；真人权限分配由后台管理；秘密不进入上述任何文件。</p>
+<h3>申请资格不等于积分买现金</h3>
+<p>培训补贴、交通补贴和项目种子资金暂按门槛型申请，不在申请时自动扣分或自动支付。实际额度、审批和凭证须另批准。真实奖品库存从0开始，不复制演示库存。</p>
+</section><section class="section" id="guide-6"><div class="label">OWNER GUIDE · 06</div><h2>06 有图片、有交互，也必须经得住测试</h2>
+<h3>学生端与后台分别优化</h3>
+<p>学生端突出成长进度、下一步活动、还差多少分可兑换、审核进度与领取提醒。后台突出待办、批量审核、差额说明、库存和审计。两者用同一套品牌令牌，但不把后台表格直接搬到手机。</p>
+<h3>图片怎样完成</h3>
+<p>B必须交付27项候选奖励的可用演示图、活动封面、等级/翼章和空状态插图，登记来源、版权、哈希与用途。没有生图API时可做原创矢量插画或使用获许可素材，不让全部卡片变灰框。</p>
+<p>真实具体型号奖品必须用授权实拍或供应商图。AI或矢量概念图只能标注“演示示意”，不得冒充已采购的充电宝、无人机或其他品牌商品。当前资料包提供规范与清单，尚未生成这些产品图片。</p>
+<h3>40个验收用例，不能用截图代替</h3>
+<table>
+<thead>
+<tr>
+<th>重点</th>
+<th>验收要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>账本与库存</td>
+<td>同key重复100次不重复记账；不同key同业务也不能重复。50人抢最后1件只成功1单。</td>
+</tr>
+<tr>
+<td>权限与异常</td>
+<td>不能自审、越权或重复核销；取消与领取并发只能一个终态；批次与可用余额可重建。</td>
+</tr>
+<tr>
+<td>跨端与恢复</td>
+<td>学生→教员→核销员共用真实订单；重启保留数据；备份恢复后账本、库存和文件对得上。</td>
+</tr>
+<tr>
+<td>视觉与适配</td>
+<td>手机/桌面、加载/空/错误/审核状态、按钮防重、深路由刷新、真实图像来源均检查。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>“已设计”“已编码”“本机实测通过”“真实平台验证通过”是四种不同状态，报告必须分别列出。</p>
+</blockquote>
+</section><section class="section" id="guide-7"><div class="label">OWNER GUIDE · 07</div><h2>07 能自主解决，但不假装没有限制</h2>
+<table>
+<thead>
+<tr>
+<th>遇到的问题</th>
+<th>允许的处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缺腾讯云/微信/短信</td>
+<td>先完成本地MySQL、H5、站内通知。正式平台接入单独列待验证。</td>
+</tr>
+<tr>
+<td>Docker不可用</td>
+<td>检测已装原生MySQL；需要系统安装时列最小人工步骤，其他模块继续。</td>
+</tr>
+<tr>
+<td>缺图片或生图额度</td>
+<td>原创演示插画/合法素材；准确标注，真实商品图后续验收。</td>
+</tr>
+<tr>
+<td>网络或依赖受限</td>
+<td>官方文档、合法镜像、缓存、可审计替代；不用未知一键脚本或绕过校园网络控制。</td>
+</tr>
+<tr>
+<td>希望手机/远程演示</td>
+<td>本机优先；获授权再局域网或受保护临时HTTPS。浏览器相机需要实际验证和备用码。</td>
+</tr>
+<tr>
+<td>需要费用或真实数据</td>
+<td>暂停该动作，说明目的、费用/风险、最小授权；不阻塞其余开发。</td>
+</tr>
+</tbody>
+</table>
+<h3>当前真正可运行的命令</h3>
+<pre><code class="language-sh">node scripts/validate-kit.mjs
+node scripts/preflight.mjs
+</code></pre>
+<p>前者校验资料，后者只读检测宿主环境；都不代表产品已完成。pnpm demo、demo:share、release:check由A实现后才能使用。</p>
+<h3>未来腾讯迁移</h3>
+<p>以同一合同、领域模型、数据库迁移及Provider适配为目标，但不能保证只改连接串。须确认目标MySQL版本、认证/TLS、DDL权限、对象存储权限、微信主体、备案域名和价格，再做迁移校验与回滚演练。</p>
+<p>所谓“一键”应是完成上述前置条件后的预检和部署脚本；本阶段只设计脚本和清单，不创建收费资源。</p>
+</section><section class="section" id="guide-8"><div class="label">OWNER GUIDE · 08</div><h2>08 按文件名执行，不需要重新写提示词</h2>
+<table>
+<thead>
+<tr>
+<th>现在要做什么</th>
+<th>打开的文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>看整体方案</td>
+<td>01_完整执行手册.html（含完整文档与可复制提示词）</td>
+</tr>
+<tr>
+<td>补项目资料</td>
+<td>02_填写项目资料.html → 导出到intake/project-input.json</td>
+</tr>
+<tr>
+<td>启动第一个窗口</td>
+<td>prompts/A_START.md</td>
+</tr>
+<tr>
+<td>A通过G0后启动第二个窗口</td>
+<td>prompts/B_START.md，在A给出的独立工作树中使用</td>
+</tr>
+<tr>
+<td>继续开发</td>
+<td>prompts/A_CONTINUE.md 与 prompts/B_CONTINUE.md</td>
+</tr>
+<tr>
+<td>最后合并验收</td>
+<td>prompts/A_FINAL_INTEGRATION.md</td>
+</tr>
+<tr>
+<td>中断后恢复</td>
+<td>prompts/RECOVER_SESSION.md</td>
+</tr>
+<tr>
+<td>教师展示与反馈</td>
+<td>docs/13_TEACHER_REVIEW_SCRIPT.md</td>
+</tr>
+</tbody>
+</table>
+<h3>提示词的最小发送方式</h3>
+<p>完整角色提示词均已写好，不必复制旧聊天大段内容。也可发送：“读取并严格执行prompts/A_START.md，先实际读项目资料并开发到G0，不再只给建议。”B则替换为B_START.md。</p>
+<h3>来源与核验</h3>
+<p>官方Codex文档说明了工作树隔离、AGENTS.md和子代理机制；Taro官方仓库说明跨端目标；MySQL/NestJS/OpenAPI资料支持数据库与合同设计。本方案的分工、分值、验收目标是针对本项目的设计，不是行业强制标准。</p>
+<p>完整来源、访问日期、GitHub文件SHA及未能核实的云兼容项，已写入docs/11_RESEARCH_AND_LICENSES.md。不要把低星示例或许可未知代码当成成熟生产底座。</p>
+<blockquote>
+<p>下一步：完整解压 → 填表导出 → 窗口A执行A_START → G0实测通过 → 在独立目录启动窗口B。</p>
+</blockquote>
+</section><section class="section" id="prompts"><h2>两窗口提示词｜直接复制</h2><p>A先启动；A通过G0以后，B在A给出的独立工作树中启动。同一窗口继续时使用对应CONTINUE；不要反复初始化项目。</p><details open><summary>窗口A · 第一轮到G0</summary><div class="detail-body"><div class="actions"><button class="primary" data-copy="A_START">复制全文</button><a class="btn" href="prompts/A_START.md">打开原文件</a><span class="status" id="s-A_START" aria-live="polite"></span></div><textarea class="prompt" id="A_START" readonly aria-label="窗口A · 第一轮到G0">你是本项目窗口A：平台架构、后端、运行环境与最终集成负责人。请在当前项目真实读文件、写代码、运行测试，而不是再输出一篇建议。
+
+目标：为粤木木木能量系统交付可给教员实际操作的第一版产品。当前不购买腾讯云、不付费调用API；学生H5、教员/企业后台和手机核销共用真实MySQL与API。以后可在获得主体、费用和凭据授权后迁入腾讯云。只使用两个常驻窗口；窗口B负责全部客户端和视觉，尚未启动。
+
+先读：AGENTS.md、intake/project-input.json、docs/00_CONTEXT_AND_DECISIONS.md、docs/01_PRD.md、docs/06_TWO_WINDOW_WORKFLOW.md。按需再读规则、数据、API、验收文档，不重复问已给信息。原送审稿有4倍团队比赛上限与50/300审核门槛，不能取旧聊天中冲突数字。规则是DRAFT_FOR_DEMO，不得冒称教员批准。
+
+本轮交付到G0，随后给我窗口B的实际启动信息。G0不是文档完成，而是：
+- 检查当前系统/Node/Git/pnpm/Docker或原生MySQL/Codex能力；选择合法免费可行路径。运行已有资料检查脚本。创建安全本地配置，secret随机生成且不进Git。缺Docker可用真实原生MySQL，禁止静默换SQLite/内存假数据。
+- 初始化或安全接管Git与pnpm单仓；锁定兼容稳定版本。采用NestJS+Drizzle/MySQL、Taro学生H5/weapp目标、React/Vite+AntD运营端。已有可运行技术栈不要无故推倒，差异写ADR。
+- 建立统一OpenAPI、错误/分页/身份/状态、生成SDK与Taro/Web transport，运行时校验和合同漂移测试。初始合同在packages/contracts/openapi.json，由你补充并冻结，不能让前后端另造字段。
+- 建立真实demo身份会话、staff本地登录基础、资源级RBAC、用户/钱包/账本/奖励查询、积分追加与冲正基础、MySQL迁移及领域种子。已有数据重复启动不得重复奖励或清库。
+- 构建两个客户端最小可运行壳与统一网关，实际验证/、/admin/、/api/v1/及深路由。教员演示使用构建产物，不公开开发服务器或HMR。
+- 完成重复请求、不同key同业务、越权、本人回避、账本重建与基础事务测试。只能记录实际运行结果；环境不支持则明确阻塞该项。
+- 实现本地启动/健康检测的最小命令，界面尚未全部开发不冒称系统已完成。建立后续Issue与能力表，注明哪些API只是合同、哪些真实已验。
+
+G0完成后：
+1. 提交可恢复集成基线与tag，填写真实coordination/gates/G0.json（不可直接复制模板改true）。
+2. 由你安全创建前端独立worktree和分支，检查路径/分支不冲突、不覆盖现有改动。给出它的绝对路径、分支、基线SHA、合同SHA、G0证据和应粘贴的prompts/B_START.md。
+3. 你的后续工作树与B隔离；G0之后遵守A/B文件所有权，不继续修改客户端。公共锁文件、SDK、契约与数据库由你单写。
+
+自主工作授权：相关联网检索、现有工具/插件/技能、只读诊断、免费依赖选择、编码和非破坏性测试可自行推进。缺Logo/奖品型号/人员名单，用明确的模拟数据；不得编造采购、授权或真实赛事。缺微信/腾讯/图像API不阻塞H5。需要付款、提权、公开服务、处理真人信息、安装系统级组件或不可逆删除时，列最小人工动作，只暂停受影响部分，继续其余任务；不能绕过安全、认证、限流和学校网络政策。
+
+可派至多2个短子代理做领域审查、文档核验或隔离测试；没有多代理工具就自己顺序做，不能假称已启动。不要因为模型能力强而取消边界、验收或回滚。不要只搭首页就结束，也不要在本轮越过G0假装把完整产品全部验收。
+
+每次报告：完成到哪个门、实际修改、命令/exit code、证据、风险、下一步。当前先执行，不要再问我选技术栈。
+</textarea></div></details><details open><summary>窗口B · G0之后启动</summary><div class="detail-body"><div class="actions"><button class="primary" data-copy="B_START">复制全文</button><a class="btn" href="prompts/B_START.md">打开原文件</a><span class="status" id="s-B_START" aria-live="polite"></span></div><textarea class="prompt" id="B_START" readonly aria-label="窗口B · G0之后启动">你是本项目窗口B：全部客户端、交互设计、图片资产与跨端E2E负责人。当前应位于A给出的前端独立worktree，不与窗口A同目录写代码。
+
+先核对当前工作树/分支、A已提交的coordination/gates/G0.json、基线SHA、合同SHA、verifiedEndpoints及启动命令。G0若无真实证据，不自行填ready=true或另造后端；记录问题，并只先做不依赖API的设计调研/资产清点。
+
+必须读AGENTS.md、intake/project-input.json、docs/01_PRD.md、docs/06_TWO_WINDOW_WORKFLOW.md、docs/07_UI_AND_ASSETS.md，开发相关任务再读规则/API/验收。目标是有真实图片和良好交互的可操作系统，不是独立静态Demo。当前免费本地H5演示，未来小程序与云部署各有验证门。
+
+你拥有 apps/student、apps/ops、packages/design-tokens、assets、tests/e2e、tests/visual、docs/design；A拥有API、SDK、契约、数据库、根配置/锁文件。请按这个边界完整负责两种客户端，不需要额外教员/仓管应用。
+
+任务：
+1. 先建立统一蓝白+少量橙的校园低空品牌规范，给学生端成长感、后台清晰审批密度、核销端手机可操作性。读已有Logo授权；缺Logo先文字品牌，不能画假校徽。
+2. 学生端用Taro：H5实际运行，weapp保持可构建；身份/扫码/上传/通知做平台适配。不要把DOM库照搬进小程序，也不要说H5通过等于真机通过。
+3. 运营端用React/Vite+AntD，/admin/下含教员、运营、监察功能和/admin/pickup/手机核销。正确base和Router basename，实际测试深路由刷新。
+4. 只调用A发布的统一SDK/API。先完成真实登录/身份/钱包/奖励查询，再随接口切片完成报名→签到→验收→得分→兑换→领取。合同不足提交CR，继续其他事项，不自行改API形状或直接连数据库。
+5. 按PRD补齐课程/翼章、宣传任务、项目分配、比赛差额、违规通知、申诉、心愿、审计与运营看板。每个页面都要数据加载、空、错误、断网、无权、冲突、成功反馈；不显示假的成功或前端自己计分。
+6. 独立写Playwright真实跨角色E2E和视觉测试，自己的验证API/库从A已提交版本启动，不重置A环境。学生和教员会话可同时演示而不串身份。
+
+图片工作不要留到最后：清点已授权素材；优先可用内置生图工具制作原创Banner/分类/体验卡/等级和翼章；工具不可用则自绘原创SVG或采用许可明确素材。无付费API仍需让27个模拟奖励都有图，但真实商品无实拍时必须写“示意图／模拟奖品”。不可爬受限制站点、冒用Logo或把AI图假作实际型号。维护asset manifest、压缩、多端格式和alt。穿越机必须四旋翼、结构专业。
+
+可使用至多2个短子代理分别处理独立资产/只读视觉检查/隔离测试；不生成第三套应用或争写同文件。发现技术依赖缺口主动查官方资料、采用合法免费替代；不得擅自付费、公开服务、上传真人照片、规避认证/限流或移除安全检查。
+
+本轮先完成G1对应的界面与真实业务闭环；随后按切片推进G2，不只交付首页。完成各切片后提交自己的分支与handoff：基线/提交SHA、合同SHA、页面入口、图片来源、执行命令和结果、截图、缺口、给A的请求。根锁文件依赖交A统一处理。不要把仅渲染成功、使用Mock或未执行测试报告成完整可用。
+</textarea></div></details><details ><summary>窗口A · 继续业务实现</summary><div class="detail-body"><div class="actions"><button class="primary" data-copy="A_CONTINUE">复制全文</button><a class="btn" href="prompts/A_CONTINUE.md">打开原文件</a><span class="status" id="s-A_CONTINUE" aria-live="polite"></span></div><textarea class="prompt" id="A_CONTINUE" readonly aria-label="窗口A · 继续业务实现">继续担任窗口A。先读AGENTS.md、coordination/BOARD.md、B已提交的handoff、当前集成SHA及合同SHA，不依赖旧聊天记忆。
+
+G0已完成后，请按docs/14_IMPLEMENTATION_BACKLOG.md完成下一组后端垂直切片：活动→签到→审核→积分，以及奖励→预占→订单→核销。B同时做页面；你负责合同、API、MySQL、权限、outbox、幂等、并发与运行工具。
+
+先处理B的必要接口/依赖请求，做兼容增量合同变更并发布新基线SHA；不要等全部后端写完再联调。不要替B改界面，不把未提交文件当共享成果。分别使用ym_dev_a、ym_dev_b和ym_integration，禁止清另一个窗口的库。
+
+完成首条闭环后继续项目/竞赛差额/违规申诉/抽查通知/预算，对照G2范围逐项实现。每个切片带真实MySQL测试、领域不变量、规则快照与错误恢复，不用Mock通过最终门。
+
+解决环境/免费服务缺口遵照自主权限矩阵：官方资料、合法替代、局部降级、记录限制。当前仍禁止创建付费云资源。临时公网分享只有在资料表授权且访问保护完成后执行。
+
+为B审查已完成前端提交，对后端改动请B做跨端可用性审查；模型交叉审查不是独立安全认证。每次可运行切片提交并写handoff，A串行集成，不使用force push、盲目git add .或重复cherry-pick。
+
+在G2真正满足之前不要声称可交付教员；关键失败不改测试断言、不删除测试。出现单一外部阻塞，继续完成不依赖它的部分，并准确区分H5已验、weapp仅构建、微信真机未验、云部署未验。
+</textarea></div></details><details ><summary>窗口B · 继续界面联调</summary><div class="detail-body"><div class="actions"><button class="primary" data-copy="B_CONTINUE">复制全文</button><a class="btn" href="prompts/B_CONTINUE.md">打开原文件</a><span class="status" id="s-B_CONTINUE" aria-live="polite"></span></div><textarea class="prompt" id="B_CONTINUE" readonly aria-label="窗口B · 继续界面联调">继续窗口B。核对A最新已提交集成基线和合同SHA，读取自己的handoff；工作树干净时按既定merge方式更新，不重写对方提交。
+
+完成当前Issue的全部前端、交互、图片和真实API联通，再按backlog推进下一模块。优先补齐申诉/拒绝原因/异常库存/重复领取/审核回避等真实管理场景，不用只读漂亮页面代替功能。
+
+对照docs/08_ACCEPTANCE_TESTS.md执行本轮E2E和视觉检查。每个失败先找根因；后端缺陷交A最小复现，前端缺陷自己修复。不要降低权限、用localStorage余额、假到账或Mock终态把流程糊过去。
+
+G2前检查27个奖励图、五级徽章、技能翼章、所有空/错态、手机核销、不同屏幕、同浏览器学生与职员身份隔离、无障碍和动效降级。H5已通过与weapp/微信真机状态分别列出。所有截图来自实际运行版本。
+
+提交SHA、可复现命令与exit code、图片manifest、E2E报告、已知阻塞及下一步，由A集成。不要再要求用户想奖品或重写规则，现成候选/基线已在资料包。
+</textarea></div></details><details ><summary>窗口A · 最终集成验收</summary><div class="detail-body"><div class="actions"><button class="primary" data-copy="A_FINAL_INTEGRATION">复制全文</button><a class="btn" href="prompts/A_FINAL_INTEGRATION.md">打开原文件</a><span class="status" id="s-A_FINAL_INTEGRATION" aria-live="polite"></span></div><textarea class="prompt" id="A_FINAL_INTEGRATION" readonly aria-label="窗口A · 最终集成验收">请进入两窗口最终集成验收，不增加第三个常驻窗口。
+先确认B的提交、全部contract请求已处理、工作树干净、集成库隔离。串行合并已审查提交，构建统一演示，不使用任何端自己的未提交文件。
+
+逐条执行docs/08_ACCEPTANCE_TESTS.md与docs/13_TEACHER_REVIEW_SCRIPT.md，保存日志、截图、版本、测试条件。重点：幂等键与业务去重、并发最后一件、重复扫码、取消/到期竞态、本人回避、项目守恒、比赛差额、申诉、私有证据、数据重启持久、备份恢复及生产禁用Demo。
+
+交付真实可运行的pnpm demo、demo:check、demo:stop、受保护的demo:share和受限demo:reset。默认不启动公网分享，不创建腾讯资源。不因云/微信外部凭据缺失阻止合格H5演示，但明确这些未完成验证。
+
+按M01—M12输出功能完成矩阵，按T01—T40输出PASS/FAIL/BLOCKED；每条PASS必须有真实证据，不允许仅“代码看起来没问题”。任何P0/P1阻止G2签发。
+
+整理一个用户能读的运行README：首次安装前提、启动/停止、教员演示入口、账号密钥安全取得方式、演示重置边界、常见故障、备份恢复、当前缺口。未来云迁移仅提供有前置检查的计划与脚本，尚未在真实腾讯账号跑通不能叫一键上线已完成。
+
+只有所有G2适用要求通过才发布local-demo-v1候选标签。请给出诚实的交付总结，不夸大为已获教员批准的生产系统。
+</textarea></div></details><details ><summary>会话恢复</summary><div class="detail-body"><div class="actions"><button class="primary" data-copy="RECOVER_SESSION">复制全文</button><a class="btn" href="prompts/RECOVER_SESSION.md">打开原文件</a><span class="status" id="s-RECOVER_SESSION" aria-live="polite"></span></div><textarea class="prompt" id="RECOVER_SESSION" readonly aria-label="会话恢复">请恢复当前A或B窗口任务。先从当前目录与git branch/status识别工作树，读取AGENTS.md、intake/project-input.json、coordination/BOARD.md、当前owner的最新已提交handoff和实际gate证据。
+列明你负责的目录、当前基线/提交/合同SHA、已完成/未完成与上次失败命令。不要按聊天记忆重建架构，也不要丢弃未提交工作。若存在他人改动先隔离，不强制reset。
+从最近一个可验证小切片继续，保留所有安全和零云费用边界。资料不足先查文件和工具，用现有模拟默认值推进，不反复向用户索取已提供信息。每完成切片更新交接，关键能力未测就标BLOCKED。
+</textarea></div></details></section><section class="section" id="technical"><h2>完整开发文档</h2><p>无需项目负责人逐篇解释；两个窗口根据任务阅读。点击标题展开，所有正文已嵌入本页面。</p><details><summary>00 · 上下文、冲突处理与决定记录</summary><div class="detail-body"><h1>上下文、冲突处理与决定记录</h1>
+<h2>用户明确要求（事实）</h2>
+<p>服务广州科技职业技术大学人工智能与大数据学院、GKD世界之翼无人机协会及粤木木相关活动。系统覆盖学习、活动、会议、宣传、项目、竞赛、奖励、违规、审核、监察与线下核销。
+当前只用两个常驻Codex窗口。先不花腾讯云部署费用，先做可真实操作的教员演示版本，教员同意后再做云端部署。要真实数据库、图片和完整交互，不要只能播放的假页面。缺失技术资源应主动查询和寻找合法替代方案。</p>
+<h2>未确认事项（不得编造）</h2>
+<p>教员是否批准、真实成员人数、实际资金、法定运营主体、线下领取详细地点、库存采购、学校SSO、微信主体资质、当前电脑配置均未确认。“约185人”只是旧助手演算假设；不能作为真实会员数。候选项目/赛事/奖品不代表已经承办、合作、开赛或采购。
+前文曾讨论塔脚村电商助农；本包仅把它保留为候选项目。实际合作材料、周期、积分池、里程碑和人员仍需项目负责人核实，不能自动认为已有审批。</p>
+<h2>以原送审稿为数值基线</h2>
+<p>本包保存原Word、HTML及文字提取，原稿2026-09-04，状态为送审。后续零散聊天不构成教员批准。</p>
+<table>
+<thead>
+<tr>
+<th>冲突</th>
+<th>本包采用</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>团队比赛奖励4倍或5倍</td>
+<td>4倍基准分</td>
+<td>原送审稿明确4倍</td>
+</tr>
+<tr>
+<td>审核门槛50/300或100/500</td>
+<td>≤50、51—300、&gt;300/团队&gt;1000</td>
+<td>原送审稿基线</td>
+</tr>
+<tr>
+<td>积分名称飞行里程/成长里程</td>
+<td>成长里程（代码growthMileage）</td>
+<td>原稿统一术语</td>
+</tr>
+<tr>
+<td>需要云账号才能开工</td>
+<td>不需要，本地Git和MySQL起步</td>
+<td>用户最新要求</td>
+</tr>
+<tr>
+<td>Demo必须NODE_ENV非production</td>
+<td>APP_MODE独立控制</td>
+<td>允许production构建的高质量演示，不混淆业务环境</td>
+</tr>
+<tr>
+<td>一改DATABASE_URL即上云</td>
+<td>仅为迁移目标，不保证无需适配</td>
+<td>引擎、TLS、网络、对象存储、账号和微信审核需实测</td>
+</tr>
+<tr>
+<td>角色名单即真实人员权限</td>
+<td>角色定义与实际授权分开</td>
+<td>本包只有角色模板</td>
+</tr>
+</tbody>
+</table>
+<h2>本轮工程化澄清（演示可用，真实执行须批准）</h2>
+<ol>
+<li>被动分20%按“被动已入账≤主动已入账/4”计算；超出候选分显示待结算，不先发后追回；学期结束处置须确认。</li>
+<li>成长等级按里程展示，技能资格独立：里程足但未通过技能考核，不自动获得飞行或设备操作资格。</li>
+<li>会议单次25分包括会内加分；独立会后交付仅在另有任务ID和独立验收时另记，禁止重复。</li>
+<li>R025/R026/R027统一为专项申请入口：积分是资格门槛，申请时不消耗积分、不自动兑付现金。培训/交通须凭证与额度，项目资金须计划与独立审批；这是拟议澄清，真实使用前确认。</li>
+<li>不允许随意罚款或扣合法积分。主要撤销违规所得、限期功能限制与申诉；不能替代学校处分或劳动报酬。</li>
+<li>所有真实奖品初始现货为0，实际采购验收后才能入库。示例库存仅进入demo库。</li>
+<li>隐私确认不是营销任务；10分对应身份验证和成员入门完成，兴趣选择可跳过。</li>
+<li>18个月期限是拟议生产政策。模拟时钟验证到期流程，但不得以修改系统时间影响宿主机。</li>
+</ol>
+<p>业务规则文件状态保持DRAFT_FOR_DEMO，A可以技术冻结，但不能写成TEACHER_APPROVED。非关键未知先使用标注的默认值；法律、资金、安全、真人授权的未知不自动猜测。</p>
+</div></details><details><summary>01 · 产品需求说明（两窗口版）</summary><div class="detail-body"><h1>产品需求说明（两窗口版）</h1>
+<h2>1. 产品目标</h2>
+<p>让学生明确“做什么能得分、证据如何提交、何时到账、积分能换什么、奖品到哪里拿”；让教员能够审查规则与证据、识别异常、解释每笔分数；让企业能控制库存、预算和领取成本。
+目标是成长与运营闭环，而不是增加打开次数。当前交付为本地可演示的产品候选，后续通过真实身份/资质/安全/运维验证才进入试用。</p>
+<h2>2. 端与入口</h2>
+<table>
+<thead>
+<tr>
+<th>入口</th>
+<th>使用人</th>
+<th>核心工作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code> 学生H5</td>
+<td>学生、体验访客</td>
+<td>活动、任务、积分、项目、比赛、商城、成长、申诉</td>
+</tr>
+<tr>
+<td><code>/admin/</code> 管理网页</td>
+<td>教员、导师、运营、监察</td>
+<td>管理审核、证据、账本、库存、预算、违规和报表</td>
+</tr>
+<tr>
+<td><code>/admin/pickup/</code> 移动核销</td>
+<td>企业领取人员</td>
+<td>扫码或手输领取码、核验、交付与异常处理</td>
+</tr>
+<tr>
+<td>微信小程序构建</td>
+<td>后期真实学生</td>
+<td>与H5共用Taro业务代码，认证/扫码/上传通过平台适配</td>
+</tr>
+<tr>
+<td><code>/api/v1/</code></td>
+<td>所有端</td>
+<td>唯一业务服务；客户端不直连MySQL</td>
+</tr>
+</tbody>
+</table>
+<h2>3. 功能范围与验收</h2>
+<table>
+<thead>
+<tr>
+<th>模块ID</th>
+<th>学生侧</th>
+<th>管理侧</th>
+<th>核心验收</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M01 身份</td>
+<td>Demo登录、入门、身份状态</td>
+<td>虚构名单、申请审批、角色范围</td>
+<td>切换身份不跨账号泄漏；正式环境无Demo入口</td>
+</tr>
+<tr>
+<td>M02 活动会议</td>
+<td>列表、报名、候补、取消、签到、完成任务</td>
+<td>草稿发布、名额、签到、结束确认、批量审查</td>
+<td>完整参与与单纯扫码区分，不能重复得分</td>
+</tr>
+<tr>
+<td>M03 实训技能</td>
+<td>课程、测验、作品、技能要求</td>
+<td>课程/题库、考核、教员签认、翼章</td>
+<td>里程不是技能证书，飞行安全前置独立</td>
+</tr>
+<tr>
+<td>M04 宣传任务</td>
+<td>认领、源文件和链接、角色贡献</td>
+<td>验收、原创/授权、转化指标</td>
+<td>一份作品只按主类别计分</td>
+</tr>
+<tr>
+<td>M05 项目</td>
+<td>申请、团队、任务、里程碑、贡献确认</td>
+<td>池额度、阶段验收、中止、复核</td>
+<td>团队池不超发，分配精确守恒</td>
+</tr>
+<tr>
+<td>M06 竞赛</td>
+<td>候选赛事、作品、团队、奖项、补证</td>
+<td>白名单、赛级、证明、成员系数、晋级</td>
+<td>仅补差额，撤奖/更正也能处理</td>
+</tr>
+<tr>
+<td>M07 积分</td>
+<td>可用/冻结/待审/待结算/待追缴、明细</td>
+<td>规则版本、补分申请、冲正、对账</td>
+<td>余额可重建，禁止直接改分</td>
+</tr>
+<tr>
+<td>M08 奖励</td>
+<td>27候选、筛选、心愿、详情、限兑、预约</td>
+<td>SKU/变体、采购、入库、批次、服务名额、图片</td>
+<td>模拟库存与真实库存隔离</td>
+</tr>
+<tr>
+<td>M09 订单核销</td>
+<td>确认、冻结、取消、待领取、动态码</td>
+<td>备货、手机核销、退换、盘点</td>
+<td>同事务、不可重复领取、故障可恢复</td>
+</tr>
+<tr>
+<td>M10 违规申诉</td>
+<td>通知、陈述、申诉进度</td>
+<td>证据、独立裁决、功能限制、复核、追缴</td>
+<td>不自动无限封号，不公开羞辱</td>
+</tr>
+<tr>
+<td>M11 监察统计</td>
+<td>自己档案、可选昵称榜</td>
+<td>10%抽查、高风险全复核、月报、预算预警</td>
+<td>指标有定义、权限与审计，有真实数据</td>
+</tr>
+<tr>
+<td>M12 平台维护</td>
+<td>站内通知、隐私说明</td>
+<td>导入、导出、备份、恢复、系统健康</td>
+<td>私有文件不可公开直链，危险操作有门禁</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 当前不做</h2>
+<p>不做现金充值/提现、微信支付、商家分账、短信群发、精准定位追踪、人脸识别、区块链、强制AI推荐、独立原生App、独立教员App。地图、学校SSO、微信订阅消息、付费图像API无凭据时不阻塞本地版本。</p>
+<h2>5. 关键旅程</h2>
+<p>学生报名并参加装调课→教员验收→按50分规则入账→学生兑换900分维修工具包→冻结积分/库存→工作人员核销→订单、钱包、库存、审计同时更新。另演示一笔拒绝自审、一笔比赛晋级差额、一笔领取码重复使用、一笔申诉撤销。</p>
+<h2>6. 通用界面状态</h2>
+<p>所有主页面具备加载、空、无权、错误、断网、过期及成功反馈；提交按钮防重但不能代替服务端幂等。后台分页/筛选/批量结果可追踪；批量批准不默认全选跨页。
+演示模式页眉常显“模拟数据／内部演示”。缺失真实奖励图片时用自制插画并标示意图；不得用AI图冒充实际型号。</p>
+<h2>7. 非功能目标（设计目标，不是已测成绩）</h2>
+<p>在普通开发机本地演示20个并发会话；列表API预热后P95目标&lt;800ms，页面冷启动目标&lt;3秒（网络与机型须记录）；核心写入不重复、不超卖。首屏图像按需加载，无大体积循环特效。数据库重启不丢失已提交数据。所有指标报告测试条件与实测值。</p>
+</div></details><details><summary>02 · 积分、奖励、违规与审核：可实现规则</summary><div class="detail-body"><h1>积分、奖励、违规与审核：可实现规则</h1>
+<p>规则状态：<code>DRAFT_FOR_DEMO</code>。保留2026-09-04送审稿分值，本文件明确计算、去重、边界和审批含义。数据表见 <code>data/policies/rules.v1.demo.json</code>；真实应用须教员批准。</p>
+<h2>1. 资产与期限</h2>
+<p>木能量为整数点数，可兑换，不转账、不提现、不出售；成长里程独立入账，通常按合规获得木能量1:1增加，退款不额外加成长；技能翼章须考核或成果证据。禁止把技术技能认证等同于里程等级。
+拟定学年9月1日—次年8月31日，学期日历在后台配置，业务时区Asia/Shanghai，数据库UTC。木能量批次期限拟为18个日历月，60/30/7日前站内提示。月底规则取目标月份最后有效日；毕业处理、学期待结算清理需批准。演示使用可注入业务时钟，不修改电脑时间。</p>
+<h2>2. 基础与会议</h2>
+<table>
+<thead>
+<tr>
+<th>code</th>
+<th>事项</th>
+<th style="text-align:right">木能量</th>
+<th>上限/证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ONB_ID</td>
+<td>身份核验与入门完成</td>
+<td style="text-align:right">10</td>
+<td>每人一次；兴趣问题可跳过</td>
+</tr>
+<tr>
+<td>SAFE_BASIC</td>
+<td>安全微课及测试≥80分</td>
+<td style="text-align:right">30</td>
+<td>每人一次；服务端判卷</td>
+</tr>
+<tr>
+<td>FIRST_VALID</td>
+<td>首次有效活动完成</td>
+<td style="text-align:right">20</td>
+<td>每人一次；与已批准活动基础分可叠加</td>
+</tr>
+<tr>
+<td>REF_FIRST</td>
+<td>新成员首次有效参与</td>
+<td style="text-align:right">20</td>
+<td>推荐人每学期至多5人，不按注册奖励</td>
+</tr>
+<tr>
+<td>REF_RETURN</td>
+<td>被推荐人30天内再次有效参与</td>
+<td style="text-align:right">20</td>
+<td>与首次不同活动；同人同阶段一次</td>
+</tr>
+<tr>
+<td>MEET_ATTEND</td>
+<td>正式会议完整参与</td>
+<td style="text-align:right">5</td>
+<td>纯出席每月最多20；起止确认</td>
+</tr>
+<tr>
+<td>MEET_PREP</td>
+<td>阅读会前材料并提交有效问题</td>
+<td style="text-align:right">5</td>
+<td>每会议一次</td>
+</tr>
+<tr>
+<td>MEET_IDEA</td>
+<td>可执行建议</td>
+<td style="text-align:right">5—10</td>
+<td>提前设具体值，主持记录</td>
+</tr>
+<tr>
+<td>MEET_HOST</td>
+<td>主持并完成议程控制</td>
+<td style="text-align:right">15</td>
+<td>不再领MEET_ATTEND</td>
+</tr>
+<tr>
+<td>MEET_MINUTES</td>
+<td>纪要及责任/截止日清单</td>
+<td style="text-align:right">10</td>
+<td>按时归档</td>
+</tr>
+<tr>
+<td>MEET_ACTION</td>
+<td>会后独立行动项交付</td>
+<td style="text-align:right">10—30</td>
+<td>新任务ID、独立交付与验收，不重复</td>
+</tr>
+<tr>
+<td>会议内单人合计最多25；登录、浏览、拉群、单纯报名均0分。</td>
+<td></td>
+<td style="text-align:right"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>3. 活动与服务</h2>
+<p>讲座/参观10—20；2小时动手工作坊30；4小时实训50；8小时训练营80；16小时及以上结业120。必须预登记完成标准，未完成不按时长自动发满额。独立实操考核另加40—100，不与同一技能翼章考核重复。
+志愿服务5/核验小时，单日最多40；另有质量奖励0—10但须事先设定。组织者在≤30人/31—100人/&gt;100人活动分别40/80/120，核心执行20/40/60；同一工时不得再按志愿小时叠加。70%在结束验收后、30%在复盘归档后入账，按总目标减已发差额保持整数守恒。
+被动积分含旁听、参会与单纯参观。为落实原稿20%，计算 <code>maxPassive=floor(activePosted/4)</code>；候选分超过剩余额度进入pendingEligibility，不是已到账、不属于冻结钱包。主动分到账后按发生时间逐笔结算。后台不得将该指标变成事后扣除合法积分的理由；学期结束对尚未结算候选的处理必须在生产前公示。</p>
+<h2>4. 宣传与技能</h2>
+<p>原创文案/摄影组图10—30；海报20—40；采访/新闻稿40—80；短视频40—100；宣传片/系列80—150；整体宣传团队池150—600。保留源文件、角色贡献、使用授权与发布记录。播放量不自动加分；预登记有效报名/到场目标，基础、超50%、超100%分别加20/50/100，只取最高档差额。
+2小时基础模块20，8小时技能课程60，16小时系统营120；技能I/II/III级80/150/300；认可外部证书300—600且仅首次；助教10/小时+30—100质量奖。课程参与和课程结业不能把同一课时按两套全额叠加；独立新增考核可另奖励。</p>
+<h2>5. 项目</h2>
+<p>P0=100—250，P1=300—600，P2=800—2000，P3=2500—6000，均为团队总池。10%/25%/25%/40%里程碑先预批准再验收；建群无独立分。团队四人及以上单人原则≤40%；例外双审说明。
+分配采用整数基点合计10000，先计算各人累计应得值，再以最大余数法按成员ID稳定分配余数；每次只发“累计应得−累计已发”。成员加入、退出或比例变更须新版本和再次确认，不追溯暗改既往分配。成员不能确认代替教员验收。项目中止仅认可已验收阶段。
+相同sourceArtifactId（同一成品、代码、文章、比赛作品）只选一个主奖励类别；额外奖必须有独立工作或事前明确允许的奖金规则。</p>
+<h2>6. 比赛</h2>
+<table>
+<thead>
+<tr>
+<th>赛级</th>
+<th style="text-align:right">入围/优秀</th>
+<th style="text-align:right">三等奖</th>
+<th style="text-align:right">二等奖</th>
+<th style="text-align:right">一等奖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>校/院</td>
+<td style="text-align:right">80</td>
+<td style="text-align:right">120</td>
+<td style="text-align:right">180</td>
+<td style="text-align:right">250</td>
+</tr>
+<tr>
+<td>市/认可行业</td>
+<td style="text-align:right">150</td>
+<td style="text-align:right">250</td>
+<td style="text-align:right">350</td>
+<td style="text-align:right">500</td>
+</tr>
+<tr>
+<td>省</td>
+<td style="text-align:right">300</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">700</td>
+<td style="text-align:right">1000</td>
+</tr>
+<tr>
+<td>国家</td>
+<td style="text-align:right">600</td>
+<td style="text-align:right">1000</td>
+<td style="text-align:right">1500</td>
+<td style="text-align:right">2500</td>
+</tr>
+<tr>
+<td>经认定国际</td>
+<td style="text-align:right">1000</td>
+<td style="text-align:right">1600</td>
+<td style="text-align:right">2500</td>
+<td style="text-align:right">3500</td>
+</tr>
+<tr>
+<td>合规正式提交但未入围基准50，后续包含在奖项目标中，不叠加。主要成员系数1，核心0.8，支持0.6，辅助0.2—0.4。团队所有成员目标之和≤4×基准；超出时按事前规则同比例缩放并最大余数取整，不允许负责人随意删人的分。</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td>唯一业务键是 <code>competitionSeries+edition+artifact+member+awardTrack</code>，不能用每次新增申报ID规避。校→省→国只取当前最高应得目标差额。证明失效/撤奖/成员更正走双审冲正。白名单包含赛项、级别、届次和证据，不从标题里出现“全国”自动认定国家级。</td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 其他贡献</h2>
+<p>盘点/保养20—40；故障排除50—150；安全隐患上报30—100；采用建议20—100；带教考核通过40/人、每学期≤5人；岗位成果100—400/学期且不能与项目重复。岗位头衔本身0分。
+对企业构成正式劳动或有偿交付的事项，应另明确报酬安排，积分不自动替代报酬、费用报销或正式志愿时长证明。</p>
+<h2>8. 审核门槛（按原送审稿）</h2>
+<ul>
+<li>已预批准标准活动，单人≤50：系统验证+独立的现场事实确认；条件明确时可自动入账。</li>
+<li>单人51—300：一名独立审核员。</li>
+<li>单人&gt;300或团队池&gt;1000：两个不同自然人，其中至少一名教员或企业代表。</li>
+<li>不论分数，项目、竞赛、高价值资源、人工补分、冲正：双人审批。</li>
+<li>三级及以上违规、长期资格终止、重大争议：规则与申诉小组复核，至少包含教员。</li>
+<li>阈值计算含同一来源的分拆申请合计，不能拆成多个50分避审；审查采用固定规则快照。</li>
+<li>授予多个角色仍是一个人；发起人、受益人、直接利益团队及关联人回避。人员不足时保持待审，不取消双审。</li>
+</ul>
+<h2>9. 奖品与领取</h2>
+<p>27个候选见rewards.json。实体、服务、补贴申请分型处理；R027仅门槛4000、无自动扣分、无自动现金发放。培训/交通补贴亦须事先批准、凭证、额度，不把积分换现金；未实现完整流程时仍显示申请型，不伪装直接兑换。
+实物定价参考 <code>ceil((综合成本/0.10×1.15)/10)×10</code>。当前积分价为展示提案，不是供应商报价。真实成本、质量、供货确认后批准发布；订单保存下单时点数与规格快照。
+普通实物：创建订单与原子冻结积分/预占库存→PREPARING→READY→FULFILLED。本人领取；普通代领需单次授权，高价值必须本人。普通领取期限从READY起算7天，非下单即倒计时；预备超过2天未备货发运营提醒并允许取消。服务订单以预约时段和明确取消政策为准。
+取消/到期退回原批次剩余有效期；若平台原因或订单占用期间已到期，按拟定7日补偿有效期创建补偿批次并留原因，待批准。不能每次取消都刷新18个月期限。质量退货先进入审核/隔离库存，实物质检通过才恢复可售。</p>
+<h2>10. 违规、申诉和追缴</h2>
+<p>一般失约首次提醒且本次未完成分不发；30日内第2次限制对应报名/兑换7天，第3次30天。合理提前取消、疾病/课程冲突经核实免计。报名与领取各自计次，不能一件事两次重复处罚。
+二级：重复成果、代签、虚报、恶意占位等，撤销相关违规所得，限制对应功能7—30天。三级：伪造证明、重大抄袭、严重安全违规、管理谋利等，调查后限期30—180天及项目权益处理。四级：攻击、越权篡改、泄露、盗窃等，立即隔离风险并提交教员/学校处置；不由软件自动作出学校处分。
+先立案和关联证据→必要时只冻结涉事订单/权限→告知与陈述→独立裁定→送达→7自然日内申诉。普通5工作日、复杂10工作日目标；逾期提醒，不自动判输。原裁决者不能复核本人决定；出现新证据可补充复核，不机械拒绝。
+追回：能撤销的未花批次冲正；已消费部分登记recoveryDue，不产生负可用余额。实物退回、现金赔偿或未来积分抵扣是互斥/去重的履行方式，不能重复追缴。任何未来抵扣须告知和批准，账本同时记录赚取/抵扣，不能无解释吞分。合法成长不因无关处罚被清零；虚假成果对应成长/翼章可独立撤回。</p>
+<h2>11. 监察</h2>
+<p>普通月记录随机抽查至少ceil(10%)，记录随机种子、抽样总体和排除理由；高风险项目/竞赛/人工调整/异常高频/高价值兑换100%复核。监察有读和标记权，无改账权。月报公开汇总，不公开私密名单或完整末位榜。
+规则变更新版本，拟提前7日公示，只对后续事件；安全紧急下架可立即停止新报名，但不秘密重算历史。生产数据保留、删除和审计期限由运营主体批准，不以“永久保留全部数据”代替隐私设计。</p>
+</div></details><details><summary>03 · 角色、范围、授权与职责分离</summary><div class="detail-body"><h1>角色、范围、授权与职责分离</h1>
+<p>八个基础角色保持稳定；“体验会员/已认证/受限制”是成员状态，不额外复制一套角色。成长等级也不是权限角色。</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>可做</th>
+<th>明确不能做</th>
+<th>默认范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STUDENT</td>
+<td>报名、提交、兑换、本人明细/申诉</td>
+<td>查看他人档案、改分、审批</td>
+<td>本人</td>
+</tr>
+<tr>
+<td>STUDENT_ORGANIZER</td>
+<td>提议活动、受托组织、事实签认、团队材料</td>
+<td>自发自审、改规则、终审团队高分</td>
+<td>指派活动/项目</td>
+</tr>
+<tr>
+<td>MENTOR</td>
+<td>技术验收、考核、建议分配</td>
+<td>自审本人受益、直接改余额</td>
+<td>指派课程/项目</td>
+</tr>
+<tr>
+<td>REVIEWER</td>
+<td>身份/积分/竞赛/违规审核、独立复核</td>
+<td>跳过回避/双审、删历史</td>
+<td>指定组织及职责</td>
+</tr>
+<tr>
+<td>OPS_MANAGER</td>
+<td>奖品、活动、预算草案、采购入库申请</td>
+<td>单独批准本人调整、替代教员重大决定</td>
+<td>组织运营</td>
+</tr>
+<tr>
+<td>REWARD_OPERATOR</td>
+<td>备货、核对、扫码、盘点提报</td>
+<td>手改库存、查完整学生档案、补分</td>
+<td>指定领取点</td>
+</tr>
+<tr>
+<td>AUDITOR</td>
+<td>读必要账本/日志、抽样、风险标记、复核报告</td>
+<td>决策本人审计对象、直接记账</td>
+<td>分配审计范围</td>
+</tr>
+<tr>
+<td>SYSTEM_ADMIN</td>
+<td>技术配置、健康、备份、账号恢复流程</td>
+<td>默认全量私人数据、业务改分、给自己业务角色</td>
+<td>技术边界</td>
+</tr>
+</tbody>
+</table>
+<h2>真实授权不同于角色Seed</h2>
+<p>角色定义是版本化代码；某个真人拥有某角色是数据库记录（开始/结束时间、范围、授权申请/批准人、依据）。不得按姓名或前端localStorage判断管理员。
+授权/撤销本身写审计。首次安装通过本机一次性bootstrap建立技术管理员；业务REVIEWER由真实负责人确认，禁止默认密码。生产需两个不同自然人满足双审；不存在真实人员时不能以两个测试账号冒充双审。
+Demo可用22个虚构用户（15学生+7职员），其账号均标demoOnly，永不迁入生产。</p>
+<h2>核心权限代码（详见permissions.json）</h2>
+<p><code>profile.read.self</code>、<code>activity.register</code>、<code>attendance.confirm.assigned</code>、<code>submission.create.self</code>、<code>project.review.assigned</code>、<code>approval.decide</code>、<code>reward.manage</code>、<code>inventory.adjust.request</code>、<code>pickup.fulfill.site</code>、<code>audit.read.scoped</code>、<code>appeal.review.independent</code>、<code>system.configure</code>。
+对每个请求，检查permission+organizationId+resource ownership/assignment+siteId+状态前置条件。前端隐藏按钮只改善体验，不构成鉴权。</p>
+<h2>多重角色与回避</h2>
+<p>同一账户两个角色不能在同一审批步骤算两个人。委派、代领、自审、同团队直接受益均保存关系快照；组织者可以证明到场，但不能独自完成自己积分的终审。低风险自动入账需要预批准规则和可信证据，不能靠上传“签到成功”截图触发。
+仓管拿到扫码结果只能看必要核验信息、订单规格、本站点状态，不查看学号全值、处罚历史或成长档案。</p>
+<h2>导入与导出</h2>
+<p>真实学生名单不进入Git；后台上传→预览→校验→批次提交→导出错误行→审计。CSV出站防公式注入，所有导出有scope过滤、记录导出者和用途，下载令牌短期有效。批量授权必须预览范围与逐条返回，避免“全表成功”掩盖部分失败。</p>
+</div></details><details><summary>04 · 技术架构与约束</summary><div class="detail-body"><h1>技术架构与约束</h1>
+<h2>默认选型（A在G0做版本兼容烟测并锁定）</h2>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>选型</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>学生端</td>
+<td>Taro + React + TypeScript + Sass</td>
+<td>同一业务目标H5/weapp，浏览器与微信能力做适配</td>
+</tr>
+<tr>
+<td>管理与核销</td>
+<td>React + Vite + Ant Design/ProComponents + React Router</td>
+<td>没有SEO/SSR需求，减少Next服务、子路径和部署复杂度</td>
+</tr>
+<tr>
+<td>API</td>
+<td>NestJS + TypeScript</td>
+<td>模块化单体，统一验证、鉴权、日志</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>MySQL 8.4 LTS系列候选 + Drizzle/mysql2</td>
+<td>真实关系事务；启动时锁定可用补丁版本和镜像digest</td>
+</tr>
+<tr>
+<td>合同</td>
+<td>OpenAPI 3.x + 生成TS类型 + 自建小型transport</td>
+<td>Taro.request与Web fetch分别适配，不假设fetch客户端能直接跑小程序</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>本地受控目录 + 元数据表</td>
+<td>不先引入MinIO，减少Docker进程和维护；后续对象存储适配</td>
+</tr>
+<tr>
+<td>任务</td>
+<td>MySQL outbox + 同代码包worker</td>
+<td>到期/通知/对账可重试，不以浏览器定时器执行业务</td>
+</tr>
+<tr>
+<td>本地入口</td>
+<td>Caddy或等效固定反向代理</td>
+<td><code>/</code>、<code>/admin/</code>、<code>/api/v1/</code>共享来源</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>pnpm workspace；Vitest/后端测试框架+Playwright</td>
+<td>版本固定、冻结安装；不强制额外Turborepo/Redis/K8s</td>
+</tr>
+</tbody>
+</table>
+<p>本轮把Next.js后台简化为Vite，不牺牲后台功能。若发现已有可运行Next项目，不为换框架而推倒：A写ADR维持已有实现和basePath约定。不得同时安装两套后台UI体系。
+Taro多端支持有官方说明，但扫码、相机、文件、通知、登录、路由并非天然同等可用，必须分别适配并验证。[R05]</p>
+<h2>目录</h2>
+<p><code>apps/api</code>；<code>apps/student</code>；<code>apps/ops</code>；<code>packages/contracts</code>；<code>packages/sdk</code>；<code>packages/db</code>；<code>packages/domain</code>；<code>packages/design-tokens</code>；<code>infra/local</code>；<code>infra/tencent</code>；<code>tests/api</code>；<code>tests/integration</code>；<code>tests/e2e</code>；<code>tests/visual</code>。
+共享的是契约、领域纯函数和设计令牌，不共享依赖DOM的组件给Taro。</p>
+<h2>开发与演示运行</h2>
+<p>开发可用源码服务器；教员演示必须使用已构建H5/后台静态文件和API运行包，避免把HMR、源码地图、开发插件暴露公网。网关路径：</p>
+<ul>
+<li><code>/api/v1/*</code>原样转发API，不剥掉前缀；<code>/api/docs</code>默认本机且需权限。</li>
+<li><code>/admin/*</code>映射后台静态目录，Vite base=<code>/admin/</code>，Router basename=<code>/admin</code>。</li>
+<li><code>/</code>映射学生H5。禁止其history fallback吞掉/api的404/401。</li>
+<li><code>/media/public/*</code>仅审核过的公开素材；<code>/api/v1/files/{id}/download</code>走授权验证。
+分别测试带尾斜线、刷新深路由、图片路径、下载、错误页和移动端分享链接。</li>
+</ul>
+<p>默认监听127.0.0.1；局域网分享需授权并仅开放网关。MySQL不暴露0.0.0.0；Docker仅必要时映射到127.0.0.1。应用使用最小权限DB用户，迁移单独凭据。</p>
+<h2>Provider与模式</h2>
+<p>Auth拆开：学生demo/wechat，职员local密码/MFA预留。微信只负责证明外部身份，后端会话与业务userId保持自有映射。H5演示不能假装已通过微信真机认证。
+Storage接口至少put/get/delete/stat/createAuthorizedRead；数据库保存storageKey而非临时签名URL。公开奖品图和私有证据分桶/分目录、分权限。
+Notification的站内消息先写入数据库；外部微信消息通过outbox异步发送，失败不回滚已发积分。
+StudentIdentity分别demo/CSV/未来学校SSO。SSO缺失不阻塞演示；正式CSV由授权人导入。
+<code>APP_MODE=demo|pilot|production</code>与<code>NODE_ENV</code>独立。Demo的production构建可以演示；APP_MODE=production发现Demo provider、弱secret、demo数据标记必须拒绝启动。</p>
+<h2>本地与云端数据库</h2>
+<p>本地始终使用真实MySQL，不用SQLite/内存数组代替事务验证。Docker不可用时优先现有MySQL服务或官方原生MySQL；不能以自动降级数据库掩盖阻塞。Node/mysql2必须兼容目标认证和TLS。
+腾讯云目标引擎、直连方式、版本、数据库权限、迁移DDL限制未在本账号确认，不宣称与本地完全一致。上线前跑兼容性、备份恢复、字符集/排序、UTC、SQL mode、事务隔离测试；必要时采用腾讯云托管MySQL与云托管组合，并经费用批准。</p>
+<h2>事务与任务</h2>
+<p>核心业务在同一MySQL事务内写订单/钱包/批次/库存/审计/待发通知。统一锁顺序，必要时用行锁及条件更新；死锁有有界重试。外部网络调用不放在事务内。outbox采用至少一次投递+幂等消费，不能宣称跨系统绝对exactly-once。
+余额投影仅在事务中更新；定期重算只检查差异，发现差异报警并阻断危险写入，修复必须审计而不是覆盖账本。</p>
+</div></details><details><summary>05 · API与数据合同</summary><div class="detail-body"><h1>API与数据合同</h1>
+<h2>权威来源和范围</h2>
+<p><code>packages/contracts/openapi.json</code> 是本包提供的初始可解析合同，当前DRAFT_G0；包含身份、钱包、活动、审批、奖励和订单主路径。A在G0前校验、补充并冻结首批可用接口；项目、比赛、审计等完整模块按PRD增量扩展，不得把初始合同误称全量成品。
+OpenAPI是唯一跨端业务形状来源；从它生成TS DTO及运行时验证器，不能维护第二套不受测试约束的Zod/Swagger真相。Nest Swagger输出如使用，只能作派生核验，不倒向覆盖已冻结合同。[R08,R09]
+TS类型不能替代运行时验证；请求、文件、路径和响应关键字段必须实际校验。SDK提供<code>transport</code>接口；Web与Taro实现各自transport，统一错误与重试规则。</p>
+<h2>公共规则</h2>
+<p>API <code>/api/v1</code>；JSON字段camelCase，数据库snake_case；ID为字符串；金额<code>...Cents</code>整数、积分非负整数、比例basisPoints（10000=100%）。所有日期ISO8601含时区。业务归属日期在Asia/Shanghai计算，持久化UTC。
+成功读取返回资源；分页返回<code>{items,nextCursor}</code>；写操作返回最新资源，响应头X-Request-ID提供请求追踪号；错误统一<code>{code,message,requestId,details?}</code>，对用户脱敏。401未登录、403无权、404不存在或隐藏他人对象、409状态冲突、422验证失败、429限流、503依赖不可用。
+所有有副作用POST要求Idempotency-Key（登录等例外须在合同写明）；幂等键按主体+操作隔离，同时保存请求hash，不同请求体复用键返回409。幂等日志保留策略独立，核心业务唯一键长期存在。
+乐观并发使用version/If-Match或条件更新；前端不传“奖励50”让后端照收，只传申请和证据，服务端按规则快照算分。</p>
+<h2>身份会话</h2>
+<p>H5学生与后台人员需可同时演示：使用独立的学生/职员会话上下文，互不覆盖。staff优先HttpOnly cookie+CSRF，学生H5可使用独立HttpOnly cookie；微信端token只走Authorization。专属路由按合同限定学生或职员会话；少量共享路由要求X-Session-Audience，只选择已验证的对应会话，绝不是客户端授予角色。不得因为同时存在两种cookie而随机合并角色。A/B实例须使用不同Cookie名或host：Cookie不会按TCP端口隔离。
+角色选择页仅在demo且演示访问口令验证后签发真实后端会话。不能接受客户端role字段即授予管理员。生产无demo路由；会话过期、注销、刷新和撤权必须服务端生效。</p>
+<h2>关键数据实体</h2>
+<table>
+<thead>
+<tr>
+<th>领域</th>
+<th>表/实体</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>身份权限</td>
+<td>users, external_identities, memberships, roles, permissions, role_assignments, sessions</td>
+</tr>
+<tr>
+<td>规则</td>
+<td>rule_sets, rule_versions, earning_rules, source_artifacts, eligibility_candidates</td>
+</tr>
+<tr>
+<td>活动</td>
+<td>activities, registrations, checkin_sessions, attendance, submissions, training_assessments</td>
+</tr>
+<tr>
+<td>审批</td>
+<td>approval_requests, approval_steps, approval_decisions, recusal_records</td>
+</tr>
+<tr>
+<td>积分</td>
+<td>wallets, point_lots, ledger_transactions, ledger_entries, reservations, recovery_cases, growth_ledger</td>
+</tr>
+<tr>
+<td>项目比赛</td>
+<td>projects, project_members, milestones, contribution_versions, competitions, competition_entries, award_entitlements</td>
+</tr>
+<tr>
+<td>奖品库存</td>
+<td>rewards, reward_variants, inventory_batches, inventory_movements, service_slots, budget_periods</td>
+</tr>
+<tr>
+<td>订单</td>
+<td>redemption_orders, order_items, order_reservations, pickup_credentials, pickup_events, returns</td>
+</tr>
+<tr>
+<td>治理</td>
+<td>violation_cases, sanctions, appeals, audit_events, audit_samples</td>
+</tr>
+<tr>
+<td>文件通知</td>
+<td>files, asset_licenses, notifications, outbox_events, worker_runs</td>
+</tr>
+</tbody>
+</table>
+<p>字段审计至少含createdAt、actorId、organizationId、ruleVersion或snapshot、requestId、source；不要在meta里无结构堆放所有业务。
+业务唯一键分别定义：首次身份/安全学习(user,rule)；活动(user,activity,ruleComponent)；项目(user,milestone,allocationVersion/目标权益族)；比赛(series,edition,artifact,member,awardTrack)。规则换版不能自动把同一已完成事项再领一遍。</p>
+<h2>余额、批次与负值</h2>
+<p>可用、订单冻结、调查冻结、待追缴分开。待审核和待资格结算不是钱包余额；成长里程也不混入。
+同批次额度分为available/reserved/consumed/expired/reversed；每种转移有独立账本项。有效期内批次按最近到期优先（FEFO），同日再按创建时间和ID排序。撤销冻结、退款按原分配记录反向，不使用“当前余额加N”模拟。
+已消费虚假积分：未用余额可逆部分冲正，剩余进入recoveryDue；之后清偿过程单独事件，避免负可用数和双重追偿。</p>
+<h2>订单状态机</h2>
+<p>实物：PREPARING→READY→FULFILLED；PREPARING/READY可按规则→CANCELLED或EXPIRED；已完成仅走RETURN_REQUESTED→RETURN_APPROVED→RETURNED/REJECTED。不允许已完成直接CANCELLED。
+创建操作在同一事务里检查资格、限购、钱包、批次、stockAvailable，写入订单价格快照、预占、账本和outbox。持久化草稿不是一次成功兑换。
+领取凭证为高熵随机一次性opaque token，服务端只存hash、订单、有效期/版本；二维码不含姓名学号。备用码较短必须限流、锁定和本站点绑定。扫码预览是无副作用POST /pickup/preview，凭证放请求体避免进入URL日志，不核销，工作人员明确确认POST才核销；分享链接/聊天预览不能领取。
+重复核销返回同一履行结果或明确alreadyFulfilled而不再扣库存。取消与核销/到期并发，只有一个状态转换胜出。真实库存onHand、reserved、quarantine、available分别定义，入库/出库都有库存流水。</p>
+<h2>文件及安全</h2>
+<p>上传先限制MIME、魔数、大小、文件数量，再放私有隔离路径；不给路径穿越、SVG脚本、任意URL抓取成为SSRF机会。SVG需净化/光栅化，证据文件读取必须鉴权。内容安全服务无密钥时可在演示中用人工审核，不谎称官方审核通过。日志屏蔽令牌、密码、完整学号；脱敏不是可逆加密的替代。</p>
+</div></details><details><summary>06 · 两窗口协作与交付门</summary><div class="detail-body"><h1>两窗口协作与交付门</h1>
+<h2>分工</h2>
+<p>A=平台/后端/运行/集成，B=所有客户端/视觉/交互/E2E。不是把完整项目交给两个人各造一遍。代码归属见AGENTS；应用只有学生、运营网页、API，移动核销是运营网页一个路由。</p>
+<h2>G0：A单独完成后才能开B</h2>
+<p>A检查宿主系统、工具与网络，创建/检查本地Git，解析资料，锁定依赖，启动真实MySQL，建立API和两端最小可构建壳。
+必须完成真实demo登录（含访问保护）、RBAC、GET本人/wallet/ledger、GET奖励列表、追加/冲正基础函数及测试、数据库迁移、初始种子、安全配置、完整初始OpenAPI、两个transport至少烟测、合同校验/SDK生成、健康检测、网关路由。
+<code>node scripts/validate-kit.mjs</code>通过只表示资料完整，不能冒充G0。A需新写 <code>coordination/gates/G0.json</code>，包含ready=true、真实基线SHA、合同SHA256、测试命令/退出码、运行入口和前端worktree绝对路径。模板始终ready=false。
+在G0提交后生成不可变集成tag（如integration/g0）并建立B分支。A可继续后端独立模块，不能再编辑B拥有的UI目录。</p>
+<h2>工作树与同步（本地Git即可）</h2>
+<p>参考流程由A根据真实目录安全执行，不让用户手动猜：</p>
+<ol>
+<li>主目录为集成基线main；A开发在单独platform worktree/分支，B在frontend worktree/分支。主目录可以成为A运行集成命令的只写受控位置，不启动第三聊天窗口。</li>
+<li>G0前检查未提交改动，先保存明确属于本任务的文件，不使用git add .盲收私密材料。</li>
+<li><code>git worktree add -b feat/frontend-g1 ../yuemumu-frontend integration/g0</code>；若已存在路径或分支则复用/报告，绝不强制覆盖。</li>
+<li>两个窗口的源文件不自动同步。B读取本地Git中A已提交的状态：<code>git show main:coordination/BOARD.md</code>，或远程origin/main；从已发布集成基线更新，不能读另一个窗口未提交的半成品。</li>
+<li>A每次只合并一个已完成提交组，默认普通merge；不同时采用cherry-pick复制相同提交。B在干净工作树确认后合并新的integration tag；不擅自rebase另一个正在写的分支。</li>
+<li>公共锁文件/合同由A单写。B在交接请求中列需要的依赖/字段和理由；A在短合同变更PR处理。B先做不依赖该变更的页面/测试，不无限等待。</li>
+<li>根目录CODEOWNERS只是说明，不等于自动强制；A增加changed-path检查。只有GitHub计划与仓库权限支持时才启用相应保护，不把付费功能当必需。</li>
+</ol>
+<h2>环境隔离</h2>
+<p>A开发库<code>ym_dev_a</code>，B验证库<code>ym_dev_b</code>，最终集成库<code>ym_integration</code>。可共用一个本地MySQL服务但不是同一个schema，不能共享<code>DATABASE_URL</code>。A负责迁移，B基于已提交版本执行到自己的库，重置只影响自己的库。
+默认A API 3100，B自己的验证API 3101；A演示网关8080，B预览18080；按占用检测调整并写本机.runtime配置。Docker project name、卷、上传路径、Cookie命名空间/host、seedName亦隔离；不同端口不会隔离Cookie。B无需永远依赖A电脑上的热重载服务；可以用已提交API构建运行自己的验收环境。</p>
+<h2>G1—G4</h2>
+<table>
+<thead>
+<tr>
+<th>门</th>
+<th>A</th>
+<th>B</th>
+<th>合并与证据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1 首条闭环</td>
+<td>活动/签到/审核/积分/实物订单/核销</td>
+<td>对应三端页面，真实接口，第一套图片</td>
+<td>报名→验收→得分→兑换→核销→对账E2E</td>
+</tr>
+<tr>
+<td>G2 教员演示候选</td>
+<td>项目/竞赛/违规/申诉/抽查/通知/数据、Demo脚本</td>
+<td>全部承诺模块、27奖励图、管理交互、移动适配</td>
+<td>完整演示脚本、并发/权限/恢复、截图、无P0/P1</td>
+</tr>
+<tr>
+<td>G3 生产化验证</td>
+<td>移除Demo能力、正式认证适配、迁移审计、运维</td>
+<td>微信构建及实际设备验证、无模拟文案误导</td>
+<td>正式样式本地运行≠微信/真实身份已测试；缺凭据标阻塞</td>
+</tr>
+<tr>
+<td>G4 教员批准后云试运行</td>
+<td>腾讯云预检、迁移、备份、部署、验收</td>
+<td>云端域名/小程序能力、真实奖励验收</td>
+<td>人工主体/费用/密钥/备案前置完成后才能执行</td>
+</tr>
+</tbody>
+</table>
+<p>同一阶段可A/B并行，门与门不等于所有任务都串行。A提前一个接口小切片，B跟随已冻结接口开发，不等A写完全部后端。每个小切片都真实接通，不在末尾一次性联调。</p>
+<h2>内部子代理</h2>
+<p>默认每个窗口同一时刻至多2个短任务子代理；优先只读安全审查、测试规划、资料核验。写入子代理必须分离目录或worktree并明确父级owner，同一文件不能多写。模型额度、电脑资源不足就主动减少并行，不能循环重试消耗额度。两个主窗口均承担自身测试，相互交叉审查不是独立第三方安全认证。</p>
+<h2>消息模板</h2>
+<p>每次handoff写：任务ID、from/to、baseSHA、commitSHA、contractVersion+SHA、ownedPaths、testCommands/exitCodes、evidence、API运行模式、DB schema、数据重置影响、blockedCapabilities、下一步。A更新BOARD的接口能力表：DRAFT/IMPLEMENTED/VERIFIED；B不能把DRAFT接口当已部署。
+会话中断后用 <code>prompts/RECOVER_SESSION.md</code>，从文件恢复，不依赖模型记得上一聊天。</p>
+</div></details><details><summary>07 · 界面、内容与图片交付规范</summary><div class="detail-body"><h1>界面、内容与图片交付规范</h1>
+<h2>产品视觉</h2>
+<p>品牌方向：蓝白、少量橙，专业校园低空科技，不做高饱和赛博朋克。学生端有成长感和可理解行动，管理端清晰密集、少装饰，核销端大字大按钮。学校和协会名按资料表；未给真实Logo用文字标识，不生成假校徽。
+<code>packages/design-tokens/tokens.json</code>是颜色、间距、圆角、字号与动效基线，B维护。组件在各平台实现，不把AntD DOM控件拷进Taro。</p>
+<h2>学生信息架构</h2>
+<p>底部5项：成长、活动、项目、奖励、我的；项目内切换竞赛，技能从成长入口进入。首页第一屏：木能量可用/待处理摘要、成长进度、下一步可完成任务、已选心愿奖品差额；避免满屏广告条。详情先说明得到什么、需要做什么、证据、审核时限、地点，再报名。
+积分明细清楚区分+入账、预占、核销、释放、冲正、到期，不能用一个负号让学生猜。订单显示可用/冻结变化与服务预约条件。申诉入口靠近相关决定，展示理由而不只“被拒绝”。</p>
+<h2>后台与移动核销</h2>
+<p>后台按工作流：待办→活动课程→内容任务→项目比赛→积分审批→奖励库存→兑换履行→违规申诉→监察报表→设置。
+审批详情并排规则快照、证据、已发/拟发差额、前序审核者、利益回避；批量操作逐项返回。不能通过编辑表格直接修改余额。
+核销三步：扫描/输码→预览确认→完成。展示本站点、奖品规格、数量、领取资格、必要身份信息。重复核销明确“已领取”，相机失败提供备用码，断网不假装核销成功，也不离线给库存记账。</p>
+<h2>组件与交互验收</h2>
+<p>Taro控件/轻量自绘优先，Taroify仅版本烟测通过再采用；管理端选AntD/ProComponents一套。主要触控目标建议≥44px，手机宽度360/390/430，后台1366/1440/1920实测；键盘可访问，颜色之外有状态文字；prefers-reduced-motion有降级。
+数据提交不乐观显示“已到账/已领取”，必须以服务器结果为准。丢网、登录过期、冲突、额度不足、缺货、证据不合格各有可操作下一步。动效约150—250ms，仅作交互反馈；生产构建无无限渲染、无假loading。</p>
+<h2>图片制作顺序（B自主执行）</h2>
+<ol>
+<li>清点用户授权Logo/校园/设备/真实奖品照片。</li>
+<li>使用可用内置图片工具生成原创Banner、分类图、成长徽章和服务体验卡；不硬编码付费图像API为前置。</li>
+<li>工具不可用或没有预算时，自绘原创SVG/矢量插图并做移动端兼容转换，或下载有明确许可的素材；不得只留下灰色占位块。</li>
+<li>实际品牌/型号商品必须用获授权实拍或供应商图。模拟展示可以用无品牌原创示意图，但图和文字同时标“示意图／模拟奖品”。正式入库前替换真实型号照片并验收。</li>
+<li>所有下载检查许可、robots/条款、尺寸和文件安全；不热链，不爬登录后平台、不绕防爬/收费、不伪造授权。</li>
+</ol>
+<h2>最低视觉交付</h2>
+<p>27个候选奖励都有有效缩略图和alt；至少6个原创类别/体验视觉，5级成长徽章，至少6种技能翼章，3类空状态。图片存文件、元数据存manifest，不用Base64塞API数据库。缩略图1:1，活动4:3或16:9；压缩目标单图≤160KB，详情可放大但按需加载。字体只引用许可可用的系统/开源资源，授权记录入档。
+asset-manifest记录sourceUrl/owner/license/useScope/retrievedAt/sha256/aiGenerated/demoOnly/reviewStatus；批量写“已授权”不算审核。</p>
+<h2>无人机真实性</h2>
+<p>无人机视觉保持真实结构：穿越机四机臂、四电机、四旋翼，不画五旋翼；飞行体验须佩戴必要设备、受教员监督，插图不表达无需安全培训即可飞。概念插画不当作真实教学照片或飞行许可证明。</p>
+<h2>B交付证据</h2>
+<p>保存学生首页、活动报名、积分账本、奖品、订单、后台审批、库存、核销、项目、竞赛、申诉的截图与移动尺寸说明；图片源文件/授权清单；所有主流程的加载、错误、空态截图。看图检查文本溢出、按钮遮挡、对比度和扫码区域；能构建不代表视觉合格。</p>
+</div></details><details><summary>08 · 质量门与验证矩阵</summary><div class="detail-body"><h1>质量门与验证矩阵</h1>
+<p>每项输出状态PASS/FAIL/BLOCKED、执行时间、commitSHA、命令、退出码、日志位置和适用环境。下列是待实现验收，不是已通过测试。</p>
+<h2>核心测试</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>情景</th>
+<th>必须结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T01</td>
+<td>同request key重放100次</td>
+<td>一笔账，返回同结果</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>同业务来源换100个key</td>
+<td>仍不重复得分</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>同key不同body</td>
+<td>409，无新增副作用</td>
+</tr>
+<tr>
+<td>T04</td>
+<td>50用户竞争最后1件</td>
+<td>一单成功，不超卖</td>
+</tr>
+<tr>
+<td>T05</td>
+<td>一人同时兑换多个商品</td>
+<td>余额不足时仅可负担订单成功，不负可用</td>
+</tr>
+<tr>
+<td>T06</td>
+<td>冻结后重复消费/释放</td>
+<td>每笔预占只终结一次</td>
+</tr>
+<tr>
+<td>T07</td>
+<td>取消/过期/核销同时发生</td>
+<td>仅一个终态，积分库存守恒</td>
+</tr>
+<tr>
+<td>T08</td>
+<td>领取GET被链接预览访问</td>
+<td>不发生核销</td>
+</tr>
+<tr>
+<td>T09</td>
+<td>二次扫码、旧二维码、非本站点</td>
+<td>无重复领取，旧凭证失效，越权拒绝</td>
+</tr>
+<tr>
+<td>T10</td>
+<td>死锁/中断/事务第N步失败</td>
+<td>全回滚/有界重试，无半订单</td>
+</tr>
+<tr>
+<td>T11</td>
+<td>原始批次到期后取消订单</td>
+<td>遵循原期限/批准补偿，不无限续期</td>
+</tr>
+<tr>
+<td>T12</td>
+<td>已兑换虚假积分冲正</td>
+<td>recoveryDue正确，无双追回/负可用</td>
+</tr>
+<tr>
+<td>T13</td>
+<td>人工篡改余额投影测试夹具</td>
+<td>对账检出、报警；不修改源账本掩盖</td>
+</tr>
+<tr>
+<td>T14</td>
+<td>同人多角色两次审批</td>
+<td>不满足双自然人规则</td>
+</tr>
+<tr>
+<td>T15</td>
+<td>发起人/受益人/直接团队自审</td>
+<td>拒绝且留记录</td>
+</tr>
+<tr>
+<td>T16</td>
+<td>同来源拆成多笔规避阈值</td>
+<td>按合并业务总额进入正确审批</td>
+</tr>
+<tr>
+<td>T17</td>
+<td>项目分配10001或9999基点</td>
+<td>拒绝；正确比例整数分配总量守恒</td>
+</tr>
+<tr>
+<td>T18</td>
+<td>项目阶段修改比例/成员</td>
+<td>累计应得差额正确，不超团队池</td>
+</tr>
+<tr>
+<td>T19</td>
+<td>校→省→国及撤奖</td>
+<td>仅差额；更正有独立审计</td>
+</tr>
+<tr>
+<td>T20</td>
+<td>跨类别重复提交同作品</td>
+<td>主类别约束生效</td>
+</tr>
+<tr>
+<td>T21</td>
+<td>被动20%、会议月20、单次25</td>
+<td>边界值及待结算可解释，无暗扣</td>
+</tr>
+<tr>
+<td>T22</td>
+<td>普通学生访问别人订单/证据</td>
+<td>403/404；响应无隐私</td>
+</tr>
+<tr>
+<td>T23</td>
+<td>仓管跨站点、导师跨项目</td>
+<td>无操作权</td>
+</tr>
+<tr>
+<td>T24</td>
+<td>角色撤销后的旧会话</td>
+<td>服务端及时失权</td>
+</tr>
+<tr>
+<td>T25</td>
+<td>恶意CSV、图片、路径、URL</td>
+<td>阻止公式/XSS/伪装/路径穿越/SSRF</td>
+</tr>
+<tr>
+<td>T26</td>
+<td>文件公开链接与私有证据</td>
+<td>公开图可看，私有证据须权限/限期</td>
+</tr>
+<tr>
+<td>T27</td>
+<td>30天失约计次、合理取消</td>
+<td>只计应计事项，解释清楚</td>
+</tr>
+<tr>
+<td>T28</td>
+<td>申诉原审者复核、处理超时</td>
+<td>回避、提醒，不默认判输</td>
+</tr>
+<tr>
+<td>T29</td>
+<td>抽样总体不足10条</td>
+<td>ceil(10%)且可复现随机样本</td>
+</tr>
+<tr>
+<td>T30</td>
+<td>月底、学期边界、UTC/JST设备</td>
+<td>业务日期仍以Asia/Shanghai正确计算</td>
+</tr>
+<tr>
+<td>T31</td>
+<td>站内通知重试/outbox重复</td>
+<td>通知不重复、业务不再发分</td>
+</tr>
+<tr>
+<td>T32</td>
+<td>断网后点击兑换和刷新</td>
+<td>查订单恢复，不前端假成功</td>
+</tr>
+<tr>
+<td>T33</td>
+<td>H5深路由、/admin刷新</td>
+<td>资源正常，无fallback吞API错误</td>
+</tr>
+<tr>
+<td>T34</td>
+<td>同浏览器学生与教员同时演示</td>
+<td>身份及缓存隔离，不互相覆盖</td>
+</tr>
+<tr>
+<td>T35</td>
+<td>MySQL/应用重启及备份恢复</td>
+<td>已提交数据保留、对账一致</td>
+</tr>
+<tr>
+<td>T36</td>
+<td>demo reset指向非demo库</td>
+<td>拒绝；生产构建无demo路由/用户</td>
+</tr>
+<tr>
+<td>T37</td>
+<td>公开分享未授权/无口令</td>
+<td>不创建隧道；未验证不能进敏感演示界面</td>
+</tr>
+<tr>
+<td>T38</td>
+<td>27个奖励图片访问</td>
+<td>都有图、标识准确、没有未授权实际商标图</td>
+</tr>
+<tr>
+<td>T39</td>
+<td>微信小程序构建/扫码/上传</td>
+<td>分别记录编译、开发者工具、真机；无AppID只标后两项BLOCKED</td>
+</tr>
+<tr>
+<td>T40</td>
+<td>无网络/不支持SSE</td>
+<td>本地应用正常，站内通知使用轮询不依赖SSE</td>
+</tr>
+</tbody>
+</table>
+<h2>自动化分层</h2>
+<p>A写领域性质测试（额度守恒/重复幂等/终态唯一）、真实MySQL集成、合同校验、权限与迁移测试；B写学生/后台组件测试、Playwright跨角色E2E、截图回归和无障碍检查。所有关键写操作不能仅在Mock数据库中测试。
+合同生成后CI应无未提交diff；API状态与前端枚举差异失败。生成类型不自动证明SDK在Taro运行，必须独立transport测试。</p>
+<h2>教员演示门G2</h2>
+<p>PRD M01—M12已承诺模块全部有真实可操作路径；至少一次完整报名→发分→兑换→核销；项目/比赛/处罚/申诉可验证；T01—T38及T40适用项通过，确无条件的外部能力单列阻塞；无P0/P1，视觉检查完成，恢复演练成功。微信真机不是本地H5演示门，但未验证不能宣传小程序已上线。</p>
+<h2>缺陷分级</h2>
+<p>P0=资金/积分大量错误、数据泄露、权限失控、不可恢复数据损失；P1=主流程失败、超卖/重复入账、无法恢复/禁用生产后门；P2=非主流程有明确替代；P3=轻微视觉。不得用免责声明豁免P0/P1。</p>
+<h2>生产门G4附加</h2>
+<p>真实教员批准、运营主体/隐私/角色签认、真实SKU/库存、微信AppID与审核及域名（如采用）、腾讯云费用批准、TLS/备份/告警/恢复、云端并发与权限测试、无demo身份及数据。自动化通过不是法律合规或第三方渗透认证。</p>
+</div></details><details><summary>09 · 本地运行、分享与恢复手册（A需实现命令）</summary><div class="detail-body"><h1>本地运行、分享与恢复手册（A需实现命令）</h1>
+<h2>环境自检</h2>
+<p>先 <code>node scripts/preflight.mjs</code>，只读记录Node/Git/pnpm/Docker版本和端口，不安装、不提权、不读.env。A再检查官方支持矩阵并选择现有可行环境，Windows/WSL不要混用同一node_modules；目录避免OneDrive自动同步和网络盘。
+Docker仅当符合许可条件时使用；不可用就连接已有或官方原生MySQL。管理员权限/WSL开关/重启/防火墙修改由用户完成授权，不擅自提升权限。[R06]
+依赖版本由A选当前兼容稳定组合，锁packageManager、Node范围、容器镜像digest。不要自动“全部升级latest”。</p>
+<h2>产品需要实现的命令</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pnpm setup:local</code></td>
+<td>首次配置、随机本地secret、检查依赖；不购买、不暴露服务</td>
+</tr>
+<tr>
+<td><code>pnpm demo</code></td>
+<td>启动真实DB/API/构建好的学生与后台/网关，数据库已有数据不重复初始化</td>
+</tr>
+<tr>
+<td><code>pnpm demo:check</code></td>
+<td>健康、路由、DB、非敏感版本信息、首条闭环冒烟</td>
+</tr>
+<tr>
+<td><code>pnpm demo:share</code></td>
+<td>仅明确授权后创建短期隧道，并要求演示访问口令；打印关闭方法</td>
+</tr>
+<tr>
+<td><code>pnpm demo:stop</code></td>
+<td>停止本项目服务，保留卷和数据，不杀其他项目进程</td>
+</tr>
+<tr>
+<td><code>pnpm demo:reset</code></td>
+<td>检查APP_MODE=demo、库名与seed标记、备份、二次确认后重置本demo库</td>
+</tr>
+<tr>
+<td><code>pnpm backup:local</code></td>
+<td>数据库+上传+manifest一致快照，存.gitignore的backups</td>
+</tr>
+<tr>
+<td><code>pnpm restore:check</code></td>
+<td>在独立新库恢复并重跑对账，不覆盖现用库</td>
+</tr>
+<tr>
+<td><code>pnpm release:check</code></td>
+<td>汇总质量门，仅实测通过才输出可演示</td>
+</tr>
+<tr>
+<td>本包当前只含资料验证和预检脚本，上述命令由A写成真正可运行脚本，不能只列package.json空占位命令。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Seed原则</h2>
+<p>第一次空demo库才导入；重复启动不得复发积分、重复生成订单或重置状态。所有余额由模拟事件走领域服务记账得出，不直接INSERT balance=860。使用固定随机种子、相对演示日排期，不写死已经过期的比赛日期。演示时钟可控但只在demo模式。
+22虚构账号；7职员对应7非STUDENT角色，负责人若需学生能力显式加STUDENT。登录秘密运行时生成，不写默认admin/admin。真实证据和名单绝不用于教员演示。</p>
+<h2>分享梯度</h2>
+<p>优先同机浏览器演示→经授权的局域网→可用的临时HTTPS隧道。Cloudflare Quick Tunnel为测试用途、无SLA，当前200并发在途请求上限且不支持SSE；本系统通知以轮询为默认，不以该服务做生产部署。[R07]
+大陆校园网络/手机网络可能不可达，应先实测，不承诺“免费必可用”。隧道失败可回到同机或合规局域网，或录制当前真实系统流程作补充，不把视频当应用通过验收。不得未经批准租服务器、绕学校网络策略或关闭安全软件。</p>
+<h2>公开演示安全</h2>
+<p>随机链接不是密码；分享前必须验证访问保护、全部模拟数据、文件权限、禁用调试/重置/API文档、只暴露网关，短期会话，活动结束停止隧道。即便看似demo也不能把一键管理员入口裸露互联网。
+H5相机在非HTTPS局域网中可能受浏览器限制，核销保留手工备用码；不能因为不能扫而关闭身份核验。</p>
+<h2>出错恢复</h2>
+<p>端口占用：查所有者→给本项目选择空端口，不杀未知进程。下载失败：官方来源/可信已授权镜像+校验，保留lock；不把TLS校验关掉。DB失败：读取错误、确认持久卷和连接，备份再迁移；不直接drop。内存不足：关闭多余子代理/热更新、构建静态版，仅启动一套集成环境。
+重置/升级前生成备份；迁移单独运行且锁定，避免两个窗口同时执行DDL。回滚应用镜像不等于回滚数据库；破坏性DDL先扩展再迁移后收缩。</p>
+</div></details><details><summary>10 · 教员批准后的腾讯云迁移</summary><div class="detail-body"><h1>教员批准后的腾讯云迁移</h1>
+<p>当前阶段不创建任何付费云资源。本文件是迁移设计，不是已通过本账号验证的部署承诺。</p>
+<h2>“一键”的准确含义</h2>
+<p>预先完成运营主体、教员批准、套餐/费用、云权限、域名/备案（适用时）、微信资格与密钥、数据库/存储兼容测试后，由脚本自动执行可重复的构建、配置核验、迁移、上传与健康检查。脚本不能代替人工签约、实名认证、付款或微信审核。</p>
+<h2>A需建立的工具</h2>
+<p><code>pnpm cloud:plan</code>只读取配置并输出资源、地域、费用待确认项；不得调用创建。<code>pnpm cloud:preflight</code>验证凭据存在而不输出值、网络/TLS/引擎版本/存储权限/批准记录。<code>pnpm cloud:deploy</code>默认拒绝未批准配置，明确--apply并人工同意后执行；部署日志脱敏。
+官方文档和SDK会更新，A须再次核验当前CloudBase/Tencent实际支持的数据库连接、容器和存储能力，不伪造可运行cloudbaserc。无账号时仅交付适配接口/测试替身/文档，不标云部署PASS。</p>
+<h2>迁移内容</h2>
+<ol>
+<li>选择实际可用的腾讯云托管MySQL、云托管/容器及对象存储组合；不要将CloudBase文档型数据库事务文档当MySQL迁移证据。</li>
+<li>在目标数据库验证迁移DDL、索引、字符集、排序规则、UTC、SQL mode、认证、TLS、锁/隔离及并发。</li>
+<li>构建不可变镜像；迁移使用专用账号，应用账号最小权限。</li>
+<li>原始文件按storageKey复制，逐个核对checksum/size/mime/ACL；图片公开与证据私有不可混桶。</li>
+<li>默认迁移只有已批准规则、角色定义、真实运营基础资料；demo用户、模拟积分、模拟库存/订单/处罚不迁移。</li>
+<li>真实试点数据确需搬迁：停写窗口→数据库/文件备份→导入→计数/金额/积分/库存/文件hash对账→签认→切换；验证失败回旧服务，不静默丢历史。</li>
+<li>身份从demo切换：注册真实外部身份并重新分配角色，不按同名自动关联模拟学生。微信登录、扫码、上传、订阅消息分别真机测试。</li>
+<li>正式环境禁止demo快速登录/重置/种子/默认凭据；真实库存先采购验收后入库。</li>
+<li>配置告警、日志轮转、数据库备份、文件备份、恢复目标，实际恢复一次再试运行。</li>
+<li>灰度试点，留回滚点；回滚与数据写入影响说明明确。</li>
+</ol>
+<h2>需要用户补的不是API合同</h2>
+<p>届时只需账户主人提供安全环境：微信AppID/Secret、腾讯环境/区域、部署角色权限、数据库安全连接、存储桶、域名。真实值通过本机/云Secret输入。API合同不保存密钥、域名账户密码或学生名单。</p>
+</div></details><details><summary>11 · 核验来源与依赖研究</summary><div class="detail-body"><h1>核验来源与依赖研究</h1>
+<p>检索日期：2026-09-05。本文是技术选型依据与待核验清单，不是对用户电脑、账号权限或第三方服务可用性的保证。</p>
+<h2>已核验的关键事实</h2>
+<ul>
+<li>[R01] OpenAI公布GPT-6 Astra，逐步开放；官方帮助页提示Astra的Codex CLI需0.153.0或更新。实际模型以用户选择器和账号权限为准，不把模型名写死在项目运行代码。</li>
+<li>[R02] Codex worktree为同一Git仓库的隔离检出，线程不是共享聊天记忆；提交才形成可同步基线。</li>
+<li>[R03] Codex支持子代理，但更多代理消耗更多额度，官方建议从读密集任务开始，对并行写入谨慎。</li>
+<li>[R04] AGENTS.md由Codex读取，根目录应简洁，详细业务放文档按需读，不用把几十页全部塞入提示词。</li>
+<li>[R05] Taro提供H5与小程序构建目标，不意味着所有浏览器/微信原生API行为相同。</li>
+<li>[R06] Docker Desktop免费使用有主体和用途条件；学校/企业安装前须核对许可与Windows/WSL要求。</li>
+<li>[R07] Cloudflare Quick Tunnel面向测试，无SLA，当前200在途请求、不支持SSE，不能当正式托管。</li>
+<li>[R08] NestJS官方支持OpenAPI；本项目选择合同优先，不能同时维护两套彼此漂移的规范。</li>
+<li>[R09] openapi-typescript可从OpenAPI生成TypeScript类型；这不是运行时验证器。</li>
+<li>[R10] MySQL InnoDB提供锁定读能力；正确性还需事务、约束、锁顺序和实测。</li>
+<li>[R11] Git worktree是本地Git能力，不要求先购买GitHub或云服务。</li>
+</ul>
+<h2>原始来源</h2>
+<p>R01 https://openai.com/index/gpt-6-astra/ ; https://help.openai.com/en/articles/20001354
+R02 https://developers.openai.com/codex/app/worktrees
+R03 https://developers.openai.com/codex/multi-agent
+R04 https://developers.openai.com/codex/guides/agents-md
+R05 https://docs.taro.zone/docs/GETTING-STARTED ; https://github.com/NervJS/taro
+R06 https://docs.docker.com/desktop/setup/install/windows-install/ ; https://docs.docker.com/subscription/desktop-license/
+R07 https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/
+R08 https://docs.nestjs.com/openapi/introduction
+R09 https://openapi-ts.dev/introduction
+R10 https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html
+R11 https://git-scm.com/docs/git-worktree.html</p>
+<h2>开源参考的采用边界</h2>
+<table>
+<thead>
+<tr>
+<th>参考</th>
+<th>价值</th>
+<th>本轮决定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NervJS/taro（已读取官方README）</td>
+<td>H5/小程序跨端骨架</td>
+<td>默认学生框架，版本兼容由A实测</td>
+</tr>
+<tr>
+<td>ant-design/pro-components（已读取官方README）</td>
+<td>后台表格、表单、审批等组件</td>
+<td>默认后台候选，按需使用，注意体积</td>
+</tr>
+<tr>
+<td>openapi-typescript（已读官方文档）</td>
+<td>契约生成类型</td>
+<td>默认契约工具候选，不误当运行时验证</td>
+</tr>
+<tr>
+<td>taroify/taroify</td>
+<td>移动Taro组件</td>
+<td>候选，必须先复核兼容版本/许可证，不强依赖</td>
+</tr>
+<tr>
+<td>trophyso/ui</td>
+<td>成就、成长等交互参考</td>
+<td>候选，不直接将Web组件装入Taro</td>
+</tr>
+</tbody>
+</table>
+<p>本轮没有证明任何现成开源积分系统满足本校审批/追缴/线下核销规则，不直接fork整套商城后宣称安全。选择依赖时检查原仓库LICENSE、最近release/issues、安全公告和实际代码；README营销话术与Star数不是质量证明。需要复制的代码/图片分别核许可，保留NOTICE。候选的未核验部分保持待核验。</p>
+<p>腾讯云具体MySQL引擎、连接方式和费用需在迁移阶段再次用官方文档及账户控制台验证；本轮访问部分旧链接失败，未将其作为已验证兼容性证据。不得拿其他产品如微搭私有部署的限制误当本系统CloudBase规格。</p>
+</div></details><details><summary>12 · 自主解决问题与阻塞管理</summary><div class="detail-body"><h1>自主解决问题与阻塞管理</h1>
+<h2>原则</h2>
+<p>“自主”是调查证据、选择可撤销的合法替代、实现并验证，不是绕过安全或假装服务已经具备。模型强弱不改变费用、授权、事务和生产门。</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>自主可选路径</th>
+<th>不能冒称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>没腾讯云</td>
+<td>本地MySQL/目录存储/静态构建</td>
+<td>已经云上线</td>
+</tr>
+<tr>
+<td>没微信AppID</td>
+<td>Taro H5、demo认证、weapp编译</td>
+<td>微信登录真机已验</td>
+</tr>
+<tr>
+<td>没学校SSO</td>
+<td>虚构名单；正式授权CSV导入适配</td>
+<td>学校认证已接通</td>
+</tr>
+<tr>
+<td>没图像API/额度</td>
+<td>可用内置工具、原创SVG、授权素材</td>
+<td>已生成实际品牌商品照片</td>
+</tr>
+<tr>
+<td>Docker不可用</td>
+<td>当前MySQL服务/官方原生服务</td>
+<td>SQLite测试等价MySQL并发</td>
+</tr>
+<tr>
+<td>两窗口资源不足</td>
+<td>减少子代理、只跑一套集成、静态构建</td>
+<td>所有测试都已执行</td>
+</tr>
+<tr>
+<td>Tunnel打不开</td>
+<td>同机/合法局域网；实际流程录屏补充</td>
+<td>公网可达、永久免费稳定</td>
+</tr>
+<tr>
+<td>GitHub无权限/CI配额</td>
+<td>本地Git/本地完整测试、后接远程</td>
+<td>已有分支保护/云CI</td>
+</tr>
+<tr>
+<td>API限流/网络限制</td>
+<td>缓存、退避、官方替代、关闭非核心功能</td>
+<td>轮换账号/凭据规避额度</td>
+</tr>
+<tr>
+<td>未定制度/预算</td>
+<td>按已标注demo默认继续，记录差异</td>
+<td>已获教员批准或资金支持</td>
+</tr>
+</tbody>
+</table>
+<h2>工具使用</h2>
+<p>先列当前可用工具、插件和技能，优先官方文档、现有连接、当前代码和实际错误日志。只在相关能力可用时调用，不硬写未知工具API。网络来源入research记录：日期、URL、许可、版本、采取/不采取理由。
+用户允许调研与本地实现，不等于同意任意下载安装、提权、付款、公开、创建云资源或提交含个人数据的表单。遇此类需要权限的事项列“唯一必要人工动作”，其他工作继续。</p>
+<h2>阻塞报告</h2>
+<p>BLOCKER编号、影响模块、已尝试路径/结果、替代方案、费用/权限影响、可交付范围、剩余人工动作、是否阻止G0/G2/G4。只缺微信凭据不应阻止H5演示，但缺任何真实MySQL可用环境会阻止事务验证，不可装作通过。
+不要让用户反复解释已给的学校名称/规则。没有当前机器信息就先检测；没有采购型号就先模拟插图+未采购标识。</p>
+</div></details><details><summary>13 · 教员演示脚本与记录</summary><div class="detail-body"><h1>教员演示脚本与记录</h1>
+<p>演示数据全部虚构，页面持续标“内部演示”。下面是系统应能实际操作的故事，不是静态PPT。</p>
+<h2>主路径</h2>
+<p>演示学生S001通过历史模拟事件得到可用木能量860、成长里程1240；不要直接写余额。进入4小时装调维修实训（50分），报名→动态签到→提交实操→教员按预登记规则确认→钱包910。
+学生选择R019维修工具包（900分）：创建后可用10、冻结900，实物预占1但尚未核销。显示个人领取码。
+职员在手机核销页预览该订单→确认→订单FULFILLED、冻结0、可售与实物库存口径一致，审计记录操作者与规则。再扫同一码，明确已领取且不重复扣减。</p>
+<h2>管理能力</h2>
+<ul>
+<li>项目P003团队池1600，10/25/25/40阶段，成员占比分配总和100%；展示四人各400上限与最大余数机制。</li>
+<li>模拟比赛记录校级250→省级1000，只加750；如果其他系数/上限适用先展示计算明细。</li>
+<li>组织者试图审核自己的申请被拒绝；第二个真实独立demo职员完成审核（模拟身份不代表生产双审已满足）。</li>
+<li>一条失约提醒与一条申诉，独立复核后撤销限制；不会把所有合法积分清空。</li>
+<li>普通抽查10%、高风险待复核、低库存、待补货、模拟预算报表。</li>
+</ul>
+<h2>收尾</h2>
+<p>重启应用确认数据仍在；展示备份恢复日志；说明当前H5可操作，微信真机/正式身份/腾讯云/真实采购未验项单列。
+请教员评价：规则是否公平、谁负责审批与监察、真实奖品选择、领取地点与值班、试点范围/预算、是否进入小范围试运行。不要让教员签字成为系统自动上线许可。</p>
+<h2>意见记录模板</h2>
+<p>日期：____  演示commit：____  演示设备：____
+结论：□继续完善演示 □可准备试点 □暂缓
+需要改的规则：____
+最想保留的奖品：____
+审批/监察人员安排（仅角色或内部编号）：____
+真实预算/采购是否批准：____
+下一阶段明确授权范围：____</p>
+</div></details><details><summary>14 · 有界任务清单（不是无限“继续”）</summary><div class="detail-body"><h1>有界任务清单（不是无限“继续”）</h1>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>门</th>
+<th>A交付</th>
+<th>B交付</th>
+<th>验证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOT-01</td>
+<td>G0</td>
+<td>本机预检、Git/worktree策略、资料冲突、版本锁</td>
+<td>尚不开B</td>
+<td>环境报告、不产生费用</td>
+</tr>
+<tr>
+<td>BOOT-02</td>
+<td>G0</td>
+<td>契约/SDK、两端壳、网关、MySQL迁移</td>
+<td>尚不开B</td>
+<td>H5/admin/weapp构建烟测</td>
+</tr>
+<tr>
+<td>CORE-01</td>
+<td>G0</td>
+<td>会话/角色/钱包/奖励目录真实API</td>
+<td>尚不开B</td>
+<td>T01/02/14/22基础</td>
+</tr>
+<tr>
+<td>FLOW-01</td>
+<td>G1</td>
+<td>活动/报名/签到/验收/发分</td>
+<td>学生活动与后台审批</td>
+<td>主路径前半段</td>
+</tr>
+<tr>
+<td>FLOW-02</td>
+<td>G1</td>
+<td>实物奖励/冻结/备货/核销/取消</td>
+<td>奖励商城/订单/手机核销</td>
+<td>主路径后半段+并发</td>
+</tr>
+<tr>
+<td>GROW-01</td>
+<td>G2</td>
+<td>实训/考核/宣传任务/项目分配</td>
+<td>技能/任务/项目页面</td>
+<td>证据与不重复/守恒</td>
+</tr>
+<tr>
+<td>COMP-01</td>
+<td>G2</td>
+<td>比赛白名单/系数/差额/撤回</td>
+<td>比赛提交/审核/差额展示</td>
+<td>T19/20</td>
+</tr>
+<tr>
+<td>GOV-01</td>
+<td>G2</td>
+<td>违规/申诉/独立复核/追缴</td>
+<td>决定通知/申诉/监察</td>
+<td>T12/15/27/28</td>
+</tr>
+<tr>
+<td>OPS-01</td>
+<td>G2</td>
+<td>抽查/站内通知/outbox/预算/统计</td>
+<td>后台看板/库存/心愿/通知</td>
+<td>T29/31与指标口径</td>
+</tr>
+<tr>
+<td>ART-01</td>
+<td>G2</td>
+<td>文件权限/上传/元数据</td>
+<td>27奖品图、徽章、空态、授权台账</td>
+<td>T25/26/38+截图</td>
+</tr>
+<tr>
+<td>RUN-01</td>
+<td>G2</td>
+<td>demo脚本、备份恢复、分享保护</td>
+<td>教员脚本、E2E、视觉修正</td>
+<td>T33—40适用项</td>
+</tr>
+<tr>
+<td>PROD-01</td>
+<td>G3</td>
+<td>prod-like配置、真实认证适配、安全审查</td>
+<td>weapp适配/真实设备清单</td>
+<td>不把缺凭据标PASS</td>
+</tr>
+<tr>
+<td>CLOUD-01</td>
+<td>G4</td>
+<td>授权后云预检、数据/文件迁移、部署</td>
+<td>云端回归、正式图片/文案</td>
+<td>真实云/微信/采购门</td>
+</tr>
+</tbody>
+</table>
+<p>每个Issue在开始时记录范围、非范围、依赖、合同版本、验收用例；完成后附SHA和证据。A、B可以各自内部平行处理无共享文件的子任务，但只有A合并集成。某个模块只能设计不能实现时写BLOCKED，不用页面跳转到空页冒充功能完成。</p>
+</div></details></section><section class="section" id="catalogs"><h2>预置业务资料</h2><p>都是候选或模拟数据，不代表已有采购、审批或活动。真实库存从0开始。</p><details><summary>12项活动</summary><div class="detail-body"><table><thead><tr><th>编号</th><th>活动</th><th>拟定积分</th><th>完成证据</th></tr></thead><tbody><tr><td>A001</td><td>无人机安全基础微课</td><td>30</td><td>服务端测验≥80分</td></tr><tr><td>A002</td><td>粤木木无人机开放体验日</td><td>15</td><td>签到+体验任务卡</td></tr><tr><td>A003</td><td>无人机模拟飞行基础训练</td><td>30</td><td>2小时、模拟任务达标</td></tr><tr><td>A004</td><td>无人机安全飞行实操</td><td>50</td><td>安全前置通过+教员实操验收</td></tr><tr><td>A005</td><td>无人机装调与维修基础实训</td><td>50</td><td>4小时+装调结果与安全检查</td></tr><tr><td>A006</td><td>AI视觉与无人机应用工作坊</td><td>50</td><td>4小时+识别样例任务</td></tr><tr><td>A007</td><td>企业技术开放日</td><td>20</td><td>签到+技术反馈任务</td></tr><tr><td>A008</td><td>项目周例会</td><td>5</td><td>起止确认，仅完整参会</td></tr><tr><td>A009</td><td>校园无人机活动志愿执行</td><td>5</td><td>核验小时，单日≤40基础分</td></tr><tr><td>A010</td><td>无人机入门全天训练营</td><td>80</td><td>8小时+完整训练记录</td></tr><tr><td>A011</td><td>低空行业分享与问答</td><td>10</td><td>签到+课后答题</td></tr><tr><td>A012</td><td>穿越机模拟基础考核</td><td>80</td><td>独立Ⅰ级考核，通过后授翼章</td></tr></tbody></table><p><a href="data/catalog/activities.json">查看完整JSON</a></p></div></details><details><summary>4个项目</summary><div class="detail-body"><table><thead><tr><th>编号</th><th>项目</th><th>等级</th><th>积分池</th></tr></thead><tbody><tr><td>P001</td><td>校园无人机航拍宣传素材库</td><td>P1</td><td>500</td></tr><tr><td>P002</td><td>无人机故障与维修知识库</td><td>P2</td><td>1200</td></tr><tr><td>P003</td><td>AI视觉与无人机智慧农业演示系统</td><td>P2</td><td>1600</td></tr><tr><td>P004</td><td>塔脚村数字宣传与电商助农</td><td>P3</td><td>3000</td></tr></tbody></table><p><a href="data/catalog/projects.json">查看完整JSON</a></p></div></details><details><summary>27项奖励</summary><div class="detail-body"><table><thead><tr><th>编号</th><th>奖励</th><th>点数</th><th>点数用途</th></tr></thead><tbody><tr><td>R001</td><td>无人机主题贴纸套装</td><td>30</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R002</td><td>粤木木主题徽章</td><td>60</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R003</td><td>瓶装饮料</td><td>60</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R004</td><td>零食小礼包</td><td>80</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R005</td><td>中性笔与便签套装</td><td>120</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R006</td><td>手机折叠支架</td><td>150</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R007</td><td>定制笔记本</td><td>160</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R008</td><td>Type-C数据线</td><td>180</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R009</td><td>粤木木帆布袋</td><td>220</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R010</td><td>模拟器2小时体验</td><td>250</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R011</td><td>晴雨伞</td><td>280</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R012</td><td>航拍纪念照体验</td><td>300</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R013</td><td>粤木木主题T恤</td><td>420</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R014</td><td>保温杯</td><td>420</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R015</td><td>64GB U盘</td><td>500</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R016</td><td>无线鼠标</td><td>650</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R017</td><td>10000mAh正规品牌充电宝</td><td>750</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R018</td><td>精密螺丝刀工具套装</td><td>750</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R019</td><td>无人机基础维修工具包</td><td>900</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R020</td><td>无人机进阶实操工作坊</td><td>800</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R021</td><td>穿越机安全体验</td><td>1000</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R022</td><td>比赛答辩模拟辅导</td><td>1200</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R023</td><td>导师项目一对一诊断</td><td>1200</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R024</td><td>航拍短视频制作体验</td><td>1500</td><td>SPEND_ON_FULFILLMENT</td></tr><tr><td>R025</td><td>外部技能培训补贴申请</td><td>2000</td><td>THRESHOLD_ONLY</td></tr><tr><td>R026</td><td>行业活动交通补贴申请</td><td>3000</td><td>THRESHOLD_ONLY</td></tr><tr><td>R027</td><td>项目种子资金申请入口</td><td>4000</td><td>THRESHOLD_ONLY</td></tr></tbody></table><p><a href="data/catalog/rewards.json">查看完整JSON</a></p></div></details></section></main></div><footer>V2.0 · 2026-09-05 · 离线执行手册｜项目资料、制度与生产批准严格分离</footer><script>document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{const id=b.dataset.copy;const t=document.getElementById(id),s=document.getElementById('s-'+id);try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t.value)}else{t.focus();t.select();if(!document.execCommand('copy'))throw Error('manual')}s.textContent='已复制。请粘贴到对应Codex窗口。'}catch(e){t.focus();t.select();s.textContent='已选中全文，请按Ctrl+C或使用复制菜单。'}});</script></body></html>

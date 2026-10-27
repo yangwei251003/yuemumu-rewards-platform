@@ -1,0 +1,11 @@
+{
+  "miniprogramRoot": "dist-weapp/",
+  "projectname": "yuemumu-student-demo",
+  "description": "模拟数据，微信真机能力未验收",
+  "appid": "wx1f6c8fb4cd9af242",
+  "setting": {
+    "es6": true,
+    "minified": true
+  },
+  "compileType": "miniprogram"
+}

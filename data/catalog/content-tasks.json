@@ -1,0 +1,64 @@
+{
+  "status": "PROPOSED",
+  "items": [
+    {
+      "id": "CT01",
+      "title": "开放日原创竖版海报",
+      "ruleCode": "CONTENT_POSTER",
+      "points": 30,
+      "acceptance": [
+        "源文件",
+        "已批准主体文字",
+        "图片授权",
+        "实际采用"
+      ]
+    },
+    {
+      "id": "CT02",
+      "title": "装调课新闻稿与摄影组图",
+      "ruleCode": "CONTENT_ARTICLE",
+      "points": 60,
+      "acceptance": [
+        "事实核验",
+        "采访授权",
+        "投稿记录"
+      ]
+    },
+    {
+      "id": "CT03",
+      "title": "穿越机训练短视频",
+      "ruleCode": "CONTENT_VIDEO",
+      "points": 80,
+      "acceptance": [
+        "脚本",
+        "原始素材",
+        "四旋翼结构正确",
+        "安全拍摄审核",
+        "发布验收"
+      ]
+    },
+    {
+      "id": "CT04",
+      "title": "无人机设备盘点",
+      "ruleCode": "EQUIP_CHECK",
+      "points": 30,
+      "acceptance": [
+        "设备编号",
+        "数量",
+        "状态",
+        "责任人签认"
+      ]
+    },
+    {
+      "id": "CT05",
+      "title": "指导新成员通过模拟考核",
+      "ruleCode": "MENTOR_NEW",
+      "points": 40,
+      "acceptance": [
+        "学员确认",
+        "独立考核通过",
+        "本学期未超过5人"
+      ]
+    }
+  ]
+}

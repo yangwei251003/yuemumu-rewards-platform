@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "项目非敏感资料",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "project",
+    "stage",
+    "machine",
+    "demo",
+    "operations",
+    "assets",
+    "accounts"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "2.0"
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "slug",
+        "displayName",
+        "school",
+        "college",
+        "association"
+      ],
+      "properties": {
+        "slug": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "displayName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "school": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "college": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "association": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "companyDisplayName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "companyLegalName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "companyLegalNameStatus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "required": [
+        "target",
+        "cloudSpendAllowed",
+        "cloudBudgetCny",
+        "realPersonalDataAllowed",
+        "publicShareAllowed"
+      ],
+      "properties": {
+        "target": {
+          "enum": [
+            "local_teacher_demo",
+            "pilot",
+            "production"
+          ]
+        },
+        "teacherApproval": {
+          "enum": [
+            "not_confirmed",
+            "changes_requested",
+            "approved_for_demo",
+            "approved_for_pilot"
+          ]
+        },
+        "cloudSpendAllowed": {
+          "type": "boolean"
+        },
+        "cloudBudgetCny": {
+          "type": "number",
+          "minimum": 0
+        },
+        "purchaseRewardsNow": {
+          "type": "boolean"
+        },
+        "publicShareAllowed": {
+          "type": "boolean"
+        },
+        "realPersonalDataAllowed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "machine": {
+      "type": "object"
+    },
+    "demo": {
+      "type": "object",
+      "properties": {
+        "gatewayPort": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 65535
+        },
+        "studentCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "staffCount": {
+          "type": "integer",
+          "minimum": 2
+        }
+      }
+    },
+    "operations": {
+      "type": "object"
+    },
+    "assets": {
+      "type": "object"
+    },
+    "accounts": {
+      "type": "object"
+    }
+  }
+}

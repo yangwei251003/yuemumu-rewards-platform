@@ -1,0 +1,53 @@
+import {orderIntents} from '../session';
+import {CommerceOrder} from './Commerce';
+import {useEffect,useMemo,useRef,useState} from 'react';
+import {View,Text,Button,Input,Image} from '@tarojs/components';
+import Taro from '@tarojs/taro';
+import qrcode from 'qrcode-generator';
+import type {createClient,Schemas} from '@ymm/sdk';
+import {artwork} from '../assets';
+
+type Props={initialTarget?:{id?:string;tab?:string;focus?:string};openTarget?:(id:string)=>void;onBack?:()=>void;client:ReturnType<typeof createClient>;busy:boolean;run:(action:()=>Promise<void>)=>Promise<void>;onChanged:()=>Promise<void>};
+const statuses:Record<Schemas['Order']['status'],string>={PREPARING:'备货中',READY:'待领取',FULFILLED:'已领取',CANCELLED:'已取消',EXPIRED:'已到期',RETURN_REQUESTED:'退换申请中',RETURNED:'已退回'};
+const time=(value:string|null)=>value?new Date(value).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false}):'备货完成后通知';
+const site=(id:string)=>id==='SITE_DEMO'?'企业2楼前台':id;
+function useIntent(){const keys=useRef(orderIntents);return {key:(intent:unknown)=>{const id=JSON.stringify(intent);let key=keys.current.get(id);if(!key){key=`student-${Date.now()}-${Math.random().toString(36).slice(2)}`;keys.current.set(id,key);}return key;},done:(intent:unknown)=>{keys.current.delete(JSON.stringify(intent));}};}
+
+export function RewardOrder({client,busy,run,onChanged,reward,onOrders,onCommerce}:Props&{reward:Schemas['Reward'];onOrders:(id?:string)=>void;onCommerce:()=>void}){
+ const [review,setReview]=useState(false),[quantity,setQuantity]=useState('1'),[created,setCreated]=useState<Schemas['Order']|null>(null);const intent=useIntent();
+ const count=Number(quantity),valid=Number.isInteger(count)&&count>=1&&count<=10;
+ const available=reward.kind==='physical'&&!reward.requiresApproval&&reward.pointsMode==='SPEND_ON_FULFILLMENT';
+ if(!available)return <CommerceOrder client={client} busy={busy} run={run} onChanged={onChanged} reward={reward} onRequests={onCommerce}/>;
+ async function create(){const body={rewardId:reward.id,quantity:count,expectedRewardVersion:reward.version,pickupSiteId:'SITE_DEMO'};await run(async()=>{const order=await client.call('createOrder',body,{}, {idempotencyKey:intent.key(body)});intent.done(body);setCreated(order);setReview(false);await onChanged();});}
+ return created?<View className='feedback'><Text>兑换订单已创建 · {statuses[created.status]}</Text><Text className='hint'>服务器预占 {created.totalPoints} 木能量。请等待备货通知。</Text><Button className='secondary-button' disabled={busy?true:undefined} onClick={()=>onOrders(created.id)}>查看我的订单</Button></View>:<View className='order-request'>
+ {!review?<Button className='primary' disabled={busy||reward.availableQuantity<1?true:undefined} onClick={()=>setReview(true)}>{reward.availableQuantity<1?'暂时无可用库存':'兑换这份奖励'}</Button>:<View className='panel'><Text className='section-title'>核对兑换信息</Text><Text className='label'>兑换数量（1—10）</Text><Input className='input' type='number' value={quantity} placeholder='输入兑换数量' onInput={e=>setQuantity(e.detail.value)}/><Text className='description'>领取点：企业2楼前台</Text><Text className='description'>预估预占 {valid?reward.pointsRequired*count:'—'} 木能量，最终以服务器订单为准。</Text><Text className='hint'>下单预占积分和库存；领取后完成扣减。备货完成后请在服务器显示的期限内领取。成长里程保留。</Text><Button className='primary' disabled={busy||!valid?true:undefined} onClick={create}>确认兑换并预占</Button><Button className='text-button' disabled={busy?true:undefined} onClick={()=>setReview(false)}>暂不兑换</Button></View>}
+ </View>;
+}
+
+function PickupQr({token}:{token:string}){
+ const matrix=useMemo(()=>{const qr=qrcode(0,'M');qr.addData(token);qr.make();const n=qr.getModuleCount();return Array.from({length:n+8},(_,y)=>Array.from({length:n+8},(_,x)=>x>=4&&y>=4&&x<n+4&&y<n+4&&qr.isDark(y-4,x-4)));},[token]);
+ return <View className='pickup-qr' aria-label='限时领取二维码' role='img'>{matrix.map((row,y)=><View className='qr-row' key={y}>{row.map((dark,x)=><View className={'qr-cell '+(dark?'dark':'')} key={x}/>)}</View>)}</View>;
+}
+
+export default function Orders({client,busy,run,onChanged,onReturns,initialTarget,openTarget,onBack}:Props&{onReturns:()=>void}){
+ const [orders,setOrders]=useState<Schemas['Order'][]>([]),[selected,setSelected]=useState<Schemas['Order']|null>(null),[loaded,setLoaded]=useState(false),[info,setInfo]=useState(''),[reason,setReason]=useState('');
+ const [credential,setCredential]=useState<Schemas['Credential']|null>(null),[now,setNow]=useState(Date.now()),[showCode,setShowCode]=useState(false);const live=useRef(true),intent=useIntent();
+ async function load(){let cursor:string|null=null;const items:Schemas['Order'][]=[],seen=new Set<string>();do{const page:Schemas['OrderPage']=await client.call('listMyOrders',undefined,{limit:100,...(cursor?{cursor}:{})});items.push(...page.items);cursor=page.nextCursor;if(cursor&&seen.has(cursor))throw new Error('订单分页游标重复');if(cursor)seen.add(cursor);}while(cursor);if(live.current){setOrders(items);setSelected(old=>old?items.find(o=>o.id===old.id)||null:null);setLoaded(true);}}
+ useEffect(()=>{live.current=true;void run(load);return()=>{live.current=false;};},[]);
+ useEffect(()=>{if(!credential)return;const timer=setInterval(()=>setNow(Date.now()),1000);return()=>clearInterval(timer);},[credential]);
+ const valid=credential&&new Date(credential.expiresAt).getTime()>now;
+ useEffect(()=>{if(credential&&!valid){setCredential(null);setShowCode(false);setInfo('领取凭证已到期，请重新生成。');}},[valid,credential]);
+ async function open(order:Schemas['Order']){if(openTarget&&!initialTarget?.id){openTarget(order.id);return;}await run(async()=>{const fresh=await client.call('getOrder',undefined,{orderId:order.id});setSelected(fresh);setCredential(null);setShowCode(false);setReason('');setInfo('');});}
+ const targetHandled=useRef(false);
+ useEffect(()=>{if(loaded&&initialTarget?.id&&!targetHandled.current){targetHandled.current=true;void run(async()=>{const fresh=await client.call('getOrder',undefined,{orderId:initialTarget.id!});if(live.current)setSelected(fresh);});}},[loaded,initialTarget?.id]);
+ async function issue(){if(!selected)return;const key={issue:selected.id};await run(async()=>{setCredential(null);setShowCode(false);const value=await client.call('issuePickupCredential',undefined,{orderId:selected.id},{idempotencyKey:intent.key(key)});intent.done(key);setNow(Date.now());setCredential(value);setInfo('凭证已生成。仅向本领取点工作人员出示。');});}
+ async function cancel(){if(!selected)return;const body={expectedVersion:selected.version,reason:reason.trim()},key={cancel:selected.id,...body};await run(async()=>{const value=await client.call('cancelOrder',body,{orderId:selected.id},{idempotencyKey:intent.key(key)});intent.done(key);setCredential(null);setSelected(value);setInfo('订单已取消，服务器已释放原积分与库存。');await load();await onChanged();});}
+ return <View className='orders'><Text className='title'>我的兑换与领取</Text><Text className='description'>订单状态与积分预占以服务器记录为准。时间为北京时间。</Text>{info&&<View className='feedback' role='status'>{info}</View>}
+ {selected?<View className='panel order-detail'><Button className='text-button' disabled={busy?true:undefined} onClick={()=>{setSelected(null);setCredential(null);setInfo('');if(initialTarget?.id)onBack?.();}}>← 返回订单列表</Button><Image className='order-art' src={artwork[selected.rewardId+'-main']||artwork['empty-2']} mode='aspectFit' aria-label={selected.rewardNameSnapshot+'（示意图／模拟奖品）'}/><Text className='section-title'>{selected.rewardNameSnapshot}</Text><Text className='status-tag'>{statuses[selected.status]}</Text><View className='facts'><Text>数量</Text><Text>{selected.quantity}</Text><Text>订单木能量</Text><Text>{selected.totalPoints}</Text><Text>领取点</Text><Text>{site(selected.pickupSiteId)}</Text><Text>领取截止</Text><Text>{time(selected.expiresAt)}</Text></View><Text className='hint'>订单编号 {selected.id}</Text><View className='v3-order-help'>下单预占 → 备货通知 → 本人出示限时凭证 → 工作人员核销。当前状态：{statuses[selected.status]}。请勿将凭证转发给他人。</View>
+ {selected.status==='PREPARING'&&<Text className='description'>正在备货。备货完成后，领取期限与凭证入口会显示在这里。</Text>}
+ {selected.status==='READY'&&<View className='credential'><Button className='primary' disabled={busy?true:undefined} onClick={issue}>{credential?'换一张领取凭证':'显示领取凭证'}</Button>{credential&&valid&&<View className='credential-secret' data-secret='pickup-credential'><PickupQr token={credential.token}/><Text className='hint'>有效至 {time(credential.expiresAt)}。更换凭证会使旧码失效。</Text><Button className='text-button' onClick={()=>setShowCode(!showCode)}>{showCode?'收起文字领取码':'显示文字领取码'}</Button>{showCode&&<Text className='pickup-code' selectable>{credential.displayCode}</Text>}<Button className='secondary-button' onClick={()=>run(async()=>{await Taro.setClipboardData({data:credential.displayCode});setInfo('领取码已复制，仅交给本领取点工作人员。');})}>复制领取码</Button><Button className='text-button' onClick={()=>{setCredential(null);setShowCode(false);}}>隐藏领取凭证</Button></View>}</View>}
+ {['PREPARING','READY'].includes(selected.status)&&<View className='cancel-order'><Text className='label'>不再需要这份奖励？</Text><Input className='input' value={reason} maxlength={500} placeholder='填写取消订单原因' onInput={e=>setReason(e.detail.value)}/><Button className='secondary-button' disabled={busy||!reason.trim()?true:undefined} onClick={cancel}>确认取消订单</Button><Text className='hint'>取消后按原积分批次释放；实际有效期由服务器规则确定。</Text></View>}
+ {selected.status==='FULFILLED'&&<View className='feedback'><Text>领取已完成，成长里程保留。</Text><Button className='text-button' disabled={busy?true:undefined} onClick={onReturns}>查看整单质量退货</Button></View>}
+ <Button className='secondary-button' disabled={busy?true:undefined} onClick={()=>run(async()=>{setCredential(null);await load();await onChanged();setInfo('订单已刷新。');})}>刷新订单状态</Button></View>:<>{!loaded?<Text className='hint'>{busy?'正在读取订单…':'读取未完成，请刷新重试。'}</Text>:orders.length?orders.map(order=><View className='panel order-card' key={order.id}><Image className='v3-order-thumbnail' src={artwork[order.rewardId+'-main']||artwork['empty-2']} mode='aspectFit' lazyLoad aria-label={order.rewardNameSnapshot+' 模拟奖品示意'}/><Text className='status-tag'>{statuses[order.status]}</Text><Text className='section-title'>{order.rewardNameSnapshot}</Text><Text className='description'>{order.quantity} 件 · {order.totalPoints} 木能量</Text><Text className='hint'>{site(order.pickupSiteId)} · {order.id}</Text><Button className='secondary-button' disabled={busy?true:undefined} onClick={()=>open(order)}>查看订单与领取</Button></View>):<View className='empty panel'><Image className='artwork' src={artwork['empty-1']} mode='aspectFit' aria-label='暂无订单'/><Text>还没有兑换订单</Text><Text className='hint'>浏览奖励目录，选择适合下一步学习的奖励。</Text></View>}<Button className='secondary-button' disabled={busy?true:undefined} onClick={()=>run(load)}>刷新订单列表</Button></>}
+ </View>;
+}

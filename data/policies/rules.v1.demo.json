@@ -1,0 +1,709 @@
+{
+  "version": "v1-demo-20260905",
+  "status": "DRAFT_FOR_DEMO",
+  "source": "docs/source/yuemumu_points_system_proposal_v1.docx",
+  "approvedForRealUse": false,
+  "businessTimezone": "Asia/Shanghai",
+  "growthRatio": 1,
+  "expiryMonthsProposal": 18,
+  "levels": [
+    {
+      "minMileage": 0,
+      "name": "新航员"
+    },
+    {
+      "minMileage": 100,
+      "name": "见习飞手"
+    },
+    {
+      "minMileage": 300,
+      "name": "技能飞手"
+    },
+    {
+      "minMileage": 700,
+      "name": "项目领航员"
+    },
+    {
+      "minMileage": 1400,
+      "name": "低空先锋"
+    }
+  ],
+  "limits": {
+    "meetingAttendanceMonthly": 20,
+    "meetingPerEvent": 25,
+    "volunteerBaseDaily": 40,
+    "referralPeoplePerSemester": 5,
+    "mentoringPeoplePerSemester": 5,
+    "passiveFractionOfTotalBasisPoints": 2000,
+    "passiveFormula": "passivePosted <= floor(activePosted / 4)",
+    "passiveExcess": "PENDING_ELIGIBILITY_NOT_WALLET"
+  },
+  "approvals": {
+    "standardPreapprovedAutoMax": 50,
+    "oneIndependentReviewerMax": 300,
+    "dualIfIndividualAbove": 300,
+    "dualIfTeamPoolAbove": 1000,
+    "alwaysDual": [
+      "project",
+      "competition",
+      "manual_adjustment",
+      "reversal",
+      "high_value_resource"
+    ],
+    "dualDistinctNaturalPersons": 2,
+    "majorDecisionsRequireTeacher": true,
+    "noSelfApproval": true,
+    "dualRequiresVerifiedAffiliationOneOf": [
+      "school_teacher",
+      "enterprise_representative"
+    ]
+  },
+  "projects": {
+    "pools": {
+      "P0": [
+        100,
+        250
+      ],
+      "P1": [
+        300,
+        600
+      ],
+      "P2": [
+        800,
+        2000
+      ],
+      "P3": [
+        2500,
+        6000
+      ]
+    },
+    "milestoneBasisPoints": [
+      1000,
+      2500,
+      2500,
+      4000
+    ],
+    "memberMaxBasisPointsWhenTeamAtLeastFour": 4000,
+    "rounding": "largest_remainder_stable_member_id_cumulative_difference"
+  },
+  "competition": {
+    "validSubmissionBase": 50,
+    "awardOrder": [
+      "shortlist",
+      "third",
+      "second",
+      "first"
+    ],
+    "pointsByLevel": {
+      "school": [
+        80,
+        120,
+        180,
+        250
+      ],
+      "city": [
+        150,
+        250,
+        350,
+        500
+      ],
+      "province": [
+        300,
+        500,
+        700,
+        1000
+      ],
+      "national": [
+        600,
+        1000,
+        1500,
+        2500
+      ],
+      "international": [
+        1000,
+        1600,
+        2500,
+        3500
+      ]
+    },
+    "roleCoefficientsBasisPoints": {
+      "lead": 10000,
+      "core": 8000,
+      "support": 6000,
+      "temporary": [
+        2000,
+        4000
+      ]
+    },
+    "teamCapMultiplier": 4,
+    "issuance": "cumulative_highest_entitlement_minus_issued"
+  },
+  "redemption": {
+    "ordinaryPickupDaysAfterReady": 7,
+    "platformFaultRefundGraceDaysProposal": 7,
+    "applicationRewardsThresholdOnly": [
+      "R025",
+      "R026",
+      "R027"
+    ],
+    "pointsTransferAllowed": false,
+    "cashoutAllowed": false
+  },
+  "audit": {
+    "ordinaryMonthlySamplePercent": 10,
+    "ordinaryRounding": "CEIL",
+    "highRiskSamplePercent": 100,
+    "appealWindowCalendarDays": 7,
+    "ordinaryAppealTargetWorkdays": 5,
+    "complexAppealTargetWorkdays": 10
+  },
+  "sanctions": {
+    "noShowWindowDays": 30,
+    "noShowRestrictionsDays": [
+      0,
+      7,
+      30
+    ],
+    "minorRestrictionsDaysRange": [
+      7,
+      30
+    ],
+    "seriousRestrictionsDaysRange": [
+      30,
+      180
+    ],
+    "arbitraryFineAllowed": false,
+    "negativeAvailableBalanceAllowed": false,
+    "recoveryMode": "separate_case_no_double_recovery"
+  },
+  "earningRules": [
+    {
+      "code": "ONB_ID",
+      "label": "身份核验入门",
+      "category": "onboarding",
+      "minPoints": 10,
+      "maxPoints": 10,
+      "specificValueMustBePreset": false,
+      "frequency": "once",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "SAFE_BASIC",
+      "label": "安全微课",
+      "category": "safety",
+      "minPoints": 30,
+      "maxPoints": 30,
+      "specificValueMustBePreset": false,
+      "frequency": "once",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "FIRST_VALID",
+      "label": "首次有效参与",
+      "category": "onboarding",
+      "minPoints": 20,
+      "maxPoints": 20,
+      "specificValueMustBePreset": false,
+      "frequency": "once",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "REF_FIRST",
+      "label": "有效推荐首次",
+      "category": "referral",
+      "minPoints": 20,
+      "maxPoints": 20,
+      "specificValueMustBePreset": false,
+      "frequency": "per_referred_student_first",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "REF_RETURN",
+      "label": "有效推荐二次",
+      "category": "referral",
+      "minPoints": 20,
+      "maxPoints": 20,
+      "specificValueMustBePreset": false,
+      "frequency": "per_referred_student_return",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MEET_ATTEND",
+      "label": "完整参会",
+      "category": "meeting",
+      "minPoints": 5,
+      "maxPoints": 5,
+      "specificValueMustBePreset": false,
+      "frequency": "per_meeting",
+      "passive": true,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MEET_PREP",
+      "label": "会前准备",
+      "category": "meeting",
+      "minPoints": 5,
+      "maxPoints": 5,
+      "specificValueMustBePreset": false,
+      "frequency": "per_meeting",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MEET_IDEA",
+      "label": "可执行建议",
+      "category": "meeting",
+      "minPoints": 5,
+      "maxPoints": 10,
+      "specificValueMustBePreset": true,
+      "frequency": "per_meeting",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MEET_HOST",
+      "label": "主持",
+      "category": "meeting",
+      "minPoints": 15,
+      "maxPoints": 15,
+      "specificValueMustBePreset": false,
+      "frequency": "per_meeting",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MEET_MINUTES",
+      "label": "纪要",
+      "category": "meeting",
+      "minPoints": 10,
+      "maxPoints": 10,
+      "specificValueMustBePreset": false,
+      "frequency": "per_meeting",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MEET_ACTION",
+      "label": "会后独立行动项",
+      "category": "task",
+      "minPoints": 10,
+      "maxPoints": 30,
+      "specificValueMustBePreset": true,
+      "frequency": "per_deliverable",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_LECTURE",
+      "label": "讲座",
+      "category": "activity",
+      "minPoints": 10,
+      "maxPoints": 20,
+      "specificValueMustBePreset": true,
+      "frequency": "per_activity",
+      "passive": true,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_VISIT",
+      "label": "参观",
+      "category": "activity",
+      "minPoints": 10,
+      "maxPoints": 20,
+      "specificValueMustBePreset": true,
+      "frequency": "per_activity",
+      "passive": true,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_2H",
+      "label": "2小时动手",
+      "category": "training",
+      "minPoints": 30,
+      "maxPoints": 30,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_4H",
+      "label": "4小时实训",
+      "category": "training",
+      "minPoints": 50,
+      "maxPoints": 50,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_8H",
+      "label": "8小时营",
+      "category": "training",
+      "minPoints": 80,
+      "maxPoints": 80,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_16H",
+      "label": "16小时结业",
+      "category": "training",
+      "minPoints": 120,
+      "maxPoints": 120,
+      "specificValueMustBePreset": false,
+      "frequency": "per_course",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ACT_SKILL_EXTRA",
+      "label": "独立实操考核",
+      "category": "assessment",
+      "minPoints": 40,
+      "maxPoints": 100,
+      "specificValueMustBePreset": true,
+      "frequency": "per_assessment",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "VOL_HOUR",
+      "label": "核验志愿每小时",
+      "category": "service",
+      "minPoints": 5,
+      "maxPoints": 5,
+      "specificValueMustBePreset": false,
+      "frequency": "per_verified_hour",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "VOL_QUALITY",
+      "label": "志愿质量",
+      "category": "service",
+      "minPoints": 0,
+      "maxPoints": 10,
+      "specificValueMustBePreset": true,
+      "frequency": "per_activity",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ORG_SMALL",
+      "label": "小型组织负责人",
+      "category": "organization",
+      "minPoints": 40,
+      "maxPoints": 40,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity_role",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ORG_MEDIUM",
+      "label": "中型组织负责人",
+      "category": "organization",
+      "minPoints": 80,
+      "maxPoints": 80,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity_role",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ORG_LARGE",
+      "label": "大型组织负责人",
+      "category": "organization",
+      "minPoints": 120,
+      "maxPoints": 120,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity_role",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "EXEC_SMALL",
+      "label": "小型核心执行",
+      "category": "organization",
+      "minPoints": 20,
+      "maxPoints": 20,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity_role",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "EXEC_MEDIUM",
+      "label": "中型核心执行",
+      "category": "organization",
+      "minPoints": 40,
+      "maxPoints": 40,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity_role",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "EXEC_LARGE",
+      "label": "大型核心执行",
+      "category": "organization",
+      "minPoints": 60,
+      "maxPoints": 60,
+      "specificValueMustBePreset": false,
+      "frequency": "per_activity_role",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_TEXT",
+      "label": "文案摄影",
+      "category": "content",
+      "minPoints": 10,
+      "maxPoints": 30,
+      "specificValueMustBePreset": true,
+      "frequency": "per_artifact",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_POSTER",
+      "label": "海报",
+      "category": "content",
+      "minPoints": 20,
+      "maxPoints": 40,
+      "specificValueMustBePreset": true,
+      "frequency": "per_artifact",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_ARTICLE",
+      "label": "文章采访",
+      "category": "content",
+      "minPoints": 40,
+      "maxPoints": 80,
+      "specificValueMustBePreset": true,
+      "frequency": "per_artifact",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_VIDEO",
+      "label": "短视频",
+      "category": "content",
+      "minPoints": 40,
+      "maxPoints": 100,
+      "specificValueMustBePreset": true,
+      "frequency": "per_artifact",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_FILM",
+      "label": "宣传片",
+      "category": "content",
+      "minPoints": 80,
+      "maxPoints": 150,
+      "specificValueMustBePreset": true,
+      "frequency": "per_artifact",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_CAMPAIGN",
+      "label": "完整宣传团队池",
+      "category": "project",
+      "minPoints": 150,
+      "maxPoints": 600,
+      "specificValueMustBePreset": true,
+      "frequency": "per_team_project",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CONTENT_BONUS",
+      "label": "转化最高档差额",
+      "category": "bonus",
+      "minPoints": 20,
+      "maxPoints": 100,
+      "specificValueMustBePreset": true,
+      "frequency": "per_campaign_entitlement",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "COURSE_2H",
+      "label": "2小时基础模块",
+      "category": "training",
+      "minPoints": 20,
+      "maxPoints": 20,
+      "specificValueMustBePreset": false,
+      "frequency": "per_course",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "COURSE_8H",
+      "label": "8小时技能课程",
+      "category": "training",
+      "minPoints": 60,
+      "maxPoints": 60,
+      "specificValueMustBePreset": false,
+      "frequency": "per_course",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "COURSE_16H",
+      "label": "16小时系统营",
+      "category": "training",
+      "minPoints": 120,
+      "maxPoints": 120,
+      "specificValueMustBePreset": false,
+      "frequency": "per_course",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "SKILL_L1",
+      "label": "技能I级",
+      "category": "assessment",
+      "minPoints": 80,
+      "maxPoints": 80,
+      "specificValueMustBePreset": false,
+      "frequency": "per_badge_level",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "SKILL_L2",
+      "label": "技能II级",
+      "category": "assessment",
+      "minPoints": 150,
+      "maxPoints": 150,
+      "specificValueMustBePreset": false,
+      "frequency": "per_badge_level",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "SKILL_L3",
+      "label": "技能III级",
+      "category": "assessment",
+      "minPoints": 300,
+      "maxPoints": 300,
+      "specificValueMustBePreset": false,
+      "frequency": "per_badge_level",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "CERT_EXTERNAL",
+      "label": "认可外部证书",
+      "category": "certificate",
+      "minPoints": 300,
+      "maxPoints": 600,
+      "specificValueMustBePreset": true,
+      "frequency": "first_certificate",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ASSIST_HOUR",
+      "label": "助教每小时",
+      "category": "service",
+      "minPoints": 10,
+      "maxPoints": 10,
+      "specificValueMustBePreset": false,
+      "frequency": "per_verified_hour",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ASSIST_QUALITY",
+      "label": "助教质量",
+      "category": "service",
+      "minPoints": 30,
+      "maxPoints": 100,
+      "specificValueMustBePreset": true,
+      "frequency": "per_course",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "EQUIP_CHECK",
+      "label": "设备盘点维护",
+      "category": "maintenance",
+      "minPoints": 20,
+      "maxPoints": 40,
+      "specificValueMustBePreset": true,
+      "frequency": "per_verified_task",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "EQUIP_REPAIR",
+      "label": "故障排除",
+      "category": "maintenance",
+      "minPoints": 50,
+      "maxPoints": 150,
+      "specificValueMustBePreset": true,
+      "frequency": "per_verified_task",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "SAFETY_REPORT",
+      "label": "有效安全隐患",
+      "category": "safety",
+      "minPoints": 30,
+      "maxPoints": 100,
+      "specificValueMustBePreset": true,
+      "frequency": "per_distinct_risk",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "IDEA_ADOPTED",
+      "label": "建议采用",
+      "category": "improvement",
+      "minPoints": 20,
+      "maxPoints": 100,
+      "specificValueMustBePreset": true,
+      "frequency": "per_adopted_idea",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "MENTOR_NEW",
+      "label": "带教考核通过",
+      "category": "mentoring",
+      "minPoints": 40,
+      "maxPoints": 40,
+      "specificValueMustBePreset": false,
+      "frequency": "per_student_semester",
+      "passive": false,
+      "evidenceRequired": true
+    },
+    {
+      "code": "ROLE_OUTPUT",
+      "label": "学期岗位成果",
+      "category": "role_output",
+      "minPoints": 100,
+      "maxPoints": 400,
+      "specificValueMustBePreset": true,
+      "frequency": "per_semester_deliverables",
+      "passive": false,
+      "evidenceRequired": true
+    }
+  ]
+}

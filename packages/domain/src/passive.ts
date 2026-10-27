@@ -1,0 +1,23 @@
+import {randomUUID} from 'node:crypto';
+import {rows,type Executor} from '../../db/src/client';
+import type {Context} from './commands';
+import {calendarMonths} from './business-time';
+// Caller holds the beneficiary wallet lock. Inserts are part of the original award transaction.
+export async function settlePassive(cx:Executor,ctx:Context,userId:string,now=new Date()){
+ const terms=await rows<{id:string;starts_on:Date;ends_on:Date}>(cx,'SELECT DISTINCT t.* FROM academic_terms t JOIN passive_candidates p ON p.term_id=t.id WHERE p.user_id=? AND p.posted_points<p.points',[userId]);
+ for(const term of terms){
+  const start=new Date(term.starts_on.toISOString().slice(0,10)+'T00:00:00+08:00'),end=new Date(term.ends_on.toISOString().slice(0,10)+'T00:00:00+08:00');
+  const[active]=await rows<{points:string}>(cx,"SELECT COALESCE(SUM(l.delta_growth),0) points FROM ledger_entries l LEFT JOIN ledger_entries original ON original.id=l.reverse_entry_id WHERE l.user_id=? AND l.created_at>=? AND l.created_at<? AND l.source_type<>'PASSIVE' AND (original.id IS NULL OR original.source_type<>'PASSIVE')",[userId,start,end]);
+  const[posted]=await rows<{points:string}>(cx,'SELECT COALESCE(SUM(posted_points),0) points FROM passive_candidates WHERE user_id=? AND term_id=?',[userId,term.id]);let capacity=Math.max(0,Math.floor(Number(active.points)/4)-Number(posted.points));
+  const candidates=await rows<{id:string;points:number;posted_points:number;source_id:string}>(cx,'SELECT * FROM passive_candidates WHERE user_id=? AND term_id=? AND posted_points<points ORDER BY occurred_at,id FOR UPDATE',[userId,term.id]);
+  for(const candidate of candidates){const amount=candidate.points-candidate.posted_points;if(amount>capacity)break;const id=randomUUID();await cx.execute("INSERT INTO ledger_entries(id,user_id,business_key,kind,delta_available,delta_growth,source_type,source_id,rule_version,reason,actor_id,request_id) VALUES (?,?,?,'EARN',?,?,'PASSIVE',?,'DRAFT_FOR_DEMO:v1',?,?,?)",[id,userId,'PASSIVE:'+candidate.id,amount,amount,candidate.source_id,'被动积分按学期20%上限依发生顺序结算',ctx.actorId,ctx.requestId]);await cx.execute('INSERT INTO point_lots(entry_id,user_id,available,expires_at) VALUES (?,?,?,?)',[id,userId,amount,calendarMonths(now,18)]);await cx.execute('UPDATE wallets SET available_points=available_points+?,growth_mileage=growth_mileage+?,version=version+1 WHERE user_id=?',[amount,amount,userId]);await cx.execute('UPDATE passive_candidates SET posted_points=points WHERE id=?',[candidate.id]);await cx.execute('INSERT INTO audit_events(id,actor_id,action,resource_id,request_id) VALUES (?,?,?,?,?)',[randomUUID(),ctx.actorId,'PASSIVE_SETTLED',candidate.id,ctx.requestId]);await cx.execute('INSERT IGNORE INTO outbox_events(id,user_id,event_type,resource_id,payload) VALUES (?,?,?,?,?)',[randomUUID(),userId,'PASSIVE_SETTLED',candidate.id,JSON.stringify({message:'待结算参会积分已到账 '+amount})]);capacity-=amount;}
+ }
+}
+export async function pendingPoints(cx:Executor,userId:string){
+ const[activity]=await rows<{points:string}>(cx,"SELECT COALESCE(SUM(a.points),0) points FROM flow_approvals a JOIN submissions s ON s.id=a.submission_id WHERE s.user_id=? AND a.status IN ('PENDING','PARTIAL_APPROVAL')",[userId]);
+ const[award]=await rows<{points:string}>(cx,"SELECT COALESCE(SUM(GREATEST(CAST(JSON_UNQUOTE(JSON_EXTRACT(a.targets,?)) AS SIGNED)-COALESCE(e.target_points,0),0)),0) points FROM award_requests a LEFT JOIN entitlements e ON e.family_id=a.family_id AND e.user_id=? WHERE a.status IN ('PENDING','PARTIAL_APPROVAL')",['$.'+JSON.stringify(userId),userId]);
+ const[meeting]=await rows<{points:string}>(cx,"SELECT COALESCE(SUM(active_points+passive_points),0) points FROM meeting_claims WHERE user_id=? AND status='SUBMITTED'",[userId]);
+ const[conversion]=await rows<{points:string}>(cx,"SELECT COALESCE(SUM(GREATEST(r.target_points-COALESCE(e.target_points,0),0)),0) points FROM conversion_requests r LEFT JOIN entitlements e ON e.family_id=CONCAT('CONVERSION:',r.goal_id) AND e.user_id=r.user_id WHERE r.user_id=? AND r.status IN ('PENDING','PARTIAL_APPROVAL')",[userId]);
+ const[adjustment]=await rows<{points:string}>(cx,"SELECT COALESCE(SUM(points),0) points FROM point_adjustment_requests WHERE beneficiary_id=? AND kind='EARN' AND status IN ('PENDING','PARTIAL_APPROVAL')",[userId]);
+ const[eligibility]=await rows<{points:string}>(cx,'SELECT COALESCE(SUM(points-posted_points),0) points FROM passive_candidates WHERE user_id=?',[userId]);return {pendingApprovalPoints:Number(activity.points)+Number(award.points)+Number(meeting.points)+Number(conversion.points)+Number(adjustment.points),pendingEligibilityPoints:Number(eligibility.points)};
+}

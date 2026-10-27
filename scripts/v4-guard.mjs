@@ -1,0 +1,2 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+export async function v4Guard(){const c=JSON.parse(fs.readFileSync('.runtime/config.json','utf8'));assert.equal(c.profile,'b');assert.equal(c.database,'ym_dev_b');assert.equal(c.dbHost,'127.0.0.1');assert.equal(c.dbPort,3311);assert.equal(c.apiPort,3104);assert.equal(c.gatewayPort,38081);const r=await fetch('http://127.0.0.1:38081/api/v1/health');assert.equal(r.status,200);assert.equal(r.headers.get('x-instance-id'),c.cookiePrefix);return c;}
